@@ -1,0 +1,42 @@
+// Local schema in graph Fraud (the workspace's global namespace already holds a sample Card type).
+// Suggested README schema plus FraudCase (agent memory) and Pattern/PolicyRule/PolicyAction (policy as a graph).
+CREATE GRAPH Fraud()
+USE GRAPH Fraud
+CREATE SCHEMA_CHANGE JOB fraud_schema FOR GRAPH Fraud {
+  ADD VERTEX Customer (PRIMARY_ID id STRING) WITH primary_id_as_attribute="true";
+  ADD VERTEX BankCard (PRIMARY_ID id STRING, network STRING, card_type STRING) WITH primary_id_as_attribute="true";
+  ADD VERTEX Txn (PRIMARY_ID id STRING, ts DATETIME, amt DOUBLE, product STRING, channel STRING, addr1 STRING,
+                  risk_score DOUBLE, p_fraud DOUBLE, id_15 STRING, proxy_type STRING, m4 STRING, m5 STRING, m6 STRING, uid STRING)
+                  WITH primary_id_as_attribute="true";
+  ADD VERTEX DeviceProfile (PRIMARY_ID id STRING, device_type STRING) WITH primary_id_as_attribute="true";
+  ADD VERTEX EmailDomain (PRIMARY_ID id STRING) WITH primary_id_as_attribute="true";
+  ADD VERTEX BillingRegion (PRIMARY_ID id STRING) WITH primary_id_as_attribute="true";
+  ADD VERTEX ClosedCase (PRIMARY_ID id STRING, opened_at DATETIME, outcome STRING, pattern STRING, exposure DOUBLE,
+                         report_filed STRING, notes STRING) WITH primary_id_as_attribute="true";
+  ADD VERTEX FraudCase (PRIMARY_ID id STRING, case_id STRING, opened_at DATETIME, status STRING, verdict STRING, pattern STRING,
+                        fraud_probability DOUBLE, exposure_usd DOUBLE, summary STRING) WITH primary_id_as_attribute="true";
+  ADD VERTEX Pattern (PRIMARY_ID id STRING, description STRING) WITH primary_id_as_attribute="true";
+  ADD VERTEX PolicyRule (PRIMARY_ID id STRING, text STRING) WITH primary_id_as_attribute="true";
+  ADD VERTEX PolicyAction (PRIMARY_ID id STRING, route STRING) WITH primary_id_as_attribute="true";
+  ADD DIRECTED EDGE OWNS (FROM Customer, TO BankCard) WITH REVERSE_EDGE="OWNED_BY";
+  ADD DIRECTED EDGE MADE (FROM BankCard, TO Txn) WITH REVERSE_EDGE="MADE_BY";
+  ADD DIRECTED EDGE FROM_DEVICE (FROM Txn, TO DeviceProfile) WITH REVERSE_EDGE="DEVICE_OF";
+  ADD DIRECTED EDGE PURCHASER_EMAIL (FROM Txn, TO EmailDomain) WITH REVERSE_EDGE="PURCHASER_EMAIL_OF";
+  ADD DIRECTED EDGE RECIPIENT_EMAIL (FROM Txn, TO EmailDomain) WITH REVERSE_EDGE="RECIPIENT_EMAIL_OF";
+  ADD DIRECTED EDGE BILLED_IN (FROM Txn, TO BillingRegion) WITH REVERSE_EDGE="REGION_OF";
+  ADD DIRECTED EDGE NEXT_TXN (FROM Txn, TO Txn) WITH REVERSE_EDGE="PREV_TXN";
+  ADD DIRECTED EDGE INVOLVES (FROM ClosedCase, TO Txn) WITH REVERSE_EDGE="IN_CLOSED_CASE";
+  ADD DIRECTED EDGE ON_CARD (FROM ClosedCase, TO BankCard) WITH REVERSE_EDGE="HAS_CLOSED_CASE";
+  ADD DIRECTED EDGE CONNECTED_TO (FROM ClosedCase, TO BankCard) WITH REVERSE_EDGE="CONNECTED_CASE";
+  ADD DIRECTED EDGE CLOSED_AS (FROM ClosedCase, TO Pattern) WITH REVERSE_EDGE="PATTERN_OF_CLOSED";
+  ADD DIRECTED EDGE CASE_ON_CARD (FROM FraudCase, TO BankCard) WITH REVERSE_EDGE="HAS_CASE";
+  ADD DIRECTED EDGE AFFECTS (FROM FraudCase, TO Txn) WITH REVERSE_EDGE="AFFECTED_BY";
+  ADD DIRECTED EDGE CASE_CONNECTED_TO (FROM FraudCase, TO BankCard) WITH REVERSE_EDGE="CONNECTED_TO_CASE";
+  ADD DIRECTED EDGE CASE_DEVICE (FROM FraudCase, TO DeviceProfile) WITH REVERSE_EDGE="DEVICE_IN_CASE";
+  ADD DIRECTED EDGE SIMILAR_TO (FROM FraudCase, TO ClosedCase) WITH REVERSE_EDGE="SIMILAR_FROM";
+  ADD DIRECTED EDGE CASE_PATTERN (FROM FraudCase, TO Pattern) WITH REVERSE_EDGE="PATTERN_OF_CASE";
+  ADD DIRECTED EDGE TRIGGERS (FROM Pattern, TO PolicyRule) WITH REVERSE_EDGE="TRIGGERED_BY";
+  ADD DIRECTED EDGE REQUIRES (FROM PolicyRule, TO PolicyAction) WITH REVERSE_EDGE="REQUIRED_BY";
+}
+RUN SCHEMA_CHANGE JOB fraud_schema
+DROP JOB fraud_schema

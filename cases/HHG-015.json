@@ -1,0 +1,112 @@
+{
+  "case_id": "HHG-015",
+  "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.01,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 0,
+    "evidence": [
+      {
+        "claim": "Graph-feature scorer trained on 5,565 closed cases gives this transaction a calibrated fraud probability of 0.00 (bank model score 0.77); features include Vesta's unnamed C, D, M and V columns, used as signals only",
+        "source": "graph",
+        "ref": "query:score_transaction(txn_id=3464869)",
+        "entity_ids": [
+          "3464869"
+        ]
+      },
+      {
+        "claim": "Device profile 'Trident/7.0 | Windows 8.1 | ie 11.0 for desktop | 1680x1050' is marked New and has never been used on C03042-K1",
+        "source": "graph",
+        "ref": "query:device_neighbors(device='Trident/7.0 | Windows 8.1 | ie 11.0 for desktop | 1680x1050')",
+        "entity_ids": [
+          "3464869"
+        ]
+      },
+      {
+        "claim": "Card history holds 3 earlier closed cases (2 confirmed fraud, 1 cleared); most recent CC-3886 (card_not_present_new_device, confirmed_fraud)",
+        "source": "graph",
+        "ref": "query:similar_closed_cases(card_id=C03042-K1)",
+        "entity_ids": [
+          "CC-3886",
+          "CC-1313",
+          "CC-0615"
+        ]
+      },
+      {
+        "claim": "Known-pattern definition matched to this case: Out-of-region use. Card-present purchases in a billing region the cardholder has no history in, while their normal activity continues at home. Several days of purchases in one new region is a trip, not a clone. Policy R2, R3.",
+        "source": "document",
+        "ref": "doc:PATTERN-4",
+        "entity_ids": [
+          "PATTERN-4"
+        ]
+      },
+      {
+        "claim": "Closed cases whose analyst notes read most like this investigation (vector search over ClosedCase.note_emb): CC-5111, CC-1960, CC-4521, CC-2014",
+        "source": "graph",
+        "ref": "mcp:search_top_k_similarity(ClosedCase.note_emb)",
+        "entity_ids": [
+          "CC-5111",
+          "CC-1960",
+          "CC-4521",
+          "CC-2014"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-3886",
+      "CC-1313",
+      "CC-0615",
+      "CC-5111",
+      "CC-1960"
+    ],
+    "summary": "Transaction 3464869 ($599.94 online) was flagged by the real-time detection model with score 0.77 on 2016-11-17 14:03:36. Graph-feature analysis trained on 5,565 closed cases calculated a calibrated fraud probability of 0.00, maintaining final assessment at 0.01. The new device profile associated with the transaction showed no fraud signals; out-of-region purchase pattern is consistent with legitimate travel behavior per Policy R2. Verdict: legitimate. Transaction approved and case closed.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-015"
+  },
+  "evidence_requests": [],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "ALLOW_TRANSACTION",
+        "route": "auto",
+        "reason": "\u00a76: probability 0.01 backed by 2 independent signals"
+      },
+      {
+        "action": "CLOSE_NO_FRAUD",
+        "route": "auto",
+        "reason": "Evidence points to legitimate activity"
+      }
+    ],
+    "final": [
+      {
+        "action": "ALLOW_TRANSACTION",
+        "route": "auto",
+        "reason": "\u00a76: probability 0.01 backed by 2 independent signals"
+      },
+      {
+        "action": "CLOSE_NO_FRAUD",
+        "route": "auto",
+        "reason": "Evidence points to legitimate activity"
+      }
+    ],
+    "what_changed": "nothing"
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: no fraud found, no report.",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+  },
+  "stop_reason": "Probability 0.01 with 2 independent signals meets the \u00a76 stopping rule; the risk score alone did not hold up.",
+  "tool_calls": 26,
+  "tokens": 27478,
+  "latency_s": 104.71
+}

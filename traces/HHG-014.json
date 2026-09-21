@@ -1,0 +1,107 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "kind": "trigger",
+      "text": "analyst_request: Analyst request: several cards this month show purchases from the same unusual device profile. Review transaction 3478561 on card C13487-K1 and look for related activity.",
+      "tool_calls": 1
+    },
+    {
+      "step": 2,
+      "kind": "open_case",
+      "text": "Case opened for card C13487-K1, flagged transaction 3478561 ($74.96, online, product C).",
+      "tool_calls": 1
+    },
+    {
+      "step": 3,
+      "kind": "investigate",
+      "text": "Baseline: 64 transactions in 120 days, median $51.02, home region 272.0, products {'W': 61, 'C': 2, 'R': 1}.",
+      "tool_calls": 4
+    },
+    {
+      "step": 4,
+      "kind": "investigate",
+      "text": "Ran pattern queries: card_window, device_neighbors, region_cluster, recurring_charge.",
+      "tool_calls": 12
+    },
+    {
+      "step": 5,
+      "kind": "investigate",
+      "text": "MCP traversal DeviceProfile\u2192Txn\u2192ClosedCase: 4 confirmed-fraud and 0 cleared closed cases used this device profile.",
+      "tool_calls": 19
+    },
+    {
+      "step": 6,
+      "kind": "investigate",
+      "text": "Connected components (device_rings): 10 components of 5+ cards in 30 days; this card's has 19 cards and 1 device(s).",
+      "tool_calls": 20
+    },
+    {
+      "step": 7,
+      "kind": "assess",
+      "text": "Hypotheses scored: scorer -3.3, device_ring +4.5",
+      "tool_calls": 20
+    },
+    {
+      "step": 8,
+      "kind": "assess",
+      "text": "Fraud probability 0.77; pattern undocumented; 2 independent signals.",
+      "tool_calls": 20
+    },
+    {
+      "step": 9,
+      "kind": "assess",
+      "text": "Policy graph for pattern undocumented: rules ['R9', 'R6']; allowed actions ['ESCALATE_TO_ANALYST', 'FILE_REPORT', 'CREATE_CASE', 'MONITOR_CONNECTED_CARDS'].",
+      "tool_calls": 21
+    },
+    {
+      "step": 10,
+      "kind": "recommend",
+      "text": "Initial: ['CREATE_CASE', 'DECLINE_TRANSACTION', 'FILE_REPORT', 'ESCALATE_TO_ANALYST', 'MONITOR_CONNECTED_CARDS']. Final: ['BLOCK_CARD', 'CREATE_CASE', 'FILE_REPORT', 'ESCALATE_TO_ANALYST', 'MONITOR_CONNECTED_CARDS']. Cardholder denial confirmed the unauthorized use, so the recommendation adds BLOCK_CARD under R2; report, escalation and monitoring stand.",
+      "tool_calls": 21
+    },
+    {
+      "step": 11,
+      "kind": "retrieve",
+      "text": "GraphRAG: 5 passages by vector search, 3 by graph path Pattern\u2192PolicyRule\u2192DocChunk, 4 closed cases by note similarity.",
+      "tool_calls": 24
+    }
+  ],
+  "hypotheses": {
+    "scorer": -3.3041793951794673,
+    "device_ring": 4.5
+  },
+  "tool_calls": [
+    "txn(3478561)",
+    "card_history(card=C13487-K1,days=120)",
+    "card_history.products",
+    "card_history.regions",
+    "card_window(card=C13487-K1)",
+    "card_window(card=C13487-K1)",
+    "device_on_card_before",
+    "device_neighbors",
+    "device_global",
+    "region_on_card_before",
+    "card_window(card=C13487-K1)",
+    "recurring_charge",
+    "device_ring.closed_cases",
+    "device_ring.cards_before",
+    "device_ring.cards_now",
+    "device_ring.own_txns",
+    "similar_closed_cases.structural",
+    "mcp:tigergraph__run_installed_query(similar_closed_cases)",
+    "mcp:tigergraph__run_installed_query(closed_cases_by_device)",
+    "mcp:tigergraph__run_installed_query(device_rings)",
+    "mcp:tigergraph__run_installed_query(policy_for_pattern)",
+    "mcp:tigergraph__search_top_k_similarity(DocChunk.emb)",
+    "mcp:tigergraph__run_installed_query(policy_docs)",
+    "mcp:tigergraph__search_top_k_similarity(ClosedCase.note_emb)",
+    "txn(3460634)",
+    "txn(3478561)",
+    "txn(3460634)",
+    "txn(3478561)"
+  ],
+  "p_model": 0.035428089413749475,
+  "p_initial": 0.77,
+  "p_final": 0.9
+}

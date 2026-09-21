@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fraud Case Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f2ee; --panel:#ffffff; --ink:#1b1d21; --muted:#6b6f78; --line:#e2dfd8;
+  --fraud:#c2410c; --legit:#15803d; --unc:#a16207; --accent:#1f3a5f;
+  --auto:#e8efe9; --l1:#fdf1dc; --l2:#fbe4dc;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#121315; --panel:#1b1d20; --ink:#ecebe7; --muted:#9a9ea6; --line:#2c2f34;
+  --fraud:#f97316; --legit:#4ade80; --unc:#facc15; --accent:#93b4dc;
+  --auto:#1d2b22; --l1:#34290f; --l2:#3a1f16; }}
+:root[data-theme="dark"]{
+  --bg:#121315; --panel:#1b1d20; --ink:#ecebe7; --muted:#9a9ea6; --line:#2c2f34;
+  --fraud:#f97316; --legit:#4ade80; --unc:#facc15; --accent:#93b4dc;
+  --auto:#1d2b22; --l1:#34290f; --l2:#3a1f16; }
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 "IBM Plex Sans",system-ui,sans-serif}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+header{display:flex;align-items:baseline;gap:16px;padding:18px 24px;border-bottom:1px solid var(--line)}
+header h1{font-size:18px;margin:0;font-weight:600;letter-spacing:-.01em}
+header .sub{color:var(--muted);font-size:13px}
+.wrap{display:grid;grid-template-columns:300px 1fr;min-height:calc(100vh - 60px)}
+nav{border-right:1px solid var(--line);overflow:auto;max-height:calc(100vh - 60px)}
+.tally{display:flex;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted)}
+.row{display:grid;grid-template-columns:70px 1fr 44px;gap:8px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);cursor:pointer}
+.row:hover{background:var(--panel)} .row.on{background:var(--panel);box-shadow:inset 3px 0 0 var(--accent)}
+.row .pat{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+.v-fraud{color:var(--fraud)} .v-legitimate{color:var(--legit)} .v-uncertain{color:var(--unc)}
+.b-fraud{background:var(--fraud)} .b-legitimate{background:var(--legit)} .b-uncertain{background:var(--unc)}
+main{padding:24px 28px;overflow:auto;max-height:calc(100vh - 60px)}
+.head{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px}
+.head h2{margin:0;font-size:22px;font-weight:600}
+.chip{font-size:12px;padding:2px 8px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
+.trigger{margin:10px 0 18px;color:var(--muted);max-width:900px}
+/* the one bold element: probability shift */
+.shift{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:18px}
+.shift .lbl{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:8px}
+.track{position:relative;height:14px;border-radius:7px;background:linear-gradient(90deg,var(--legit) 0 15%,var(--line) 15% 85%,var(--fraud) 85%);opacity:.9}
+.mark{position:absolute;top:-6px;width:3px;height:26px;border-radius:2px;background:var(--ink)}
+.mark.i{background:var(--muted)}
+.mark span{position:absolute;top:28px;transform:translateX(-45%);font-size:12px;white-space:nowrap}
+.arrow{position:absolute;top:5px;height:4px;background:var(--ink);opacity:.35}
+.summary{font-size:15px;margin:36px 0 0;max-width:900px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:18px}
+.card h3{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+.act{display:grid;grid-template-columns:1fr auto;gap:4px 10px;padding:8px 0;border-top:1px solid var(--line)}
+.act:first-of-type{border-top:0}
+.act b{font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:13px}
+.act .why{grid-column:1/3;color:var(--muted);font-size:12.5px}
+.route{font-size:11px;padding:1px 7px;border-radius:4px;font-family:"IBM Plex Mono",monospace}
+.r-auto{background:var(--auto)} .r-L1{background:var(--l1)} .r-L2{background:var(--l2)}
+.approve{font:inherit;font-size:11px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:4px;padding:1px 6px;cursor:pointer;margin-left:6px}
+.approve.done{color:var(--legit);border-color:var(--legit)}
+.changed{margin-top:12px;padding:10px 12px;border-left:3px solid var(--accent);background:var(--bg);font-size:13px}
+ol.tl{list-style:none;margin:0;padding:0}
+ol.tl li{display:grid;grid-template-columns:110px 1fr;gap:10px;padding:6px 0;border-top:1px dashed var(--line);font-size:13px}
+ol.tl li:first-child{border-top:0}
+.kind{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--accent)}
+.ev{padding:8px 0;border-top:1px solid var(--line);font-size:13px}
+.ev:first-child{border-top:0}
+.src{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted)}
+.ids{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);word-break:break-all}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:4px 12px;font-size:13px}
+.kv div:nth-child(odd){color:var(--muted)}
+.sar p{margin:0 0 8px;font-size:13.5px}
+svg text{fill:var(--ink);font:11px "IBM Plex Mono",monospace}
+@media (max-width:900px){.wrap{grid-template-columns:1fr} nav{max-height:260px;border-right:0;border-bottom:1px solid var(--line)} .grid{grid-template-columns:1fr} main{padding:16px}}
+</style>
+</head>
+<body>
+<header><h1>Fraud Case Desk</h1><span class="sub">TigerGraph agent · 20 benchmark cases · Nov–Dec 2016</span></header>
+<div class="wrap">
+  <nav id="nav"></nav>
+  <main id="main"></main>
+</div>
+<script src="data.js"></script>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const money = x => "$" + Number(x).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+const cases = window.CASES || [];
+const approved = new Set();
+
+function nav(sel){
+  const n = v => cases.filter(c => c.case.verdict === v).length;
+  $("#nav").innerHTML = `<div class="tally"><span class="v-fraud">${n("fraud")} fraud</span><span class="v-uncertain">${n("uncertain")} uncertain</span><span class="v-legitimate">${n("legitimate")} legitimate</span><span>${cases.filter(c=>c.sar.file).length} SAR</span></div>` +
+    cases.map(c => `<div class="row ${c.case_id===sel?"on":""}" data-id="${c.case_id}">
+      <span class="mono">${c.case_id}</span>
+      <span class="pat"><span class="dot b-${c.case.verdict}"></span>${esc(c.case.pattern==="none"?"no fraud":c.case.pattern.replaceAll("_"," "))}</span>
+      <span class="mono v-${c.case.verdict}">${c.case.fraud_probability.toFixed(2)}</span></div>`).join("");
+  document.querySelectorAll(".row").forEach(r => r.onclick = () => show(r.dataset.id));
+}
+
+function actions(list, stage){
+  return list.map((a,i) => {
+    const key = stage+a.action+i, needs = a.route !== "auto";
+    return `<div class="act"><b>${a.action}</b><span><span class="route r-${a.route}">${a.route}</span>${needs && stage==="final" ? `<button class="approve ${approved.has(key)?"done":""}" data-k="${key}">${approved.has(key)?"approved":"approve"}</button>`:""}</span>
+      <span class="why">${esc(a.reason)}</span></div>`}).join("");
+}
+
+function graph(c){
+  const g = c._graph; if (!g) return "";
+  const v = c.case.verdict, hot = v === "fraud" ? "var(--fraud)" : v === "uncertain" ? "var(--unc)" : "var(--legit)";
+  const W = 700, H = 330, card = {x:120,y:165}, tx = {x:300,y:165};
+  const cut = (s,n) => { s = String(s||""); return s.length > n ? s.slice(0,n-1)+"…" : s; };
+  let e = "", nodes = "";
+  const edge = (a,b,col="var(--line)",w=1.5,label="") => {
+    e += `<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="${col}" stroke-width="${w}"/>`;
+    if (label) e += `<text x="${(a.x+b.x)/2-18}" y="${(a.y+b.y)/2-5}" style="fill:var(--muted);font-size:9px">${label}</text>`; };
+  const node = (p, shape, col, label, sub="", anchor="middle") => {
+    nodes += shape === "sq" ? `<rect x="${p.x-8}" y="${p.y-8}" width="16" height="16" rx="3" fill="${col}"/>`
+                            : `<circle cx="${p.x}" cy="${p.y}" r="${shape==="lg"?10:6}" fill="${col}"/>`;
+    const dx = anchor === "start" ? 12 : anchor === "end" ? -12 : 0, dy = anchor === "middle" ? 24 : 4;
+    nodes += `<text x="${p.x+dx}" y="${p.y+dy}" text-anchor="${anchor}">${esc(label)}</text>`;
+    if (sub) nodes += `<text x="${p.x+dx}" y="${p.y+dy+13}" text-anchor="${anchor}" style="fill:var(--muted);font-size:10px">${esc(sub)}</text>`; };
+  edge(card, tx, hot, 2, "MADE");
+  const dev = {x:470,y:70}, reg = {x:470,y:170}, em = {x:470,y:265};
+  if (g.device) { edge(tx, dev, g.device_cards.some(d=>d.connected) ? "var(--fraud)" : "var(--line)", 1.5, "FROM_DEVICE");
+    g.device_cards.forEach((d,k) => { const p = {x:600, y:18+k*17}; edge(dev,p,d.connected?"var(--fraud)":"var(--line)",1);
+      nodes += `<circle cx="${p.x}" cy="${p.y}" r="4" fill="${d.connected?"var(--unc)":"var(--muted)"}"/><text x="${p.x+8}" y="${p.y+4}" style="font-size:10px">${d.id}</text>`; });
+    node(dev, "sq", g.device_cards.some(d=>d.connected) ? "var(--fraud)" : "var(--muted)", cut(g.device.split(" | ").filter(x=>x!=="?").join(" · ")||"unknown device",30),
+         `${g.device_new?"New":"known"}${g.proxy?" · "+g.proxy.replace("IP_PROXY:","proxy "):""} · ${g.device_cards_total} other cards/30d`, "end"); }
+  if (g.region) { edge(tx, reg, "var(--line)", 1.5, "BILLED_IN"); node(reg, "sm", "var(--muted)", "region "+g.region, `${g.region_cards} other cards ±48h`, "start"); }
+  if (g.email) { edge(tx, em, "var(--line)", 1.5, "EMAIL"); node(em, "sm", "var(--muted)", g.email, "", "start"); }
+  g.closed_cases.forEach((cc,k) => { const p = {x:40+k*62, y:300}; edge(card,p,"var(--line)",1);
+    nodes += `<circle cx="${p.x}" cy="${p.y}" r="4" fill="${cc.outcome==="cleared"?"var(--legit)":"var(--fraud)"}"/><text x="${p.x}" y="${p.y+16}" text-anchor="middle" style="font-size:9.5px">${cc.id}</text>`; });
+  node(card, "lg", "var(--accent)", g.card, `${g.closed_total} closed cases`);
+  node(tx, "sm", hot, "txn "+g.txn.id, `${money(g.txn.amt)} · ${g.txn.channel.replace("_"," ")}`);
+  const key = `<div class="src" style="margin-top:6px">orange edges = link the agent used as evidence · yellow = connected card · green/orange dots under the card = cleared/fraud closed cases</div>`;
+  return `<div class="card"><h3>Graph neighbourhood</h3><svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Graph neighbourhood of the flagged transaction">${e}${nodes}</svg>${key}</div>`;
+}
+
+function show(id){
+  const c = cases.find(x => x.case_id === id); if(!c) return;
+  history.replaceState(null,"","#"+id); nav(id);
+  const cz = c.case, t = c._trace || {}, n = c.next_best_actions;
+  const pi = t.p_initial ?? cz.fraud_probability, pf = cz.fraud_probability;
+  $("#main").innerHTML = `
+  <div class="head"><h2 class="mono">${c.case_id}</h2>
+    <span class="chip v-${cz.verdict}">${cz.verdict}</span><span class="chip">${cz.status.replace("_"," ")}</span>
+    <span class="chip">${esc(cz.pattern.replaceAll("_"," "))}</span><span class="chip">exposure ${money(cz.exposure_usd)}</span>
+    <span class="chip">${c.tool_calls} tool calls · ${c.latency_s}s${c.tokens?` · ${c.tokens} tokens`:""}</span>
+    <span class="chip">${cz.written_to_graph?"in graph: "+cz.graph_case_id:"not in graph"}</span></div>
+  <div class="trigger">${esc((t.steps||[])[0]?.text || "")}</div>
+  <div class="shift"><div class="lbl"><span>legitimate ≤ 0.15</span><span>fraud probability: before evidence → after</span><span>fraud ≥ 0.85</span></div>
+    <div class="track"><div class="arrow" style="left:${Math.min(pi,pf)*100}%;width:${Math.abs(pf-pi)*100}%"></div>
+    <div class="mark i" style="left:${pi*100}%"><span>before ${pi.toFixed(2)}</span></div>
+    <div class="mark" style="left:${pf*100}%"><span>${pi===pf?"":"after "+pf.toFixed(2)}</span></div></div>
+    <p class="summary">${esc(cz.summary)}</p></div>
+  <div class="grid">
+    <div class="card"><h3>Next best action · before evidence</h3>${actions(n.initial,"initial")}</div>
+    <div class="card"><h3>Next best action · after evidence</h3>${actions(n.final,"final")}
+      <div class="changed">${esc(n.what_changed)}</div></div>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Investigation timeline</h3><ol class="tl">${(t.steps||[]).map(s=>`<li><span class="kind">${s.step}. ${s.kind}</span><span>${esc(s.text)}</span></li>`).join("")}</ol>
+      ${c.evidence_requests.length?`<h3 style="margin-top:14px">Evidence requested (simulated reply)</h3>`+c.evidence_requests.map(r=>`<div class="ev"><span class="src">${r.type} · after step ${r.asked_after_step}</span><br>${esc(r.assumed_response)}</div>`).join(""):""}
+      <div class="changed">Stop: ${esc(c.stop_reason)}</div></div>
+    <div class="card"><h3>Evidence</h3>${cz.evidence.map(e=>`<div class="ev">${esc(e.claim)}<br><span class="src">${e.source} · ${esc(e.ref)}</span><div class="ids">${esc(e.entity_ids.slice(0,12).join(", "))}${e.entity_ids.length>12?" …":""}</div></div>`).join("")}</div>
+  </div>
+  ${graph(c)}
+  <div class="grid">
+    <div class="card" style="grid-column:1/3"><h3>Case record</h3><div class="kv">
+      <div>affected txns</div><div class="mono">${cz.affected_txn_ids.join(", ")||"—"}</div>
+      <div>first suspicious</div><div class="mono">${cz.first_suspicious_txn_id||"—"}</div>
+      <div>connected cards</div><div class="mono">${cz.connected_card_ids.length} ${cz.connected_card_ids.length?"("+cz.connected_card_ids.slice(0,6).join(", ")+(cz.connected_card_ids.length>6?" …":"")+")":""}</div>
+      <div>similar prior cases</div><div class="mono">${cz.similar_prior_cases.join(", ")||"—"}</div>
+      ${cz.pattern_description?`<div>pattern</div><div>${esc(cz.pattern_description)}</div>`:""}
+    </div></div>
+  </div>
+  <div class="card sar"><h3>Suspicious activity report · ${c.sar.file?"file (L2 approval)":"not filed"}</h3>
+    <p><b>Reason.</b> ${esc(c.sar.reason)}</p>
+    ${c.sar.file?`<p>${esc(c.sar.narrative)}</p><div class="kv"><div>subjects</div><div class="mono">${esc(c.sar.subjects.slice(0,10).join(", "))}${c.sar.subjects.length>10?" …":""}</div><div>total</div><div>${money(c.sar.total_amount_usd)}</div><div>dates</div><div>${c.sar.activity_dates.join(" → ")}</div></div>`:""}
+  </div>`;
+  document.querySelectorAll(".approve").forEach(b => b.onclick = () => { approved.add(b.dataset.k); show(id); });
+}
+nav(); show(location.hash.slice(1) || (cases[0]||{}).case_id);
+</script>
+</body>
+</html>

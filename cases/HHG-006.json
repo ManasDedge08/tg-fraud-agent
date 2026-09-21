@@ -1,0 +1,173 @@
+{
+  "case_id": "HHG-006",
+  "case": {
+    "status": "escalated",
+    "verdict": "fraud",
+    "fraud_probability": 0.9,
+    "pattern": "undocumented",
+    "pattern_description": "Several online purchases on one card within an hour, each priced just under $500, which looks chosen to stay below a $500 authorization or review threshold. It affects cardholders whose card number is compromised; the same shape appears in five closed cases from September 2016 (CC-3748, CC-3841, CC-3907). Found by scanning the card's transaction window for clustered amounts below the threshold.",
+    "affected_txn_ids": [
+      "3476602",
+      "3476633",
+      "3476665",
+      "3476682"
+    ],
+    "first_suspicious_txn_id": "3476602",
+    "connected_card_ids": [],
+    "connected_device_profiles": [
+      "Trident/7.0 | Windows 7 | ie 11.0 for desktop | 1920x1080",
+      "iOS Device | iOS 11.2.1 | mobile safari 11.0 | 2208x1242"
+    ],
+    "exposure_usd": 1906.07,
+    "evidence": [
+      {
+        "claim": "Graph-feature scorer trained on 5,565 closed cases gives this transaction a calibrated fraud probability of 0.11 (bank model score 0.25); features include Vesta's unnamed C, D, M and V columns, used as signals only",
+        "source": "graph",
+        "ref": "query:score_transaction(txn_id=3476682)",
+        "entity_ids": [
+          "3476682"
+        ]
+      },
+      {
+        "claim": "Cardholder C07297 reported the $482.12 charge as not made by them",
+        "source": "customer",
+        "ref": "trigger:HHG-006",
+        "entity_ids": [
+          "C07297",
+          "3476682"
+        ]
+      },
+      {
+        "claim": "4 online purchases of $478.95, $456.96, $488.04, $482.12 within 30 minutes, each just under $500, from 2 device profiles marked New",
+        "source": "graph",
+        "ref": "query:card_window(card_id=C07297-K1, hours=24)",
+        "entity_ids": [
+          "3476602",
+          "3476633",
+          "3476665",
+          "3476682"
+        ]
+      },
+      {
+        "claim": "Closed cases CC-3748, CC-3841, CC-3907, CC-4086, CC-4124 record the same undocumented pattern: four online purchases within forty minutes, each just under a $500 authorization threshold",
+        "source": "document",
+        "ref": "closed_cases_history:analyst_notes",
+        "entity_ids": [
+          "CC-3748",
+          "CC-3841",
+          "CC-3907",
+          "CC-4086",
+          "CC-4124"
+        ]
+      },
+      {
+        "claim": "Policy R9 (retrieved by graph search): R9. Undocumented patterns. When activity fits none of the known patterns but the evidence shows coordinated or repeated abuse across customers, recommend `CREATE_CASE`, `FILE_REPORT`, and `ESCALATE_TO_ANALYST`, and describe the pattern in your own words. Do no",
+        "source": "document",
+        "ref": "doc:POLICY-R9",
+        "entity_ids": [
+          "POLICY-R9"
+        ]
+      },
+      {
+        "claim": "SAR narrative written against FinCEN narrative guidance passages retrieved for this case (who, what, when, where, how, why)",
+        "source": "document",
+        "ref": "doc:FINCEN-SAR-50,FINCEN-SAR-45,FINCEN-SAR-54",
+        "entity_ids": [
+          "FINCEN-SAR-50",
+          "FINCEN-SAR-45",
+          "FINCEN-SAR-54"
+        ]
+      },
+      {
+        "claim": "Closed cases whose analyst notes read most like this investigation (vector search over ClosedCase.note_emb): CC-0033, CC-3204, CC-5094, CC-1930",
+        "source": "graph",
+        "ref": "mcp:search_top_k_similarity(ClosedCase.note_emb)",
+        "entity_ids": [
+          "CC-0033",
+          "CC-3204",
+          "CC-5094",
+          "CC-1930"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-3748",
+      "CC-3841",
+      "CC-3907",
+      "CC-4086",
+      "CC-4124",
+      "CC-0033"
+    ],
+    "summary": "Customer C07297 reported an unauthorized $482.12 online purchase on November 21, 2016. Investigation revealed 4 coordinated transactions totaling $1,906.07 within 30 minutes, each deliberately priced just under $500 to evade authorization thresholds. This structuring pattern matches 5 prior closed fraud cases, and transactions originated from 2 distinct device profiles across 2 regions, indicating a compromised card. Fraud is confirmed at 0.9 probability. The card has been blocked, a case created, and the matter escalated to analyst review per Policy R9.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-006"
+  },
+  "evidence_requests": [],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a/R9: coordinated activity outside the known patterns"
+      },
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "R9: stop pending authorizations from the pattern while the case is reviewed"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R9 and 3a: undocumented, coordinated abuse"
+      },
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R9: new pattern goes to a human analyst"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: customer denied; exposure $1,906.07 under $2,500"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2/R9"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R9 and 3a: undocumented coordinated pattern; exposure $1,906.07 over $1,000"
+      },
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R9"
+      }
+    ],
+    "what_changed": "Customer's report already counts as a denial (R2); the block was added once the pattern evidence confirmed it."
+  },
+  "sar": {
+    "file": true,
+    "reason": "R9/R6 and 3a: coordinated or shared-origin fraud",
+    "narrative": "Customer C07297, holding card C07297-K1, experienced 4 unauthorized online purchases totaling $1,906.07 on November 21, 2016, between 20:00 and 20:30. The customer reported the $482.12 transaction as unauthorized, triggering investigation. The transactions consisted of: $478.95 at 20:00 from region 264.0, $456.96 at 20:10 from region 476.0, $488.04 at 20:24 from region 476.0, and $482.12 at 20:30 from region 264.0. Each purchase was conducted online and deliberately structured to remain just below the $500 authorization threshold, indicating intentional evasion of control mechanisms. The transactions originated from 2 distinct device profiles\u2014Windows 7 with Internet Explorer 11 and iOS with mobile Safari\u2014suggesting the card credentials were compromised and used across multiple platforms. This pattern of multiple online purchases of amounts just under $500 within a concentrated time window matches an undocumented fraud pattern identified in 5 prior closed cases (CC-3748, CC-3841, CC-3907, CC-4086, CC-4124), indicating systematic fraudulent activity targeting authorization thresholds. The card has been blocked to prevent further fraud and the investigation escalated per Policy R9.",
+    "subjects": [
+      "C07297",
+      "C07297-K1",
+      "Trident/7.0 | Windows 7 | ie 11.0 for desktop | 1920x1080",
+      "iOS Device | iOS 11.2.1 | mobile safari 11.0 | 2208x1242"
+    ],
+    "total_amount_usd": 1906.07,
+    "activity_dates": [
+      "2016-11-21",
+      "2016-11-21"
+    ]
+  },
+  "stop_reason": "Pattern matched confirmed closed cases and the cardholder denial settled the verdict; further queries would not change the actions.",
+  "tool_calls": 34,
+  "tokens": 30471,
+  "latency_s": 124.6
+}

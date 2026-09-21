@@ -1,0 +1,101 @@
+USE GRAPH Fraud
+
+// All investigation queries take as_of: nothing after the case opened is visible.
+
+CREATE OR REPLACE QUERY card_window(VERTEX<BankCard> card, DATETIME center, INT hours_before, INT hours_after, DATETIME as_of) {
+  start = {card};
+  txns = SELECT t FROM start:c -(MADE>)- Txn:t
+         WHERE t.ts >= datetime_sub(center, INTERVAL hours_before HOUR)
+           AND t.ts <= datetime_add(center, INTERVAL hours_after HOUR) AND t.ts <= as_of
+         ORDER BY t.ts ASC;
+  PRINT txns;
+}
+
+CREATE OR REPLACE QUERY card_history(VERTEX<BankCard> card, INT days, DATETIME as_of) {
+  SumAccum<INT> @@n; AvgAccum @@avg_amt; MaxAccum<DOUBLE> @@max_amt;
+  MapAccum<STRING, SumAccum<INT>> @@products, @@regions;
+  SetAccum<VERTEX<DeviceProfile>> @@devices;
+  start = {card};
+  txns = SELECT t FROM start:c -(MADE>)- Txn:t
+         WHERE t.ts < as_of AND t.ts >= datetime_sub(as_of, INTERVAL days DAY)
+         ACCUM @@n += 1, @@avg_amt += t.amt, @@max_amt += t.amt, @@products += (t.product -> 1), @@regions += (t.addr1 -> 1);
+  d = SELECT dv FROM txns:t -(FROM_DEVICE>)- DeviceProfile:dv ACCUM @@devices += dv;
+  PRINT @@n AS n, @@avg_amt AS avg_amt, @@max_amt AS max_amt, @@products AS products, @@regions AS regions, @@devices.size() AS n_devices;
+}
+
+// Other cards that used this device profile in the window (R6 / ring detection)
+CREATE OR REPLACE QUERY device_neighbors(VERTEX<DeviceProfile> dev, DATETIME as_of, INT days) {
+  MapAccum<VERTEX<BankCard>, SumAccum<INT>> @@cards; SumAccum<DOUBLE> @total; SumAccum<INT> @n; MaxAccum<DOUBLE> @max_p;
+  start = {dev};
+  txns = SELECT t FROM start:d -(DEVICE_OF>)- Txn:t
+         WHERE t.ts <= as_of AND t.ts >= datetime_sub(as_of, INTERVAL days DAY);
+  cards = SELECT c FROM txns:t -(MADE_BY>)- BankCard:c
+          ACCUM c.@n += 1, c.@total += t.amt, c.@max_p += t.p_fraud;
+  PRINT cards[cards.@n, cards.@total, cards.@max_p];
+}
+
+// Closed cases whose transactions came from this device profile: case memory by structure
+CREATE OR REPLACE QUERY closed_cases_by_device(VERTEX<DeviceProfile> dev, DATETIME as_of) {
+  start = {dev};
+  txns = SELECT t FROM start:d -(DEVICE_OF>)- Txn:t;
+  cases = SELECT cc FROM txns:t -(IN_CLOSED_CASE>)- ClosedCase:cc WHERE cc.opened_at < as_of;
+  PRINT cases;
+}
+
+// Closed cases touching this card, or cards it is connected to
+CREATE OR REPLACE QUERY similar_closed_cases(VERTEX<BankCard> card, DATETIME as_of) {
+  start = {card};
+  own = SELECT cc FROM start:c -(HAS_CLOSED_CASE>)- ClosedCase:cc WHERE cc.opened_at < as_of;
+  linked = SELECT cc FROM start:c -(CONNECTED_CASE>)- ClosedCase:cc WHERE cc.opened_at < as_of;
+  mine = SELECT fc FROM start:c -(HAS_CASE>)- FraudCase:fc WHERE fc.opened_at < as_of;
+  PRINT own, linked, mine;
+}
+
+// Billing-region cluster: cards active in a region in the window, and how new it is to each
+CREATE OR REPLACE QUERY region_cluster(VERTEX<BillingRegion> region, DATETIME center, INT hours, DATETIME as_of) {
+  SumAccum<INT> @n;
+  start = {region};
+  txns = SELECT t FROM start:r -(REGION_OF>)- Txn:t
+         WHERE t.ts >= datetime_sub(center, INTERVAL hours HOUR) AND t.ts <= datetime_add(center, INTERVAL hours HOUR) AND t.ts <= as_of;
+  cards = SELECT c FROM txns:t -(MADE_BY>)- BankCard:c ACCUM c.@n += 1;
+  PRINT cards[cards.@n];
+}
+
+// Policy as a graph: pattern -> rules -> actions, one traversal
+CREATE OR REPLACE QUERY policy_for_pattern(VERTEX<Pattern> pat) {
+  start = {pat};
+  rules = SELECT r FROM start:x -(TRIGGERS>)- PolicyRule:r;
+  acts = SELECT a FROM rules:r -(REQUIRES>)- PolicyAction:a;
+  PRINT rules, acts;
+}
+
+// Ring discovery: connected components (label propagation) over the card-device graph,
+// restricted to transactions from devices marked New and behind a proxy in the window.
+// Returns how many components reach min_cards, and the component the focus card sits in.
+CREATE OR REPLACE QUERY device_rings(DATETIME since, DATETIME until, INT min_cards, VERTEX<BankCard> focus) {
+  MinAccum<INT> @cc; OrAccum @changed; MapAccum<INT, SumAccum<INT>> @@size; MinAccum<INT> @@focus_cc;
+  SumAccum<INT> @@rings;
+  txns = {Txn.*};
+  txns = SELECT t FROM txns:t WHERE t.ts >= since AND t.ts <= until AND t.id_15 == "New" AND t.proxy_type != "";
+  devs = SELECT d FROM txns:t -(FROM_DEVICE>)- DeviceProfile:d;
+  cards = SELECT c FROM txns:t -(MADE_BY>)- BankCard:c;
+  allv = devs UNION cards;
+  allv = SELECT v FROM allv:v POST-ACCUM v.@cc = getvid(v);
+  WHILE allv.size() > 0 LIMIT 30 DO
+    allv = SELECT d FROM devs:d -(DEVICE_OF>)- Txn:t -(MADE_BY>)- BankCard:c
+           WHERE t.ts >= since AND t.ts <= until AND t.id_15 == "New" AND t.proxy_type != ""
+           ACCUM IF d.@cc < c.@cc THEN c.@cc += d.@cc, c.@changed += TRUE
+                 ELSE IF c.@cc < d.@cc THEN d.@cc += c.@cc, d.@changed += TRUE END;
+    allv = SELECT v FROM allv:v WHERE v.@changed POST-ACCUM v.@changed = FALSE;
+  END;
+  cards = SELECT c FROM cards:c POST-ACCUM @@size += (c.@cc -> 1);
+  FOREACH (k, n) IN @@size DO IF n >= min_cards THEN @@rings += 1; END; END;
+  f = {focus};
+  f = SELECT c FROM f:c WHERE c.@cc < 2147483647 POST-ACCUM @@focus_cc += c.@cc;
+  ring_cards = SELECT c FROM cards:c WHERE c.@cc == @@focus_cc;
+  ring_devices = SELECT d FROM devs:d WHERE d.@cc == @@focus_cc;
+  PRINT @@rings AS rings_at_min_size, ring_cards.size() AS focus_ring_cards, ring_devices.size() AS focus_ring_devices;
+  PRINT ring_cards[ring_cards.id], ring_devices[ring_devices.id];
+}
+
+INSTALL QUERY ALL

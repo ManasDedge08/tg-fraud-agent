@@ -1,0 +1,121 @@
+{
+  "case_id": "HHG-013",
+  "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.02,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 0,
+    "evidence": [
+      {
+        "claim": "Graph-feature scorer trained on 5,565 closed cases gives this transaction a calibrated fraud probability of 0.01 (bank model score 0.76); features include Vesta's unnamed C, D, M and V columns, used as signals only",
+        "source": "graph",
+        "ref": "query:score_transaction(txn_id=3526826)",
+        "entity_ids": [
+          "3526826"
+        ]
+      },
+      {
+        "claim": "Device profile 'Windows | ? | chrome 66.0 | ?' is marked New and has never been used on C07671-K2",
+        "source": "graph",
+        "ref": "query:device_neighbors(device='Windows | ? | chrome 66.0 | ?')",
+        "entity_ids": [
+          "3526826"
+        ]
+      },
+      {
+        "claim": "Match flags M4 show a mismatch (Vesta match flags; exact meaning unpublished)",
+        "source": "graph",
+        "ref": "query:txn(3526826)",
+        "entity_ids": [
+          "3526826"
+        ]
+      },
+      {
+        "claim": "Card history holds 4 earlier closed cases (3 confirmed fraud, 1 cleared); most recent CC-4294 (account_takeover, confirmed_fraud)",
+        "source": "graph",
+        "ref": "query:similar_closed_cases(card_id=C07671-K2)",
+        "entity_ids": [
+          "CC-4294",
+          "CC-3761",
+          "CC-3216",
+          "CC-1475"
+        ]
+      },
+      {
+        "claim": "Known-pattern definition matched to this case: Out-of-region use. Card-present purchases in a billing region the cardholder has no history in, while their normal activity continues at home. Several days of purchases in one new region is a trip, not a clone. Policy R2, R3.",
+        "source": "document",
+        "ref": "doc:PATTERN-4",
+        "entity_ids": [
+          "PATTERN-4"
+        ]
+      },
+      {
+        "claim": "Closed cases whose analyst notes read most like this investigation (vector search over ClosedCase.note_emb): CC-0033, CC-2679, CC-1805, CC-2217",
+        "source": "graph",
+        "ref": "mcp:search_top_k_similarity(ClosedCase.note_emb)",
+        "entity_ids": [
+          "CC-0033",
+          "CC-2679",
+          "CC-1805",
+          "CC-2217"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-4294",
+      "CC-3761",
+      "CC-3216",
+      "CC-0033",
+      "CC-2679"
+    ],
+    "summary": "Model scored transaction 3526826 ($35.66, online, 2016-12-09) at 0.76. Calibrated fraud probability is 0.02; new device and Vesta match mismatch noted but do not override assessment. Card history shows confirmed fraud (CC-4294), yet this transaction is legitimate. Allow and close case.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-013"
+  },
+  "evidence_requests": [],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "ALLOW_TRANSACTION",
+        "route": "auto",
+        "reason": "\u00a76: probability 0.02 backed by 2 independent signals"
+      },
+      {
+        "action": "CLOSE_NO_FRAUD",
+        "route": "auto",
+        "reason": "Evidence points to legitimate activity"
+      }
+    ],
+    "final": [
+      {
+        "action": "ALLOW_TRANSACTION",
+        "route": "auto",
+        "reason": "\u00a76: probability 0.02 backed by 2 independent signals"
+      },
+      {
+        "action": "CLOSE_NO_FRAUD",
+        "route": "auto",
+        "reason": "Evidence points to legitimate activity"
+      }
+    ],
+    "what_changed": "nothing"
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: no fraud found, no report.",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+  },
+  "stop_reason": "Probability 0.02 with 2 independent signals meets the \u00a76 stopping rule; the risk score alone did not hold up.",
+  "tool_calls": 24,
+  "tokens": 27071,
+  "latency_s": 103.5
+}

@@ -1,0 +1,97 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "kind": "trigger",
+      "text": "risk_score: Real-time model scored transaction 3526826 ($35.66, online) at 0.76. Review and decide.",
+      "tool_calls": 1
+    },
+    {
+      "step": 2,
+      "kind": "open_case",
+      "text": "Case opened for card C07671-K2, flagged transaction 3526826 ($35.66, online, product C).",
+      "tool_calls": 1
+    },
+    {
+      "step": 3,
+      "kind": "investigate",
+      "text": "Baseline: 1113 transactions in 120 days, median $59.02, home region 264.0, products {'W': 1103, 'H': 5, 'R': 3, 'C': 2}.",
+      "tool_calls": 4
+    },
+    {
+      "step": 4,
+      "kind": "investigate",
+      "text": "Ran pattern queries: card_window, device_neighbors, region_cluster, recurring_charge.",
+      "tool_calls": 10
+    },
+    {
+      "step": 5,
+      "kind": "investigate",
+      "text": "MCP traversal DeviceProfile\u2192Txn\u2192ClosedCase: 0 confirmed-fraud and 0 cleared closed cases used this device profile.",
+      "tool_calls": 19
+    },
+    {
+      "step": 6,
+      "kind": "assess",
+      "text": "Hypotheses scored: scorer -4.6, new_device +0.4, match_flags +0.2",
+      "tool_calls": 19
+    },
+    {
+      "step": 7,
+      "kind": "assess",
+      "text": "Fraud probability 0.02; pattern none; 2 independent signals.",
+      "tool_calls": 19
+    },
+    {
+      "step": 8,
+      "kind": "assess",
+      "text": "Policy graph for pattern none: rules ['R3', 'R7']; allowed actions ['WARN_CUSTOMER', 'CLOSE_NO_FRAUD', 'CREATE_CASE', 'VERIFY_WITH_CUSTOMER'].",
+      "tool_calls": 20
+    },
+    {
+      "step": 9,
+      "kind": "recommend",
+      "text": "Initial: ['ALLOW_TRANSACTION', 'CLOSE_NO_FRAUD']. Final: ['ALLOW_TRANSACTION', 'CLOSE_NO_FRAUD']. nothing",
+      "tool_calls": 20
+    },
+    {
+      "step": 10,
+      "kind": "retrieve",
+      "text": "GraphRAG: 5 passages by vector search, 3 by graph path Pattern\u2192PolicyRule\u2192DocChunk, 4 closed cases by note similarity.",
+      "tool_calls": 23
+    }
+  ],
+  "hypotheses": {
+    "scorer": -4.59511985013459,
+    "new_device": 0.4,
+    "match_flags": 0.2
+  },
+  "tool_calls": [
+    "txn(3526826)",
+    "card_history(card=C07671-K2,days=120)",
+    "card_history.products",
+    "card_history.regions",
+    "card_window(card=C07671-K2)",
+    "card_window(card=C07671-K2)",
+    "device_on_card_before",
+    "device_neighbors",
+    "device_global",
+    "recurring_charge",
+    "device_ring.closed_cases",
+    "device_ring.cards_before",
+    "device_ring.cards_now",
+    "device_ring.own_txns",
+    "device_neighbors(device, hours=24)",
+    "episode(uid)",
+    "similar_closed_cases.structural",
+    "mcp:tigergraph__run_installed_query(similar_closed_cases)",
+    "mcp:tigergraph__run_installed_query(closed_cases_by_device)",
+    "mcp:tigergraph__run_installed_query(policy_for_pattern)",
+    "mcp:tigergraph__search_top_k_similarity(DocChunk.emb)",
+    "mcp:tigergraph__run_installed_query(policy_docs)",
+    "mcp:tigergraph__search_top_k_similarity(ClosedCase.note_emb)"
+  ],
+  "p_model": 0.006701414743112435,
+  "p_initial": 0.02,
+  "p_final": 0.02
+}

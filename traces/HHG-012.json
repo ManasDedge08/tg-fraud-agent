@@ -1,0 +1,84 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "kind": "trigger",
+      "text": "risk_score: Real-time model scored transaction 3553342 ($30.91, in billing region 494.0) at 0.55. Review and decide.",
+      "tool_calls": 1
+    },
+    {
+      "step": 2,
+      "kind": "open_case",
+      "text": "Case opened for card C05876-K2, flagged transaction 3553342 ($30.91, in_person, product W).",
+      "tool_calls": 1
+    },
+    {
+      "step": 3,
+      "kind": "investigate",
+      "text": "Baseline: 678 transactions in 120 days, median $49.09, home region 325.0, products {'W': 648, 'S': 19, 'H': 6, 'R': 5}.",
+      "tool_calls": 4
+    },
+    {
+      "step": 4,
+      "kind": "investigate",
+      "text": "Ran pattern queries: card_window, device_neighbors, region_cluster, recurring_charge.",
+      "tool_calls": 9
+    },
+    {
+      "step": 5,
+      "kind": "assess",
+      "text": "Hypotheses scored: scorer -4.6, known_region -0.3, match_flags +0.2",
+      "tool_calls": 12
+    },
+    {
+      "step": 6,
+      "kind": "assess",
+      "text": "Fraud probability 0.01; pattern none; 2 independent signals.",
+      "tool_calls": 12
+    },
+    {
+      "step": 7,
+      "kind": "assess",
+      "text": "Policy graph for pattern none: rules ['R3', 'R7']; allowed actions ['WARN_CUSTOMER', 'VERIFY_WITH_CUSTOMER', 'CLOSE_NO_FRAUD', 'CREATE_CASE'].",
+      "tool_calls": 13
+    },
+    {
+      "step": 8,
+      "kind": "recommend",
+      "text": "Initial: ['ALLOW_TRANSACTION', 'CLOSE_NO_FRAUD']. Final: ['ALLOW_TRANSACTION', 'CLOSE_NO_FRAUD']. nothing",
+      "tool_calls": 13
+    },
+    {
+      "step": 9,
+      "kind": "retrieve",
+      "text": "GraphRAG: 5 passages by vector search, 3 by graph path Pattern\u2192PolicyRule\u2192DocChunk, 4 closed cases by note similarity.",
+      "tool_calls": 16
+    }
+  ],
+  "hypotheses": {
+    "scorer": -4.59511985013459,
+    "known_region": -0.3,
+    "match_flags": 0.2
+  },
+  "tool_calls": [
+    "txn(3553342)",
+    "card_history(card=C05876-K2,days=120)",
+    "card_history.products",
+    "card_history.regions",
+    "card_window(card=C05876-K2)",
+    "card_window(card=C05876-K2)",
+    "region_on_card_before",
+    "card_window(card=C05876-K2)",
+    "recurring_charge",
+    "episode(uid)",
+    "similar_closed_cases.structural",
+    "mcp:tigergraph__run_installed_query(similar_closed_cases)",
+    "mcp:tigergraph__run_installed_query(policy_for_pattern)",
+    "mcp:tigergraph__search_top_k_similarity(DocChunk.emb)",
+    "mcp:tigergraph__run_installed_query(policy_docs)",
+    "mcp:tigergraph__search_top_k_similarity(ClosedCase.note_emb)"
+  ],
+  "p_model": 0.00145985401459854,
+  "p_initial": 0.01,
+  "p_final": 0.01
+}

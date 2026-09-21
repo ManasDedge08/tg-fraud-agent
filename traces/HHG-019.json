@@ -1,0 +1,106 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "kind": "trigger",
+      "text": "risk_score: Real-time model scored transaction 3503878 ($99.92, online) at 0.90. Review and decide.",
+      "tool_calls": 1
+    },
+    {
+      "step": 2,
+      "kind": "open_case",
+      "text": "Case opened for card C07987-K2, flagged transaction 3503878 ($99.92, online, product R).",
+      "tool_calls": 1
+    },
+    {
+      "step": 3,
+      "kind": "investigate",
+      "text": "Baseline: 150 transactions in 120 days, median $117.00, home region 325.0, products {'W': 129, 'H': 11, 'R': 5, 'S': 5}.",
+      "tool_calls": 4
+    },
+    {
+      "step": 4,
+      "kind": "investigate",
+      "text": "Ran pattern queries: card_window, device_neighbors, region_cluster, recurring_charge.",
+      "tool_calls": 12
+    },
+    {
+      "step": 5,
+      "kind": "investigate",
+      "text": "MCP traversal DeviceProfile\u2192Txn\u2192ClosedCase: 0 confirmed-fraud and 0 cleared closed cases used this device profile.",
+      "tool_calls": 21
+    },
+    {
+      "step": 6,
+      "kind": "assess",
+      "text": "Hypotheses scored: scorer +0.9, new_device +0.4",
+      "tool_calls": 21
+    },
+    {
+      "step": 7,
+      "kind": "assess",
+      "text": "Fraud probability 0.79; pattern card_not_present_new_device; 2 independent signals.",
+      "tool_calls": 22
+    },
+    {
+      "step": 8,
+      "kind": "assess",
+      "text": "Policy graph for pattern card_not_present_new_device: rules ['R3', 'R2', 'R4', 'R1']; allowed actions ['MONITOR_CARD', 'DECLINE_TRANSACTION', 'ESCALATE_TO_ANALYST', 'VERIFY_WITH_CUSTOMER', 'STEP_UP_AUTH', 'BLOCK_CARD', 'CLOSE_NO_FRAUD', 'FILE_REPORT', 'CREATE_CASE'].",
+      "tool_calls": 23
+    },
+    {
+      "step": 9,
+      "kind": "gather_evidence",
+      "text": "Requested customer validation; assumed reply: Cardholder says they did not make the transaction and still has the card (simulated, consistent with the graph evidence)",
+      "tool_calls": 23
+    },
+    {
+      "step": 10,
+      "kind": "recommend",
+      "text": "Initial: ['CREATE_CASE', 'STEP_UP_AUTH', 'VERIFY_WITH_CUSTOMER', 'MONITOR_CARD']. Final: ['BLOCK_CARD', 'CREATE_CASE']. Customer denial raised probability from 0.79 to 0.95; R2 now calls for a block; exposure and links stay below the report threshold, so case only.",
+      "tool_calls": 23
+    },
+    {
+      "step": 11,
+      "kind": "retrieve",
+      "text": "GraphRAG: 5 passages by vector search, 7 by graph path Pattern\u2192PolicyRule\u2192DocChunk, 4 closed cases by note similarity.",
+      "tool_calls": 26
+    }
+  ],
+  "hypotheses": {
+    "scorer": 0.9307314160289493,
+    "new_device": 0.4
+  },
+  "tool_calls": [
+    "txn(3503878)",
+    "card_history(card=C07987-K2,days=120)",
+    "card_history.products",
+    "card_history.regions",
+    "card_window(card=C07987-K2)",
+    "card_window(card=C07987-K2)",
+    "device_on_card_before",
+    "device_neighbors",
+    "device_global",
+    "region_on_card_before",
+    "card_window(card=C07987-K2)",
+    "recurring_charge",
+    "device_ring.closed_cases",
+    "device_ring.cards_before",
+    "device_ring.cards_now",
+    "device_ring.own_txns",
+    "device_neighbors(device, hours=24)",
+    "episode(uid)",
+    "similar_closed_cases.structural",
+    "mcp:tigergraph__run_installed_query(similar_closed_cases)",
+    "mcp:tigergraph__run_installed_query(closed_cases_by_device)",
+    "similar_closed_cases.pattern(card_not_present_new_device)",
+    "mcp:tigergraph__run_installed_query(policy_for_pattern)",
+    "mcp:tigergraph__search_top_k_similarity(DocChunk.emb)",
+    "mcp:tigergraph__run_installed_query(policy_docs)",
+    "mcp:tigergraph__search_top_k_similarity(ClosedCase.note_emb)",
+    "txn(3503878)"
+  ],
+  "p_model": 0.7172236503856041,
+  "p_initial": 0.79,
+  "p_final": 0.95
+}

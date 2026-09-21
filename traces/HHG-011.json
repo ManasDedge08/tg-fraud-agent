@@ -1,0 +1,102 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "kind": "trigger",
+      "text": "customer_report: Customer C11923 message: 'I never made this $131.30 purchase. Please check my card.' Refers to 3583368.",
+      "tool_calls": 1
+    },
+    {
+      "step": 2,
+      "kind": "open_case",
+      "text": "Case opened for card C11923-K2, flagged transaction 3583368 ($131.30, online, product C).",
+      "tool_calls": 1
+    },
+    {
+      "step": 3,
+      "kind": "investigate",
+      "text": "Baseline: 6214 transactions in 120 days, median $27.76, home region 284.0, products {'C': 6213, 'R': 1}.",
+      "tool_calls": 4
+    },
+    {
+      "step": 4,
+      "kind": "investigate",
+      "text": "Ran pattern queries: card_window, device_neighbors, region_cluster, recurring_charge.",
+      "tool_calls": 10
+    },
+    {
+      "step": 5,
+      "kind": "investigate",
+      "text": "MCP traversal DeviceProfile\u2192Txn\u2192ClosedCase: 0 confirmed-fraud and 0 cleared closed cases used this device profile.",
+      "tool_calls": 19
+    },
+    {
+      "step": 6,
+      "kind": "assess",
+      "text": "Hypotheses scored: scorer -1.7, customer_report +0.8, shared_device +2.5, new_device +0.4, match_flags +0.2",
+      "tool_calls": 19
+    },
+    {
+      "step": 7,
+      "kind": "assess",
+      "text": "Fraud probability 0.90; pattern card_not_present_new_device; 3 independent signals.",
+      "tool_calls": 20
+    },
+    {
+      "step": 8,
+      "kind": "assess",
+      "text": "Policy graph for pattern card_not_present_new_device: rules ['R3', 'R4', 'R2', 'R1']; allowed actions ['ESCALATE_TO_ANALYST', 'CLOSE_NO_FRAUD', 'FILE_REPORT', 'CREATE_CASE', 'MONITOR_CARD', 'DECLINE_TRANSACTION', 'VERIFY_WITH_CUSTOMER', 'STEP_UP_AUTH', 'BLOCK_CARD'].",
+      "tool_calls": 21
+    },
+    {
+      "step": 9,
+      "kind": "recommend",
+      "text": "Initial: ['BLOCK_CARD', 'CREATE_CASE', 'FILE_REPORT', 'MONITOR_CONNECTED_CARDS']. Final: ['BLOCK_CARD', 'CREATE_CASE', 'FILE_REPORT', 'MONITOR_CONNECTED_CARDS']. nothing",
+      "tool_calls": 21
+    },
+    {
+      "step": 10,
+      "kind": "retrieve",
+      "text": "GraphRAG: 5 passages by vector search, 7 by graph path Pattern\u2192PolicyRule\u2192DocChunk, 4 closed cases by note similarity.",
+      "tool_calls": 24
+    }
+  ],
+  "hypotheses": {
+    "scorer": -1.698530455627555,
+    "customer_report": 0.8,
+    "shared_device": 2.5,
+    "new_device": 0.4,
+    "match_flags": 0.2
+  },
+  "tool_calls": [
+    "txn(3583368)",
+    "card_history(card=C11923-K2,days=120)",
+    "card_history.products",
+    "card_history.regions",
+    "card_window(card=C11923-K2)",
+    "card_window(card=C11923-K2)",
+    "device_on_card_before",
+    "device_neighbors",
+    "device_global",
+    "recurring_charge",
+    "device_ring.closed_cases",
+    "device_ring.cards_before",
+    "device_ring.cards_now",
+    "device_ring.own_txns",
+    "device_neighbors(device, hours=24)",
+    "episode(uid)",
+    "similar_closed_cases.structural",
+    "mcp:tigergraph__run_installed_query(similar_closed_cases)",
+    "mcp:tigergraph__run_installed_query(closed_cases_by_device)",
+    "similar_closed_cases.pattern(card_not_present_new_device)",
+    "mcp:tigergraph__run_installed_query(policy_for_pattern)",
+    "mcp:tigergraph__search_top_k_similarity(DocChunk.emb)",
+    "mcp:tigergraph__run_installed_query(policy_docs)",
+    "mcp:tigergraph__search_top_k_similarity(ClosedCase.note_emb)",
+    "txn(3583368)",
+    "txn(3583368)"
+  ],
+  "p_model": 0.1546572934973638,
+  "p_initial": 0.9,
+  "p_final": 0.9
+}

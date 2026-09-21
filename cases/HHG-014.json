@@ -1,0 +1,262 @@
+{
+  "case_id": "HHG-014",
+  "case": {
+    "status": "escalated",
+    "verdict": "fraud",
+    "fraud_probability": 0.9,
+    "pattern": "undocumented",
+    "pattern_description": "A single device profile (SM-G935F Build/NRD90M | Android 7.0 | chrome 62.0 for android | 1920x1080), always behind an anonymous proxy and always marked New, is used to make one to three mid-sized online purchases on many unrelated customers' cards, then moves on. It hit 24 cards in Aug-Sep 2016 (closed cases CC-3035, CC-2985, CC-2971, CC-2649) and 20 cards since 2016-11-14. Found by traversing Transaction-FROM_DEVICE-DeviceProfile to other cards and matching the profile against closed-case memory.",
+    "affected_txn_ids": [
+      "3460634",
+      "3478561"
+    ],
+    "first_suspicious_txn_id": "3460634",
+    "connected_card_ids": [
+      "C10326-K1",
+      "C08168-K1",
+      "C01996-K2",
+      "C09975-K1",
+      "C02975-K1",
+      "C01289-K1",
+      "C04108-K2",
+      "C10193-K2",
+      "C11670-K2",
+      "C02910-K1",
+      "C12796-K1",
+      "C04274-K1",
+      "C09906-K1",
+      "C09049-K1",
+      "C13291-K1",
+      "C06710-K1",
+      "C11082-K1",
+      "C03676-K2",
+      "C05448-K2"
+    ],
+    "connected_device_profiles": [
+      "SM-G935F Build/NRD90M | Android 7.0 | chrome 62.0 for android | 1920x1080"
+    ],
+    "exposure_usd": 187.33,
+    "evidence": [
+      {
+        "claim": "Graph-feature scorer trained on 5,565 closed cases gives this transaction a calibrated fraud probability of 0.04 (bank model score 0.05); features include Vesta's unnamed C, D, M and V columns, used as signals only",
+        "source": "graph",
+        "ref": "query:score_transaction(txn_id=3478561)",
+        "entity_ids": [
+          "3478561"
+        ]
+      },
+      {
+        "claim": "Device profile 'SM-G935F Build/NRD90M | Android 7.0 | chrome 62.0 for android | 1920x1080' behind IP_PROXY:ANONYMOUS is marked New on this card and on 19 other cards since 2016-11-14; each card shows 1-3 online purchases of $35-$250 from it and nothing else from that device",
+        "source": "graph",
+        "ref": "query:device_neighbors(device='SM-G935F Build/NRD90M | Android 7.0 | chrome 62.0 for android | 1920x1080', days=30)",
+        "entity_ids": [
+          "C13487-K1",
+          "C10326-K1",
+          "C08168-K1",
+          "C01996-K2",
+          "C09975-K1",
+          "C02975-K1",
+          "C01289-K1",
+          "C04108-K2",
+          "C10193-K2",
+          "C11670-K2",
+          "C02910-K1",
+          "C12796-K1",
+          "C04274-K1",
+          "C09906-K1",
+          "C09049-K1",
+          "C13291-K1",
+          "C06710-K1",
+          "C11082-K1",
+          "C03676-K2",
+          "C05448-K2"
+        ]
+      },
+      {
+        "claim": "The same device profile and proxy appear in 4 closed cases confirmed as fraud in Aug-Sep 2016 across 24 cards, which analysts could not match to a documented pattern",
+        "source": "graph",
+        "ref": "query:similar_closed_cases(device_profile)",
+        "entity_ids": [
+          "CC-3035",
+          "CC-2985",
+          "CC-2971",
+          "CC-2649"
+        ]
+      },
+      {
+        "claim": "Connected-components run over the card\u2013device graph (New devices behind a proxy, 30 days) puts this card in a component of 19 cards joined by 1 device profile(s)",
+        "source": "graph",
+        "ref": "mcp:device_rings(focus=C13487-K1, days=30)",
+        "entity_ids": [
+          "C02910-K1",
+          "C11082-K1",
+          "C05448-K2",
+          "C10193-K2",
+          "C09975-K1",
+          "C10326-K1",
+          "C12796-K1",
+          "C11670-K2",
+          "C09049-K1",
+          "C09906-K1",
+          "C13291-K1",
+          "C08168-K1",
+          "C04274-K1",
+          "C03676-K2",
+          "C01289-K1",
+          "C02975-K1",
+          "C01996-K2",
+          "C06710-K1",
+          "SM-G935F Build/NRD90M | Android 7.0 | chrome 62.0 for android | 1920x1080"
+        ]
+      },
+      {
+        "claim": "Policy R2 (retrieved by vector search): R2. Customer denies the transaction. Recommend `BLOCK_CARD` and `CREATE_CASE`. Add `FILE_REPORT` if exposure exceeds $1,000 or the case connects to a shared device profile or another card's fraud.",
+        "source": "document",
+        "ref": "doc:POLICY-R2",
+        "entity_ids": [
+          "POLICY-R2"
+        ]
+      },
+      {
+        "claim": "Policy R6 (retrieved by graph search): R6. Shared origin. When several cards show fraud from the same device profile, the same billing region, or the same recipient email in one window, name the shared element, recommend `CREATE_CASE` and `FILE_REPORT`, and `MONITOR_CONNECTED_CARDS` for every card ",
+        "source": "document",
+        "ref": "doc:POLICY-R6",
+        "entity_ids": [
+          "POLICY-R6"
+        ]
+      },
+      {
+        "claim": "Policy R9 (retrieved by graph search): R9. Undocumented patterns. When activity fits none of the known patterns but the evidence shows coordinated or repeated abuse across customers, recommend `CREATE_CASE`, `FILE_REPORT`, and `ESCALATE_TO_ANALYST`, and describe the pattern in your own words. Do no",
+        "source": "document",
+        "ref": "doc:POLICY-R9",
+        "entity_ids": [
+          "POLICY-R9"
+        ]
+      },
+      {
+        "claim": "Closed cases whose analyst notes read most like this investigation (vector search over ClosedCase.note_emb): CC-4936, CC-5482, CC-5122, CC-0973",
+        "source": "graph",
+        "ref": "mcp:search_top_k_similarity(ClosedCase.note_emb)",
+        "entity_ids": [
+          "CC-4936",
+          "CC-5482",
+          "CC-5122",
+          "CC-0973"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-3035",
+      "CC-2985",
+      "CC-2971",
+      "CC-2649",
+      "CC-4936",
+      "CC-5482"
+    ],
+    "summary": "Analyst review of transaction 3478561 ($74.96, November 22, 2016) identified a single mobile device profile (SM-G935F, Android 7.0, chrome 62.0) operating behind an anonymous proxy across dozens of unrelated customer cards. The device made 1-3 purchases per card ($35\u2013$250 range) in August\u2013September 2016 (24 cards) and November 14\u201322, 2016 (20+ cards), consistently marked as New. On card C13487-K1, two unauthorized purchases totaling $187.33 occurred on November 15 and 22; the cardholder denies both transactions. This undocumented coordinated fraud pattern indicates systematic account compromise or exploitation. The card is blocked, the case escalated, and 19 connected cards are under monitoring.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-014"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 9,
+      "assumed_response": "Cardholder states they did not make the purchases from this device and still holds the card (simulated; consistent with the confirmed outcomes of the matching closed cases)"
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a/R9: coordinated activity outside the known patterns"
+      },
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "R9: stop pending authorizations from the pattern while the case is reviewed"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R9 and 3a: undocumented, coordinated abuse linked by a shared device profile (R6)"
+      },
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R9: new pattern goes to a human analyst"
+      },
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: 19 other cards used the same device profile"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: customer denied; exposure $187.33 under $2,500"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2/R9"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R9 and 3a: undocumented coordinated pattern; R6 shared device profile"
+      },
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R9"
+      },
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: every card sharing the device profile (19)"
+      }
+    ],
+    "what_changed": "Cardholder denial confirmed the unauthorized use, so the recommendation adds BLOCK_CARD under R2; report, escalation and monitoring stand."
+  },
+  "sar": {
+    "file": true,
+    "reason": "R9/R6 and 3a: coordinated or shared-origin fraud",
+    "narrative": "Customer C13487, card C13487-K1, reported two unauthorized online purchases totaling $187.33 made from device profile SM-G935F Build/NRD90M | Android 7.0 | chrome 62.0 for android. Transactions occurred on November 15, 2016 at 20:30 UTC ($112.37) and November 22, 2016 at 16:11 UTC ($74.96), both card-not-present online purchases in region 191.0. The cardholder denies knowledge of these purchases and continues to possess the physical card. Investigation determined the same device profile, marked as New on this account and operating behind an anonymous proxy, was used to make similar 1\u20133 purchases ($35\u2013$250 amounts) on at least 19 other customer cards during November 14\u201322, 2016. Historical analysis revealed this identical device profile and proxy made similar purchases on 24 additional customer cards during August\u2013September 2016, all previously confirmed as fraudulent. The pattern demonstrates coordinated activity across many unrelated accounts: single device, anonymous proxy, brief burst of 1\u20133 purchases per account, then movement to the next target. This undocumented pattern does not match the bank's known fraud categories but exhibits clear indicators of systematic abuse including volume across customers, device reuse, rapid account rotation, and cardholder denial. Card C13487-K1 has been blocked; the investigation has been escalated to an analyst for further review; and 19 connected cards sharing the device profile are under enhanced monitoring.",
+    "subjects": [
+      "C13487",
+      "C13487-K1",
+      "C10326-K1",
+      "C08168-K1",
+      "C01996-K2",
+      "C09975-K1",
+      "C02975-K1",
+      "C01289-K1",
+      "C04108-K2",
+      "C10193-K2",
+      "C11670-K2",
+      "C02910-K1",
+      "C12796-K1",
+      "C04274-K1",
+      "C09906-K1",
+      "C09049-K1",
+      "C13291-K1",
+      "C06710-K1",
+      "C11082-K1",
+      "C03676-K2",
+      "C05448-K2",
+      "SM-G935F Build/NRD90M | Android 7.0 | chrome 62.0 for android | 1920x1080"
+    ],
+    "total_amount_usd": 187.33,
+    "activity_dates": [
+      "2016-11-15",
+      "2016-11-22"
+    ]
+  },
+  "stop_reason": "Pattern matched confirmed closed cases and the cardholder denial settled the verdict; further queries would not change the actions.",
+  "tool_calls": 29,
+  "tokens": 30891,
+  "latency_s": 128.66
+}

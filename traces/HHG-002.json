@@ -1,0 +1,87 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "kind": "trigger",
+      "text": "risk_score: Real-time model scored transaction 3478782 ($292.36, online) at 0.79. Review and decide.",
+      "tool_calls": 1
+    },
+    {
+      "step": 2,
+      "kind": "open_case",
+      "text": "Case opened for card C11891-K1, flagged transaction 3478782 ($292.36, online, product C).",
+      "tool_calls": 1
+    },
+    {
+      "step": 3,
+      "kind": "investigate",
+      "text": "Baseline: 32 transactions in 120 days, median $47.31, home region None, products {'C': 32}.",
+      "tool_calls": 4
+    },
+    {
+      "step": 4,
+      "kind": "investigate",
+      "text": "Ran pattern queries: card_window, device_neighbors, region_cluster, recurring_charge.",
+      "tool_calls": 7
+    },
+    {
+      "step": 5,
+      "kind": "assess",
+      "text": "Hypotheses scored: scorer -3.5, match_flags +0.2",
+      "tool_calls": 10
+    },
+    {
+      "step": 6,
+      "kind": "assess",
+      "text": "Fraud probability 0.04; pattern none; 1 independent signals.",
+      "tool_calls": 10
+    },
+    {
+      "step": 7,
+      "kind": "assess",
+      "text": "Policy graph for pattern none: rules ['R3', 'R7']; allowed actions ['WARN_CUSTOMER', 'VERIFY_WITH_CUSTOMER', 'CLOSE_NO_FRAUD', 'CREATE_CASE'].",
+      "tool_calls": 11
+    },
+    {
+      "step": 8,
+      "kind": "gather_evidence",
+      "text": "Requested customer validation; assumed reply: Cardholder confirms they made the transaction (simulated, consistent with the graph evidence)",
+      "tool_calls": 11
+    },
+    {
+      "step": 9,
+      "kind": "recommend",
+      "text": "Initial: ['CREATE_CASE', 'STEP_UP_AUTH', 'VERIFY_WITH_CUSTOMER', 'MONITOR_CARD']. Final: ['ALLOW_TRANSACTION', 'CLOSE_NO_FRAUD']. Customer confirmation lowered probability from 0.04 to 0.03; under R3 the case closes as legitimate and nothing is blocked.",
+      "tool_calls": 11
+    },
+    {
+      "step": 10,
+      "kind": "retrieve",
+      "text": "GraphRAG: 5 passages by vector search, 3 by graph path Pattern\u2192PolicyRule\u2192DocChunk, 4 closed cases by note similarity.",
+      "tool_calls": 14
+    }
+  ],
+  "hypotheses": {
+    "scorer": -3.4894559676807106,
+    "match_flags": 0.2
+  },
+  "tool_calls": [
+    "txn(3478782)",
+    "card_history(card=C11891-K1,days=120)",
+    "card_history.products",
+    "card_history.regions",
+    "card_window(card=C11891-K1)",
+    "card_window(card=C11891-K1)",
+    "recurring_charge",
+    "episode(uid)",
+    "similar_closed_cases.structural",
+    "mcp:tigergraph__run_installed_query(similar_closed_cases)",
+    "mcp:tigergraph__run_installed_query(policy_for_pattern)",
+    "mcp:tigergraph__search_top_k_similarity(DocChunk.emb)",
+    "mcp:tigergraph__run_installed_query(policy_docs)",
+    "mcp:tigergraph__search_top_k_similarity(ClosedCase.note_emb)"
+  ],
+  "p_model": 0.0296137339055794,
+  "p_initial": 0.04,
+  "p_final": 0.03
+}

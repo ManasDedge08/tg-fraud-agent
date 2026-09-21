@@ -1,0 +1,169 @@
+{
+  "case_id": "HHG-008",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.95,
+    "pattern": "card_not_present_fraud",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3558054"
+    ],
+    "first_suspicious_txn_id": "3558054",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 55.68,
+    "evidence": [
+      {
+        "claim": "Graph-feature scorer trained on 5,565 closed cases gives this transaction a calibrated fraud probability of 0.72 (bank model score 0.38); features include Vesta's unnamed C, D, M and V columns, used as signals only",
+        "source": "graph",
+        "ref": "query:score_transaction(txn_id=3558054)",
+        "entity_ids": [
+          "3558054"
+        ]
+      },
+      {
+        "claim": "Cardholder C13171 reported the $55.68 charge as not made by them",
+        "source": "customer",
+        "ref": "trigger:HHG-008",
+        "entity_ids": [
+          "C13171",
+          "3558054"
+        ]
+      },
+      {
+        "claim": "Device profile '? | ? | chrome 66.0 | ?' was used on this card 9 times before",
+        "source": "graph",
+        "ref": "query:device_neighbors(device='? | ? | chrome 66.0 | ?')",
+        "entity_ids": [
+          "3558054"
+        ]
+      },
+      {
+        "claim": "Match flags M4 show a mismatch (Vesta match flags; exact meaning unpublished)",
+        "source": "graph",
+        "ref": "query:txn(3558054)",
+        "entity_ids": [
+          "3558054"
+        ]
+      },
+      {
+        "claim": "Card history holds 12 earlier closed cases (11 confirmed fraud, 1 cleared); most recent CC-5010 (card_not_present_new_device, confirmed_fraud)",
+        "source": "graph",
+        "ref": "query:similar_closed_cases(card_id=C13171-K2)",
+        "entity_ids": [
+          "CC-5010",
+          "CC-4819",
+          "CC-4485",
+          "CC-4163",
+          "CC-3928"
+        ]
+      },
+      {
+        "claim": "Cardholder repeats that they did not make the charge and has the card; the device and merchant are unknown to them",
+        "source": "customer",
+        "ref": "evidence_request:1",
+        "entity_ids": [
+          "C13171"
+        ]
+      },
+      {
+        "claim": "Policy R2 (retrieved by graph search): R2. Customer denies the transaction. Recommend `BLOCK_CARD` and `CREATE_CASE`. Add `FILE_REPORT` if exposure exceeds $1,000 or the case connects to a shared device profile or another card's fraud.",
+        "source": "document",
+        "ref": "doc:POLICY-R2",
+        "entity_ids": [
+          "POLICY-R2"
+        ]
+      },
+      {
+        "claim": "Known-pattern definition matched to this case: Card-not-present fraud. The number is used online without the card. Amounts and products that don't fit the cardholder's history, often in a burst of two to four within 48 hours. On its own, one unusual online purchase is ambiguous: verify. Policy R1 to R4.",
+        "source": "document",
+        "ref": "doc:PATTERN-2",
+        "entity_ids": [
+          "PATTERN-2"
+        ]
+      },
+      {
+        "claim": "Known-pattern definition matched to this case: Out-of-region use. Card-present purchases in a billing region the cardholder has no history in, while their normal activity continues at home. Several days of purchases in one new region is a trip, not a clone. Policy R2, R3.",
+        "source": "document",
+        "ref": "doc:PATTERN-4",
+        "entity_ids": [
+          "PATTERN-4"
+        ]
+      },
+      {
+        "claim": "Closed cases whose analyst notes read most like this investigation (vector search over ClosedCase.note_emb): CC-1510, CC-1930, CC-2330, CC-2217",
+        "source": "graph",
+        "ref": "mcp:search_top_k_similarity(ClosedCase.note_emb)",
+        "entity_ids": [
+          "CC-1510",
+          "CC-1930",
+          "CC-2330",
+          "CC-2217"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-5010",
+      "CC-4819",
+      "CC-4485",
+      "CC-5558",
+      "CC-5557",
+      "CC-1510"
+    ],
+    "summary": "Customer C13171 reported unauthorized $55.68 charge on card C13171-K2 (2016-12-19, online). Graph analysis identified card-not-present fraud pattern: baseline probability 0.72, customer denial raised final assessment to 0.95. Evidence includes previously-seen device on unknown merchant, divergence from purchase history, known fraud signature match. Verdict: fraud confirmed. Action: block card and create case per Policy R2; no regulatory filing (exposure $55.68 < $1,000, no shared-device involvement).",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-008"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 8,
+      "assumed_response": "Cardholder repeats that they did not make the charge and has the card; the device and merchant are unknown to them (simulated, consistent with the graph evidence)"
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: customer disputes a charge"
+      },
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: graph evidence is supportive; confirm details of the disputed charge before blocking"
+      },
+      {
+        "action": "MONITOR_CARD",
+        "route": "auto",
+        "reason": "Raise monitoring while the dispute is open"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: customer denied; exposure $55.68 \u2264 $2,500"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2"
+      }
+    ],
+    "what_changed": "Customer denial raised probability from 0.82 to 0.95; R2 now calls for a block; exposure and links stay below the report threshold, so case only."
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: exposure $55.68 is under $1,000 and no shared device, region cluster or coordinated pattern; case only.",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+  },
+  "stop_reason": "The customer's answer settled the question (\u00a76); further queries would not change the actions.",
+  "tool_calls": 25,
+  "tokens": 29360,
+  "latency_s": 117.73
+}

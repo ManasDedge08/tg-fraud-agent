@@ -1,0 +1,203 @@
+{
+  "case_id": "HHG-011",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.9,
+    "pattern": "card_not_present_new_device",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3583368"
+    ],
+    "first_suspicious_txn_id": "3583368",
+    "connected_card_ids": [
+      "C03938-K1",
+      "C05595-K1"
+    ],
+    "connected_device_profiles": [
+      "SM-G610F Build/NRD90M | ? | chrome 66.0 for android | ?"
+    ],
+    "exposure_usd": 131.3,
+    "evidence": [
+      {
+        "claim": "Graph-feature scorer trained on 5,565 closed cases gives this transaction a calibrated fraud probability of 0.15 (bank model score 0.39); features include Vesta's unnamed C, D, M and V columns, used as signals only",
+        "source": "graph",
+        "ref": "query:score_transaction(txn_id=3583368)",
+        "entity_ids": [
+          "3583368"
+        ]
+      },
+      {
+        "claim": "Cardholder C11923 reported the $131.30 charge as not made by them",
+        "source": "customer",
+        "ref": "trigger:HHG-011",
+        "entity_ids": [
+          "C11923",
+          "3583368"
+        ]
+      },
+      {
+        "claim": "Device profile 'SM-G610F Build/NRD90M | ? | chrome 66.0 for android | ?' was used on 2 other cards within 24 hours ($125.72, $125.59), and the scorer rates those transactions as suspicious",
+        "source": "graph",
+        "ref": "query:device_neighbors(device='SM-G610F Build/NRD90M | ? | chrome 66.0 for android | ?', hours=24)",
+        "entity_ids": [
+          "C03938-K1",
+          "C05595-K1",
+          "3582730",
+          "3582750"
+        ]
+      },
+      {
+        "claim": "Device profile 'SM-G610F Build/NRD90M | ? | chrome 66.0 for android | ?' is marked New and has never been used on C11923-K2",
+        "source": "graph",
+        "ref": "query:device_neighbors(device='SM-G610F Build/NRD90M | ? | chrome 66.0 for android | ?')",
+        "entity_ids": [
+          "3583368"
+        ]
+      },
+      {
+        "claim": "Match flags M4 show a mismatch (Vesta match flags; exact meaning unpublished)",
+        "source": "graph",
+        "ref": "query:txn(3583368)",
+        "entity_ids": [
+          "3583368"
+        ]
+      },
+      {
+        "claim": "Card history holds 11 earlier closed cases (10 confirmed fraud, 1 cleared); most recent CC-4743 (none, cleared)",
+        "source": "graph",
+        "ref": "query:similar_closed_cases(card_id=C11923-K2)",
+        "entity_ids": [
+          "CC-4743",
+          "CC-4501",
+          "CC-3905",
+          "CC-3206",
+          "CC-3039"
+        ]
+      },
+      {
+        "claim": "Policy R2 (retrieved by graph search): R2. Customer denies the transaction. Recommend `BLOCK_CARD` and `CREATE_CASE`. Add `FILE_REPORT` if exposure exceeds $1,000 or the case connects to a shared device profile or another card's fraud.",
+        "source": "document",
+        "ref": "doc:POLICY-R2",
+        "entity_ids": [
+          "POLICY-R2"
+        ]
+      },
+      {
+        "claim": "Known-pattern definition matched to this case: Card-not-present fraud. The number is used online without the card. Amounts and products that don't fit the cardholder's history, often in a burst of two to four within 48 hours. On its own, one unusual online purchase is ambiguous: verify. Policy R1 to R4.",
+        "source": "document",
+        "ref": "doc:PATTERN-2",
+        "entity_ids": [
+          "PATTERN-2"
+        ]
+      },
+      {
+        "claim": "Known-pattern definition matched to this case: Out-of-region use. Card-present purchases in a billing region the cardholder has no history in, while their normal activity continues at home. Several days of purchases in one new region is a trip, not a clone. Policy R2, R3.",
+        "source": "document",
+        "ref": "doc:PATTERN-4",
+        "entity_ids": [
+          "PATTERN-4"
+        ]
+      },
+      {
+        "claim": "SAR narrative written against FinCEN narrative guidance passages retrieved for this case (who, what, when, where, how, why)",
+        "source": "document",
+        "ref": "doc:FINCEN-SAR-50",
+        "entity_ids": [
+          "FINCEN-SAR-50"
+        ]
+      },
+      {
+        "claim": "Closed cases whose analyst notes read most like this investigation (vector search over ClosedCase.note_emb): CC-2198, CC-5294, CC-5122, CC-1643",
+        "source": "graph",
+        "ref": "mcp:search_top_k_similarity(ClosedCase.note_emb)",
+        "entity_ids": [
+          "CC-2198",
+          "CC-5294",
+          "CC-5122",
+          "CC-1643"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-4743",
+      "CC-4501",
+      "CC-3905",
+      "CC-5564",
+      "CC-5556",
+      "CC-2198"
+    ],
+    "summary": "Customer C11923 reported the $131.30 online purchase on 2016-12-29 as unauthorized. Investigation revealed card-not-present fraud: the device (SM-G610F Build/NRD90M) is new to the account and was used on two other cards within 24 hours for similar suspicious transactions ($125.72, $125.59). Fraud probability is 0.90 based on customer denial, device novelty, and linked suspicious activity. Card C11923-K2 is blocked, an internal case is created, and a regulatory report is filed due to the device's connection to fraud on multiple cards.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-011"
+  },
+  "evidence_requests": [],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: customer denies the charge and 3 independent signals put probability at 0.90; exposure $131.30 \u2264 $2,500"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: probability above 0.30; R6 shared origin"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile links this card to other cards' suspicious activity"
+      },
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: C03938-K1, C05595-K1 share the device profile"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: customer denies the charge and 3 independent signals put probability at 0.90; exposure $131.30 \u2264 $2,500"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: probability above 0.30; R6 shared origin"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile links this card to other cards' suspicious activity"
+      },
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: C03938-K1, C05595-K1 share the device profile"
+      }
+    ],
+    "what_changed": "nothing"
+  },
+  "sar": {
+    "file": true,
+    "reason": "R2 and 3a: coordinated or shared-origin fraud",
+    "narrative": "This Suspicious Activity Report concerns customer C11923, card C11923-K2, and related cards C03938-K1 and C05595-K1 linked through shared device SM-G610F Build/NRD90M. On 2016-12-29 at 03:27:44, an unauthorized online charge of $131.30 (product C) appeared on card C11923-K2. The customer explicitly denied making this transaction. The fraudulent purchase originated from device SM-G610F Build/NRD90M running Chrome 66.0 for Android, identified as new to customer C11923's account with no prior usage history on card C11923-K2. Within 24 hours, this same device initiated suspicious online transactions on card C03938-K1 ($125.72) and card C05595-K1 ($125.59), both rated suspicious by the bank's detection model. The pattern indicates coordinated card-not-present fraud across multiple accounts sharing a single device, consistent with account compromise or credential theft. Per Policy R2 (customer denial of charge) and Policy R6 (device-shared fraud on connected cards), card C11923-K2 has been blocked, investigation case HHG-011 has been opened, and cards C03938-K1 and C05595-K1 placed under enhanced monitoring.",
+    "subjects": [
+      "C11923",
+      "C11923-K2",
+      "C03938-K1",
+      "C05595-K1",
+      "SM-G610F Build/NRD90M | ? | chrome 66.0 for android | ?"
+    ],
+    "total_amount_usd": 131.3,
+    "activity_dates": [
+      "2016-12-29",
+      "2016-12-29"
+    ]
+  },
+  "stop_reason": "Probability 0.90 with 3 independent signals meets the \u00a76 stopping rule.",
+  "tool_calls": 27,
+  "tokens": 28365,
+  "latency_s": 107.97
+}
