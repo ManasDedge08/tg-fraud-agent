@@ -48,7 +48,7 @@ class MCPGraph:
                 return json.loads(text)
             except ValueError:
                 return text
-        return asyncio.run_coroutine_threadsafe(go(), self.loop).result(timeout=300)
+        return asyncio.run_coroutine_threadsafe(go(), self.loop).result(timeout=int(os.environ.get("MCP_TIMEOUT", "60")))
 
     # --- the calls the agent makes -------------------------------------------
     def query(self, name, **params):

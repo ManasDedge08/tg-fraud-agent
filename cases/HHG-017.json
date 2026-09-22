@@ -61,7 +61,7 @@
       "CC-0057",
       "CC-2283"
     ],
-    "summary": "Transaction HHG-017 ($100.09, online, Nov 11 2016) flagged at model score 0.57 for customer C04570. Fraud probability: 0.01. Device (Windows 10, Chrome) used on card before; card history shows cleared cases; out-of-region pattern consistent with legitimate travel. Verdict: legitimate. Transaction allowed, case closed.",
+    "summary": "Real-time model scored transaction 3450629 ($100.09, online, November 11, 2016) at 0.57 for analyst review. Graph-feature scorer trained on 5,565 closed cases recalibrated the fraud probability to 0.01; device profile matches 3 prior uses on this card, and transaction pattern aligns with legitimate out-of-region travel rather than card compromise. Case closed as legitimate; transaction allowed to stand.",
     "written_to_graph": true,
     "graph_case_id": "CASE-2016-017"
   },
@@ -103,6 +103,6 @@
   },
   "stop_reason": "Probability 0.01 with 2 independent signals meets the \u00a76 stopping rule; the risk score alone did not hold up.",
   "tool_calls": 26,
-  "tokens": 25008,
-  "latency_s": 83.18
+  "tokens": 25017,
+  "latency_s": 81.12
 }

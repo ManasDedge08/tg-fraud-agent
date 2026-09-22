@@ -51,7 +51,7 @@
     {
       "step": 9,
       "kind": "assess",
-      "text": "Policy graph for pattern undocumented: rules ['R9', 'R6']; allowed actions ['ESCALATE_TO_ANALYST', 'FILE_REPORT', 'CREATE_CASE', 'MONITOR_CONNECTED_CARDS'].",
+      "text": "Policy graph for pattern undocumented: rules ['R9', 'R6']; allowed actions ['ESCALATE_TO_ANALYST', 'MONITOR_CONNECTED_CARDS', 'FILE_REPORT', 'CREATE_CASE'].",
       "tool_calls": 21
     },
     {

@@ -45,7 +45,7 @@
     {
       "step": 8,
       "kind": "assess",
-      "text": "Policy graph for pattern none: rules ['R3', 'R7']; allowed actions ['WARN_CUSTOMER', 'CLOSE_NO_FRAUD', 'CREATE_CASE', 'VERIFY_WITH_CUSTOMER'].",
+      "text": "Policy graph for pattern none: rules ['R3', 'R7']; allowed actions ['WARN_CUSTOMER', 'VERIFY_WITH_CUSTOMER', 'CLOSE_NO_FRAUD', 'CREATE_CASE'].",
       "tool_calls": 22
     },
     {

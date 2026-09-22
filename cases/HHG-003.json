@@ -100,7 +100,7 @@
       "CC-0354",
       "CC-0873"
     ],
-    "summary": "Customer C08623 disputed a $49.00 in-person charge (transaction 3530164, 2016-12-10 13:01 UTC) in region 330.0. The bank's fraud model assigned it a calibrated probability of 0.04, and the card showed 38 prior transactions in the same region with no unusual activity pattern. When the cardholder was asked to verify and shown the merchant, date, and device, they confirmed the charge as legitimate\u2014a household member's purchase on their account\u2014and withdrew the dispute. Per Policy R3, the case closes as no fraud, with no further action required.",
+    "summary": "Customer C08623 disputed $49 charge on 2016-12-10. Detection model scored 0.04 fraud probability. When shown merchant/date/device details, cardholder recognized purchase as household member's transaction and withdrew dispute. Verdict: legitimate. Case closes under Policy R3; no regulatory filing.",
     "written_to_graph": true,
     "graph_case_id": "CASE-2016-003"
   },
@@ -148,6 +148,6 @@
   },
   "stop_reason": "The customer's confirmation settled the question (\u00a76).",
   "tool_calls": 17,
-  "tokens": 26995,
-  "latency_s": 347.49
+  "tokens": 26322,
+  "latency_s": 91.36
 }

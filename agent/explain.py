@@ -90,6 +90,12 @@ FACTS:
 """
 
 
+def scrub(text):
+    """The data has local timestamps with no zone; drop any zone the model adds anyway."""
+    import re
+    return re.sub(r"\s*\(?\b(UTC|GMT)\b\)?", "", text)
+
+
 def narrate(inv):
     ctx = context(inv)
     out = template(inv, ctx)
@@ -109,9 +115,9 @@ def narrate(inv):
         text = text[text.index("{"): text.rindex("}") + 1]
         body = json.loads(text)
         u = env.get("usage", {})
-        out["summary"] = body["summary"]
+        out["summary"] = scrub(body["summary"])
         if out["sar_narrative"] and body.get("sar_narrative"):
-            out["sar_narrative"] = body["sar_narrative"]
+            out["sar_narrative"] = scrub(body["sar_narrative"])
         out["tokens"] = int(u.get("input_tokens", 0) + u.get("output_tokens", 0) + u.get("cache_read_input_tokens", 0) + u.get("cache_creation_input_tokens", 0))
     except Exception as e:
         print(f"  LLM explain failed for {inv.c['case_id']}, using template: {e}")

@@ -67,6 +67,8 @@ class Investigation:
     # --- helpers -------------------------------------------------------------
     def step(self, kind, text, **data):
         self.steps.append({"step": len(self.steps) + 1, "kind": kind, "text": text, "tool_calls": len(self.tl.calls), **data})
+        if os.environ.get("LIVE") == "1":
+            print(f"  {len(self.steps):>2}. [{kind:<15}] {text[:180]}", flush=True)
 
     def ev(self, claim, source, ref, ids, weight=0.0, hyp=None):
         self.evidence.append({"claim": claim, "source": source, "ref": ref, "entity_ids": [str(i) for i in ids]})
@@ -490,7 +492,11 @@ class Investigation:
 def ground(inv):
     """GraphRAG step: vector search over policy, typology and FinCEN text plus closed-case
     notes, expanded along Pattern -> PolicyRule -> DocChunk, all through MCP."""
-    passages, note_cases = graphrag.retrieve(inv)
+    try:
+        passages, note_cases = graphrag.retrieve(inv)
+    except Exception as e:  # retrieval grounds the explanation; a slow vector index must not sink the case
+        inv.step("retrieve", f"GraphRAG unavailable ({type(e).__name__}); explanation written from graph facts only.")
+        return
     inv.passages = passages
     cited = set()
     for a in inv.final:
@@ -553,6 +559,8 @@ def main():
     for case in cases:
         if only and case["case_id"] not in only:
             continue
+        if os.environ.get("LIVE") == "1":
+            print(f"\n=== {case['case_id']}  {case['trigger_type']}  opened {case['opened_at']} ===", flush=True)
         a = run_case(case)
         cz = a["case"]
         print(f"{case['case_id']} {cz['verdict']:<10} p={cz['fraud_probability']:.2f} {cz['pattern']:<28} exp={cz['exposure_usd']:>8} sar={a['sar']['file']!s:<5} "

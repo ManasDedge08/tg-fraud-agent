@@ -71,11 +71,11 @@
       {
         "claim": "SAR narrative written against FinCEN narrative guidance passages retrieved for this case (who, what, when, where, how, why)",
         "source": "document",
-        "ref": "doc:FINCEN-SAR-50,FINCEN-SAR-45,FINCEN-SAR-54",
+        "ref": "doc:FINCEN-SAR-50,FINCEN-SAR-54,FINCEN-SAR-45",
         "entity_ids": [
           "FINCEN-SAR-50",
-          "FINCEN-SAR-45",
-          "FINCEN-SAR-54"
+          "FINCEN-SAR-54",
+          "FINCEN-SAR-45"
         ]
       },
       {
@@ -98,7 +98,7 @@
       "CC-4124",
       "CC-0033"
     ],
-    "summary": "Customer C07297 reported an unauthorized $482.12 online purchase on November 21, 2016. Investigation revealed 4 coordinated transactions totaling $1,906.07 within 30 minutes, each deliberately priced just under $500 to evade authorization thresholds. This structuring pattern matches 5 prior closed fraud cases, and transactions originated from 2 distinct device profiles across 2 regions, indicating a compromised card. Fraud is confirmed at 0.9 probability. The card has been blocked, a case created, and the matter escalated to analyst review per Policy R9.",
+    "summary": "Customer C07297 denied a $482.12 purchase on card C07297-K1 (November 21, 2016). Investigation found four online purchases within 30 minutes, each structured just under $500 ($478.95, $456.96, $488.04, $482.12; total $1,906.07), from two device profiles and two regions. Pattern matches five prior September 2016 cases (CC-3748, CC-3841, CC-3907, CC-4086, CC-4124), confirming systematic sub-$500 threshold-evasion fraud. Verdict: confirmed (probability 0.9). Card blocked; case created under Policy R9; report filed to regulators (exposure $1,906.07 exceeds $1,000).",
     "written_to_graph": true,
     "graph_case_id": "CASE-2016-006"
   },
@@ -153,7 +153,7 @@
   "sar": {
     "file": true,
     "reason": "R9/R6 and 3a: coordinated or shared-origin fraud",
-    "narrative": "Customer C07297, holding card C07297-K1, experienced 4 unauthorized online purchases totaling $1,906.07 on November 21, 2016, between 20:00 and 20:30. The customer reported the $482.12 transaction as unauthorized, triggering investigation. The transactions consisted of: $478.95 at 20:00 from region 264.0, $456.96 at 20:10 from region 476.0, $488.04 at 20:24 from region 476.0, and $482.12 at 20:30 from region 264.0. Each purchase was conducted online and deliberately structured to remain just below the $500 authorization threshold, indicating intentional evasion of control mechanisms. The transactions originated from 2 distinct device profiles\u2014Windows 7 with Internet Explorer 11 and iOS with mobile Safari\u2014suggesting the card credentials were compromised and used across multiple platforms. This pattern of multiple online purchases of amounts just under $500 within a concentrated time window matches an undocumented fraud pattern identified in 5 prior closed cases (CC-3748, CC-3841, CC-3907, CC-4086, CC-4124), indicating systematic fraudulent activity targeting authorization thresholds. The card has been blocked to prevent further fraud and the investigation escalated per Policy R9.",
+    "narrative": "Customer C07297 reported unauthorized activity on card C07297-K1. Between 20:00 and 20:30 on November 21, 2016, four purchases totaling $1,906.07 were charged without authorization: $478.95, $456.96, $488.04, and $482.12. The transactions originated from two distinct device profiles (Windows 7 desktop with Internet Explorer 11 and iOS mobile device with Safari 11.0) and occurred across two geographic regions (264 and 476). Each purchase amount was structured to remain just under the $500 authorization review threshold, a deliberate technique designed to evade transaction controls. Investigation identified this identical structuring pattern in five prior closed fraud cases from September 2016 (CC-3748, CC-3841, CC-3907, CC-4086, CC-4124), each involving multiple online purchases within a forty-minute window, each just under $500, on different compromised cards. The consistent application of the sub-$500 structuring technique across multiple fraud cases demonstrates systematic methodology and planning rather than isolated compromised-card misuse. Card C07297-K1 has been blocked. Based on confirmed fraud status and exposure of $1,906.07 exceeding $1,000, this activity is reported pursuant to Policy R9 (undocumented patterns with coordinated abuse) and Policy Section 3a (suspicious activity reporting threshold).",
     "subjects": [
       "C07297",
       "C07297-K1",
@@ -168,6 +168,6 @@
   },
   "stop_reason": "Pattern matched confirmed closed cases and the cardholder denial settled the verdict; further queries would not change the actions.",
   "tool_calls": 34,
-  "tokens": 30471,
-  "latency_s": 124.6
+  "tokens": 31396,
+  "latency_s": 135.69
 }

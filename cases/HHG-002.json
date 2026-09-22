@@ -77,7 +77,7 @@
       "CC-0057",
       "CC-2533"
     ],
-    "summary": "Real-time model flagged $292.36 online transaction at 0.79. Graph scorer calibrated fraud probability to 0.03; cardholder confirmed purchase. Out-of-region pattern detected but customer validation rules out clone per Policy R2, R3. Transaction allowed, case closed as no fraud.",
+    "summary": "Model flagged $292.36 online transaction (2016-11-22 17:27:07, ID 3478782) with score 0.79, fraud probability 0.04. Card history held 1 prior confirmed fraud (CC-4160); out-of-region pattern matched. Cardholder confirmed transaction, probability dropped to 0.03. Verdict: legitimate per Policy R3. Transaction allowed, case closed no fraud.",
     "written_to_graph": true,
     "graph_case_id": "CASE-2016-002"
   },
@@ -140,6 +140,6 @@
   },
   "stop_reason": "The customer's confirmation settled the question (\u00a76).",
   "tool_calls": 15,
-  "tokens": 25557,
-  "latency_s": 104.82
+  "tokens": 30116,
+  "latency_s": 126.6
 }
