@@ -24,7 +24,13 @@
 body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 "IBM Plex Sans",system-ui,sans-serif}
 .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
 header{display:flex;align-items:baseline;gap:16px;padding:18px 24px;border-bottom:1px solid var(--line)}
-header h1{font-size:18px;margin:0;font-weight:600;letter-spacing:-.01em}
+header h1{font-size:18px;margin:0;font-weight:600;letter-spacing:-.01em;display:flex;align-items:baseline}
+.logo-expand{display:inline-flex;align-items:baseline;cursor:pointer;user-select:none;color:inherit}
+.logo-expand .word{display:inline-flex;align-items:baseline}
+.logo-expand .rest{display:inline-block;max-width:0;opacity:0;overflow:hidden;white-space:nowrap;transition:max-width .28s cubic-bezier(0.4,0,0.2,1),opacity .22s ease;vertical-align:baseline}
+.logo-expand .word:not(:last-child)::after{content:"";display:inline-block;width:0;transition:width .28s cubic-bezier(0.4,0,0.2,1)}
+.logo-expand:hover .rest{max-width:80px;opacity:1}
+.logo-expand:hover .word:not(:last-child)::after{width:5px}
 header .sub{color:var(--muted);font-size:13px}
 .wrap{display:grid;grid-template-columns:300px 1fr;min-height:calc(100vh - 60px)}
 nav{border-right:1px solid var(--line);overflow:auto;max-height:calc(100vh - 60px)}
@@ -79,7 +85,7 @@ svg text{fill:var(--ink);font:11px "IBM Plex Mono",monospace}
 </style>
 </head>
 <body>
-<header><h1>Fraud Case Desk</h1><span class="sub">TigerGraph agent · 20 benchmark cases · Nov–Dec 2016</span></header>
+<header><h1><span class="logo-expand" title="Fraud Case Desk"><span class="word"><span class="cap">F</span><span class="rest">raud</span></span><span class="word"><span class="cap">C</span><span class="rest">ase</span></span><span class="word"><span class="cap">D</span><span class="rest">esk</span></span></span></h1><span class="sub">TigerGraph agent · 20 benchmark cases · Nov–Dec 2016</span></header>
 <div class="wrap">
   <nav id="nav"></nav>
   <main id="main"></main>
