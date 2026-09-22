@@ -1,0 +1,122 @@
+{
+  "case_id": "MON-004",
+  "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.02,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 0,
+    "evidence": [
+      {
+        "claim": "Graph-feature scorer trained on 5,565 closed cases gives this transaction a calibrated fraud probability of 0.01 (bank model score 0.99); features include Vesta's unnamed C, D, M and V columns, used as signals only",
+        "source": "graph",
+        "ref": "query:score_transaction(txn_id=3469573)",
+        "entity_ids": [
+          "3469573"
+        ]
+      },
+      {
+        "claim": "Device profile 'ALP-L09 Build/HUAWEIALP-L09 | ? | chrome 65.0 for android | ?' is marked New and has never been used on C06464-K1",
+        "source": "graph",
+        "ref": "query:device_neighbors(device='ALP-L09 Build/HUAWEIALP-L09 | ? | chrome 65.0 for android | ?')",
+        "entity_ids": [
+          "3469573"
+        ]
+      },
+      {
+        "claim": "Match flags M4 show a mismatch (Vesta match flags; exact meaning unpublished)",
+        "source": "graph",
+        "ref": "query:txn(3469573)",
+        "entity_ids": [
+          "3469573"
+        ]
+      },
+      {
+        "claim": "Card history holds 12 earlier closed cases (12 confirmed fraud, 0 cleared); most recent CC-5513 (card_not_present_fraud, confirmed_fraud)",
+        "source": "graph",
+        "ref": "query:similar_closed_cases(card_id=C06464-K1)",
+        "entity_ids": [
+          "CC-5513",
+          "CC-5415",
+          "CC-5219",
+          "CC-4910",
+          "CC-4780"
+        ]
+      },
+      {
+        "claim": "Case memory: this card already has agent case(s) CASE-2016-MON-001 written to the graph earlier in this run",
+        "source": "graph",
+        "ref": "mcp:similar_closed_cases(card=C06464-K1)",
+        "entity_ids": [
+          "CASE-2016-MON-001"
+        ]
+      },
+      {
+        "claim": "Closed cases whose analyst notes read most like this investigation (vector search over ClosedCase.note_emb): CC-0795, CC-0750, CC-5272, CC-0169",
+        "source": "graph",
+        "ref": "mcp:search_top_k_similarity(ClosedCase.note_emb)",
+        "entity_ids": [
+          "CC-0795",
+          "CC-0750",
+          "CC-5272",
+          "CC-0169"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-5513",
+      "CC-5415",
+      "CC-5219",
+      "CC-0795",
+      "CC-0750"
+    ],
+    "summary": "Transaction $38.41 online on 2016-11-19 was flagged by the bank's real-time monitoring model with a score of 0.99. The graph-feature scorer, trained on 5,565 closed cases, calibrated the fraud probability to 0.01, indicating low fraud risk. Although the device was new to this card and match flags showed a mismatch, the evidence pointed to legitimate activity. The transaction was allowed and the case was closed with no fraud found.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-MON-004"
+  },
+  "evidence_requests": [],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "ALLOW_TRANSACTION",
+        "route": "auto",
+        "reason": "\u00a76: probability 0.02 backed by 2 independent signals"
+      },
+      {
+        "action": "CLOSE_NO_FRAUD",
+        "route": "auto",
+        "reason": "Evidence points to legitimate activity"
+      }
+    ],
+    "final": [
+      {
+        "action": "ALLOW_TRANSACTION",
+        "route": "auto",
+        "reason": "\u00a76: probability 0.02 backed by 2 independent signals"
+      },
+      {
+        "action": "CLOSE_NO_FRAUD",
+        "route": "auto",
+        "reason": "Evidence points to legitimate activity"
+      }
+    ],
+    "what_changed": "nothing"
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: no fraud found, no report.",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+  },
+  "stop_reason": "Probability 0.02 with 2 independent signals meets the \u00a76 stopping rule; the risk score alone did not hold up.",
+  "tool_calls": 24,
+  "tokens": 27977,
+  "latency_s": 109.0
+}

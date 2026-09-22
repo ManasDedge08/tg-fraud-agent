@@ -1,0 +1,122 @@
+[
+  {
+    "case_id": "MON-001",
+    "opened_at": "2016-11-05 21:33:27",
+    "trigger_type": "risk_score",
+    "trigger_text": "Monitor alert: real-time model scored transaction 3433324 ($87.39, online) at 0.94. Picked up by the agent's own monitoring of the exam period.",
+    "flagged_txn_id": 3433324,
+    "card_id": "C06464-K1",
+    "customer_id": "C06464",
+    "risk_score": 0.94
+  },
+  {
+    "case_id": "MON-002",
+    "opened_at": "2016-11-10 19:15:24",
+    "trigger_type": "risk_score",
+    "trigger_text": "Monitor alert: real-time model scored transaction 3446975 ($1,331.06, in billing region 327.0) at 0.98. Picked up by the agent's own monitoring of the exam period.",
+    "flagged_txn_id": 3446975,
+    "card_id": "C08269-K1",
+    "customer_id": "C08269",
+    "risk_score": 0.98
+  },
+  {
+    "case_id": "MON-003",
+    "opened_at": "2016-11-13 22:40:15",
+    "trigger_type": "risk_score",
+    "trigger_text": "Monitor alert: real-time model scored transaction 3455502 ($22.80, online) at 0.90. Picked up by the agent's own monitoring of the exam period.",
+    "flagged_txn_id": 3455502,
+    "card_id": "C02147-K2",
+    "customer_id": "C02147",
+    "risk_score": 0.9
+  },
+  {
+    "case_id": "MON-004",
+    "opened_at": "2016-11-19 02:52:00",
+    "trigger_type": "risk_score",
+    "trigger_text": "Monitor alert: real-time model scored transaction 3469573 ($38.41, online) at 0.99. Picked up by the agent's own monitoring of the exam period.",
+    "flagged_txn_id": 3469573,
+    "card_id": "C06464-K1",
+    "customer_id": "C06464",
+    "risk_score": 0.99
+  },
+  {
+    "case_id": "MON-005",
+    "opened_at": "2016-11-20 00:42:32",
+    "trigger_type": "risk_score",
+    "trigger_text": "Monitor alert: real-time model scored transaction 3471965 ($773.96, in billing region 123.0) at 0.99. Picked up by the agent's own monitoring of the exam period.",
+    "flagged_txn_id": 3471965,
+    "card_id": "C06962-K2",
+    "customer_id": "C06962",
+    "risk_score": 0.99
+  },
+  {
+    "case_id": "MON-006",
+    "opened_at": "2016-11-29 23:05:38",
+    "trigger_type": "risk_score",
+    "trigger_text": "Monitor alert: real-time model scored transaction 3498625 ($14.36, online) at 0.91. Picked up by the agent's own monitoring of the exam period.",
+    "flagged_txn_id": 3498625,
+    "card_id": "C05996-K1",
+    "customer_id": "C05996",
+    "risk_score": 0.91
+  },
+  {
+    "case_id": "MON-007",
+    "opened_at": "2016-12-04 21:59:46",
+    "trigger_type": "risk_score",
+    "trigger_text": "Monitor alert: real-time model scored transaction 3514247 ($275.06, online) at 0.96. Picked up by the agent's own monitoring of the exam period.",
+    "flagged_txn_id": 3514247,
+    "card_id": "C12897-K1",
+    "customer_id": "C12897",
+    "risk_score": 0.96
+  },
+  {
+    "case_id": "MON-008",
+    "opened_at": "2016-12-08 14:35:22",
+    "trigger_type": "risk_score",
+    "trigger_text": "Monitor alert: real-time model scored transaction 3524594 ($60.08, online) at 0.98. Picked up by the agent's own monitoring of the exam period.",
+    "flagged_txn_id": 3524594,
+    "card_id": "C07212-K2",
+    "customer_id": "C07212",
+    "risk_score": 0.98
+  },
+  {
+    "case_id": "MON-009",
+    "opened_at": "2016-12-15 17:43:53",
+    "trigger_type": "risk_score",
+    "trigger_text": "Monitor alert: real-time model scored transaction 3545605 ($200.07, online) at 0.91. Picked up by the agent's own monitoring of the exam period.",
+    "flagged_txn_id": 3545605,
+    "card_id": "C05416-K1",
+    "customer_id": "C05416",
+    "risk_score": 0.91
+  },
+  {
+    "case_id": "MON-010",
+    "opened_at": "2016-12-17 00:40:18",
+    "trigger_type": "risk_score",
+    "trigger_text": "Monitor alert: real-time model scored transaction 3549837 ($299.94, online) at 0.99. Picked up by the agent's own monitoring of the exam period.",
+    "flagged_txn_id": 3549837,
+    "card_id": "C00750-K2",
+    "customer_id": "C00750",
+    "risk_score": 0.99
+  },
+  {
+    "case_id": "MON-011",
+    "opened_at": "2016-12-27 00:10:47",
+    "trigger_type": "risk_score",
+    "trigger_text": "Monitor alert: real-time model scored transaction 3577828 ($59.12, online) at 0.91. Picked up by the agent's own monitoring of the exam period.",
+    "flagged_txn_id": 3577828,
+    "card_id": "C02181-K2",
+    "customer_id": "C02181",
+    "risk_score": 0.91
+  },
+  {
+    "case_id": "MON-012",
+    "opened_at": "2016-12-31 14:20:31",
+    "trigger_type": "risk_score",
+    "trigger_text": "Monitor alert: real-time model scored transaction 3588844 ($22.74, online) at 0.90. Picked up by the agent's own monitoring of the exam period.",
+    "flagged_txn_id": 3588844,
+    "card_id": "C07508-K2",
+    "customer_id": "C07508",
+    "risk_score": 0.9
+  }
+]

@@ -61,6 +61,7 @@ Two patterns in the data aren't among the five documented ones, and one case can
 - **Knowing when to stop.** The §6 stopping rule is code, and the dashboard shows why each case stopped. Many high-score alerts close without bothering the customer, because two independent signals already say legitimate.
 - **Asking only when it matters.** If the probability is in the uncertain band, the agent asks the customer (and requests step-up for online charges), states the simulated reply, and shows how the recommendation changed.
 - **Permissions.** Only `auto` actions execute. `L1` and `L2` actions are recommended with their route and wait for a human; the dashboard's approve buttons stand in for that queue.
+- **Monitoring on its own.** Beyond the 20 cases, a monitor picks up every alert the bank's model scored at 0.90 or above in November and December, merges repeats, ranks them by the scorer and investigates a budget: the likeliest fraud and the loudest false alarms. `triage.json` records what happened to every alert.
 - **Memory that grows during the run.** Cases are processed in `opened_at` order and written back as they close, so a later case can retrieve an earlier one.
 
 ## What we learned
@@ -74,5 +75,5 @@ Two patterns in the data aren't among the five documented ones, and one case can
 
 - Replace the single-reply simulation with a branch plan per case (deny → R2, confirm → R3, no reply → R4) and pick the question whose answer would change the actions most.
 - Add graph embeddings (FastRP) of each case's neighbourhood so similar-case retrieval matches on structure as well as on text and shared entities, and add the FATF typology reports to the document store next to FinCEN's guidance.
-- Run the agent continuously over the exam period, picking up alerts from the risk scores beyond the 20 cases.
+- Run the monitor as a stream rather than a batch, and let each investigation's outcome re-rank the queue (a confirmed device ring should pull every open alert from that device to the front).
 - Back-test the whole loop on October closed cases and publish the calibration curve.

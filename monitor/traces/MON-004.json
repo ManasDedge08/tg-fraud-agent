@@ -3,80 +3,79 @@
     {
       "step": 1,
       "kind": "trigger",
-      "text": "risk_score: Real-time model scored transaction 3523199 ($100.07, online) at 0.54. Review and decide.",
+      "text": "risk_score: Monitor alert: real-time model scored transaction 3469573 ($38.41, online) at 0.99. Picked up by the agent's own monitoring of the exam period.",
       "tool_calls": 1
     },
     {
       "step": 2,
       "kind": "open_case",
-      "text": "Case opened for card C02923-K1, flagged transaction 3523199 ($100.07, online, product R).",
+      "text": "Case opened for card C06464-K1, flagged transaction 3469573 ($38.41, online, product C).",
       "tool_calls": 1
     },
     {
       "step": 3,
       "kind": "investigate",
-      "text": "Baseline: 60 transactions in 120 days, median $117.03, home region 330.0, products {'W': 53, 'H': 4, 'S': 2, 'R': 1}.",
+      "text": "Baseline: 345 transactions in 120 days, median $29.53, home region 284.0, products {'C': 345}.",
       "tool_calls": 4
     },
     {
       "step": 4,
       "kind": "investigate",
       "text": "Ran pattern queries: card_window, device_neighbors, region_cluster, recurring_charge.",
-      "tool_calls": 12
+      "tool_calls": 10
     },
     {
       "step": 5,
       "kind": "investigate",
-      "text": "MCP traversal DeviceProfile\u2192Txn\u2192ClosedCase: 1 confirmed-fraud and 4 cleared closed cases used this device profile.",
-      "tool_calls": 21
+      "text": "MCP traversal DeviceProfile\u2192Txn\u2192ClosedCase: 0 confirmed-fraud and 0 cleared closed cases used this device profile.",
+      "tool_calls": 19
     },
     {
       "step": 6,
       "kind": "assess",
-      "text": "Hypotheses scored: scorer -4.6, new_device +0.4",
-      "tool_calls": 21
+      "text": "Hypotheses scored: scorer -4.3, new_device +0.4, match_flags +0.2",
+      "tool_calls": 19
     },
     {
       "step": 7,
       "kind": "assess",
-      "text": "Fraud probability 0.01; pattern none; 2 independent signals.",
-      "tool_calls": 21
+      "text": "Fraud probability 0.02; pattern none; 2 independent signals.",
+      "tool_calls": 19
     },
     {
       "step": 8,
       "kind": "assess",
       "text": "Policy graph for pattern none: rules ['R3', 'R7']; allowed actions ['WARN_CUSTOMER', 'VERIFY_WITH_CUSTOMER', 'CLOSE_NO_FRAUD', 'CREATE_CASE'].",
-      "tool_calls": 22
+      "tool_calls": 20
     },
     {
       "step": 9,
       "kind": "recommend",
       "text": "Initial: ['ALLOW_TRANSACTION', 'CLOSE_NO_FRAUD']. Final: ['ALLOW_TRANSACTION', 'CLOSE_NO_FRAUD']. nothing",
-      "tool_calls": 22
+      "tool_calls": 20
     },
     {
       "step": 10,
       "kind": "retrieve",
       "text": "GraphRAG: 5 passages by vector search, 3 by graph path Pattern\u2192PolicyRule\u2192DocChunk, 4 closed cases by note similarity.",
-      "tool_calls": 25
+      "tool_calls": 23
     }
   ],
   "hypotheses": {
-    "scorer": -4.59511985013459,
-    "new_device": 0.4
+    "scorer": -4.287965674269988,
+    "new_device": 0.4,
+    "match_flags": 0.2
   },
   "tool_calls": [
-    "txn(3523199)",
-    "card_history(card=C02923-K1,days=120)",
+    "txn(3469573)",
+    "card_history(card=C06464-K1,days=120)",
     "card_history.products",
     "card_history.regions",
-    "card_window(card=C02923-K1)",
-    "card_window(card=C02923-K1)",
+    "card_window(card=C06464-K1)",
+    "card_window(card=C06464-K1)",
     "device_on_card_before",
     "device_neighbors",
     "device_global",
-    "region_on_card_before",
-    "card_window(card=C02923-K1)",
     "recurring_charge",
     "device_ring.closed_cases",
     "device_ring.cards_before",
@@ -92,7 +91,7 @@
     "mcp:tigergraph__run_installed_query(policy_docs)",
     "mcp:tigergraph__search_top_k_similarity(ClosedCase.note_emb)"
   ],
-  "p_model": 0.0072635635932404375,
-  "p_initial": 0.01,
-  "p_final": 0.01
+  "p_model": 0.013546798029556653,
+  "p_initial": 0.02,
+  "p_final": 0.02
 }

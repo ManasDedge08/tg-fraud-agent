@@ -84,19 +84,11 @@
         ]
       },
       {
-        "claim": "Known-pattern definition matched to this case: Account takeover. Mixed-channel activity inconsistent with the cardholder, often with device and match-flag anomalies, pointing to stolen credentials rather than a stolen number.",
+        "claim": "Known-pattern definition matched to this case (retrieved by graph search): Account takeover. Mixed-channel activity inconsistent with the cardholder, often with device and match-flag anomalies, pointing to stolen credentials rather than a stolen number.",
         "source": "document",
         "ref": "doc:PATTERN-5",
         "entity_ids": [
           "PATTERN-5"
-        ]
-      },
-      {
-        "claim": "Known-pattern definition matched to this case: Out-of-region use. Card-present purchases in a billing region the cardholder has no history in, while their normal activity continues at home. Several days of purchases in one new region is a trip, not a clone. Policy R2, R3.",
-        "source": "document",
-        "ref": "doc:PATTERN-4",
-        "entity_ids": [
-          "PATTERN-4"
         ]
       },
       {
@@ -118,7 +110,7 @@
       "CC-0354",
       "CC-0873"
     ],
-    "summary": "Customer C08623 disputed $49 charge (Dec 10, 2016, in-person, region 330, card C08623-K2) as unauthorized. Model fraud probability 0.07 to 0.27; calibrated score 0.04. Pattern account_takeover; 5 prior confirmed fraud cases on card; match-flag mismatch. Cardholder denied twice, holds card. Verdict: uncertain\u2014cardholder denies but model shows 0.27 fraud probability. Actions: block card, create case, escalate to analyst.",
+    "summary": "Customer C08623 disputed a $49.00 in-person charge (transaction 3530164, December 10, 2016, region 330.0) as unauthorized. Graph analysis showed conflicting signals: the bank's calibrated fraud model scored 0.04, but graph features raised it to 0.27 under an account-takeover pattern with mismatch flags; the card's history included 5 prior confirmed fraud cases. The customer denied the charge twice and confirmed possession of the card. The verdict is uncertain\u2014weak model evidence conflicts with account-takeover indicators and fraud history. Actions: card blocked, case created internally, escalated to an analyst to resolve the conflict.",
     "written_to_graph": true,
     "graph_case_id": "CASE-2016-003"
   },
@@ -176,6 +168,6 @@
   },
   "stop_reason": "Further graph queries would not resolve the conflict between the denial and the graph evidence (\u00a76); the analyst takes it from here under R8.",
   "tool_calls": 18,
-  "tokens": 30519,
-  "latency_s": 130.11
+  "tokens": 25424,
+  "latency_s": 79.43
 }

@@ -1,0 +1,178 @@
+{
+  "case_id": "MON-001",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.96,
+    "pattern": "card_not_present_fraud",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3433324"
+    ],
+    "first_suspicious_txn_id": "3433324",
+    "connected_card_ids": [
+      "C02147-K2",
+      "C12258-K2"
+    ],
+    "connected_device_profiles": [
+      "LG-D320 Build/KOT49I.V10a | ? | chrome generic | ?"
+    ],
+    "exposure_usd": 87.39,
+    "evidence": [
+      {
+        "claim": "Graph-feature scorer trained on 5,565 closed cases gives this transaction a calibrated fraud probability of 0.72 (bank model score 0.94); features include Vesta's unnamed C, D, M and V columns, used as signals only",
+        "source": "graph",
+        "ref": "query:score_transaction(txn_id=3433324)",
+        "entity_ids": [
+          "3433324"
+        ]
+      },
+      {
+        "claim": "Device profile 'LG-D320 Build/KOT49I.V10a | ? | chrome generic | ?' was used on 2 other cards within 24 hours ($87.21, $87.34), and the scorer rates those transactions as suspicious",
+        "source": "graph",
+        "ref": "query:device_neighbors(device='LG-D320 Build/KOT49I.V10a | ? | chrome generic | ?', hours=24)",
+        "entity_ids": [
+          "C02147-K2",
+          "C12258-K2",
+          "3433300",
+          "3433339"
+        ]
+      },
+      {
+        "claim": "Device profile 'LG-D320 Build/KOT49I.V10a | ? | chrome generic | ?' was used on this card 2 times before",
+        "source": "graph",
+        "ref": "query:device_neighbors(device='LG-D320 Build/KOT49I.V10a | ? | chrome generic | ?')",
+        "entity_ids": [
+          "3433324"
+        ]
+      },
+      {
+        "claim": "Match flags M4 show a mismatch (Vesta match flags; exact meaning unpublished)",
+        "source": "graph",
+        "ref": "query:txn(3433324)",
+        "entity_ids": [
+          "3433324"
+        ]
+      },
+      {
+        "claim": "Card history holds 12 earlier closed cases (12 confirmed fraud, 0 cleared); most recent CC-5513 (card_not_present_fraud, confirmed_fraud)",
+        "source": "graph",
+        "ref": "query:similar_closed_cases(card_id=C06464-K1)",
+        "entity_ids": [
+          "CC-5513",
+          "CC-5415",
+          "CC-5219",
+          "CC-4910",
+          "CC-4780"
+        ]
+      },
+      {
+        "claim": "Known-pattern definition matched to this case (retrieved by vector search): Card-not-present fraud. The number is used online without the card. Amounts and products that don't fit the cardholder's history, often in a burst of two to four within 48 hours. On its own, one unusual online purchase is ambiguous: verify. Policy R1 to R4.",
+        "source": "document",
+        "ref": "doc:PATTERN-2",
+        "entity_ids": [
+          "PATTERN-2"
+        ]
+      },
+      {
+        "claim": "SAR narrative written against FinCEN narrative guidance passages retrieved for this case (who, what, when, where, how, why)",
+        "source": "document",
+        "ref": "doc:FINCEN-SAR-50",
+        "entity_ids": [
+          "FINCEN-SAR-50"
+        ]
+      },
+      {
+        "claim": "Closed cases whose analyst notes read most like this investigation (vector search over ClosedCase.note_emb): CC-5540, CC-5524, CC-5403, CC-5551",
+        "source": "graph",
+        "ref": "mcp:search_top_k_similarity(ClosedCase.note_emb)",
+        "entity_ids": [
+          "CC-5540",
+          "CC-5524",
+          "CC-5403",
+          "CC-5551"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-5513",
+      "CC-5415",
+      "CC-5219",
+      "CC-5558",
+      "CC-5557",
+      "CC-5540"
+    ],
+    "summary": "Real-time monitoring model flagged transaction 3433324 ($87.39, online) on November 5, 2016, scoring 0.94 fraud probability. Graph analysis revealed the device profile used was associated with two other suspicious transactions on different cards within 24 hours, both with similar amounts ($87.21, $87.34). The customer's card carries 12 prior confirmed fraud cases, and the transaction pattern matches known card-not-present fraud. Card has been blocked, investigation case created, and suspicious activity report filed; connected cards C02147-K2 and C12258-K2 are under monitoring.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-MON-001"
+  },
+  "evidence_requests": [],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "\u00a76: 3 independent signals put probability at 0.96; exposure $87.39 \u2264 $2,500"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: probability above 0.30; R6 shared origin"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile links this card to other cards' suspicious activity"
+      },
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: C02147-K2, C12258-K2 share the device profile"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "\u00a76: 3 independent signals put probability at 0.96; exposure $87.39 \u2264 $2,500"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: probability above 0.30; R6 shared origin"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile links this card to other cards' suspicious activity"
+      },
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: C02147-K2, C12258-K2 share the device profile"
+      }
+    ],
+    "what_changed": "nothing"
+  },
+  "sar": {
+    "file": true,
+    "reason": "R2 and 3a: coordinated or shared-origin fraud",
+    "narrative": "Bank monitoring identified customer C06464, card C06464-K1, conducting an online transaction of $87.39 on November 5, 2016 at 20:33:27. The device 'LG-D320 Build/KOT49I.V10a' used in this transaction was simultaneously used on two other cards, C02147-K2 and C12258-K2, to conduct similar online transactions ($87.21 and $87.34) within a 24-hour window. This device had been used previously on card C06464-K1. The cardholder's history shows 12 prior confirmed fraud cases, with the most recent involving card-not-present fraud (case CC-5513). The flagged transaction matches known card-not-present fraud patterns: unauthorized online use of a card number with amounts inconsistent with cardholder history. Suspicious indicators including cross-card device linkage and transaction match flag discrepancies indicate coordinated fraud activity. Card C06464-K1 has been blocked, an investigation case opened, and connected cards C02147-K2 and C12258-K2 placed under enhanced monitoring.",
+    "subjects": [
+      "C06464",
+      "C06464-K1",
+      "C02147-K2",
+      "C12258-K2",
+      "LG-D320 Build/KOT49I.V10a | ? | chrome generic | ?"
+    ],
+    "total_amount_usd": 87.39,
+    "activity_dates": [
+      "2016-11-05",
+      "2016-11-05"
+    ]
+  },
+  "stop_reason": "Probability 0.96 with 3 independent signals meets the \u00a76 stopping rule.",
+  "tool_calls": 27,
+  "tokens": 30486,
+  "latency_s": 128.67
+}

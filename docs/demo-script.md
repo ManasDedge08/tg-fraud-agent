@@ -1,4 +1,4 @@
-# Demo video script (about 4 minutes)
+# Demo video script (about 4½ minutes)
 
 Record at 1920x1080. Two windows: a terminal and the dashboard (`python3 -m http.server -d ui 8765`, then http://localhost:8765). Before recording, run one case once so Savanna is awake (Auto Resume can take a minute on the first query).
 
@@ -53,7 +53,13 @@ Then open a legitimate risk-score case (for example HHG-010):
 
 > Two patterns aren't among the five documented ones. A device ring: one Android profile behind an anonymous proxy, always new to the account, one to three purchases per card across 24 cards in August and September, then 28 more from mid-November. HHG-014 is one of them; a connected-components query over the card–device graph returns a 19-card component joined by that one device. And structuring: four purchases just under $500 within thirty minutes in HHG-006. Both are filed under R9 as undocumented, described in the agent's own words.
 
-## 3:50–4:10 · Close
+## 3:50–4:15 · Monitoring on its own
+
+**Screen:** dashboard, scroll the left list to the Monitor section; open the first `MON` fraud case, then a `MON` case closed as legitimate. Optionally show `monitor/triage.json` in an editor.
+
+> Beyond the 20 cases, the agent watches November and December on its own. The bank's model raised 476 alerts at 0.90 or above. The monitor merges repeats on a card, skips the benchmark's cards, and ranks the rest by our scorer. It spends its budget on the likeliest fraud and on the loudest alerts the scorer calls clean. This one was fraud: blocked, reported, connected cards monitored. This one scored 0.98 on the bank's model and the agent closed it as a false alarm. Every alert, investigated or not, is recorded in the triage file.
+
+## 4:15–4:35 · Close
 
 **Screen:** README architecture block.
 

@@ -1,5 +1,5 @@
 {
-  "case_id": "HHG-001",
+  "case_id": "MON-005",
   "case": {
     "status": "closed_legitimate",
     "verdict": "legitimate",
@@ -13,62 +13,63 @@
     "exposure_usd": 0,
     "evidence": [
       {
-        "claim": "Graph-feature scorer trained on 5,565 closed cases gives this transaction a calibrated fraud probability of 0.01 (bank model score 0.61); features include Vesta's unnamed C, D, M and V columns, used as signals only",
+        "claim": "Graph-feature scorer trained on 5,565 closed cases gives this transaction a calibrated fraud probability of 0.01 (bank model score 0.99); features include Vesta's unnamed C, D, M and V columns, used as signals only",
         "source": "graph",
-        "ref": "query:score_transaction(txn_id=3514030)",
+        "ref": "query:score_transaction(txn_id=3471965)",
         "entity_ids": [
-          "3514030"
+          "3471965"
         ]
       },
       {
-        "claim": "Card has 10 earlier transactions in billing region 444.0; not a new region",
+        "claim": "Card has 3 earlier transactions in billing region 123.0; not a new region",
         "source": "graph",
-        "ref": "query:region_cluster(addr1=444.0)",
+        "ref": "query:region_cluster(addr1=123.0)",
         "entity_ids": [
-          "3514030"
+          "3471965"
         ]
       },
       {
         "claim": "Match flags M5 show a mismatch (Vesta match flags; exact meaning unpublished)",
         "source": "graph",
-        "ref": "query:txn(3514030)",
+        "ref": "query:txn(3471965)",
         "entity_ids": [
-          "3514030"
+          "3471965"
         ]
       },
       {
-        "claim": "Card history holds 4 earlier closed cases (4 confirmed fraud, 0 cleared); most recent CC-3587 (out_of_region_use, confirmed_fraud)",
+        "claim": "Card history holds 12 earlier closed cases (11 confirmed fraud, 1 cleared); most recent CC-5489 (out_of_region_use, confirmed_fraud)",
         "source": "graph",
-        "ref": "query:similar_closed_cases(card_id=C12382-K1)",
+        "ref": "query:similar_closed_cases(card_id=C06962-K2)",
         "entity_ids": [
-          "CC-3587",
-          "CC-2964",
-          "CC-1673",
-          "CC-1066"
+          "CC-5489",
+          "CC-5391",
+          "CC-5128",
+          "CC-4844",
+          "CC-4807"
         ]
       },
       {
-        "claim": "Closed cases whose analyst notes read most like this investigation (vector search over ClosedCase.note_emb): CC-1422, CC-0873, CC-2533, CC-2788",
+        "claim": "Closed cases whose analyst notes read most like this investigation (vector search over ClosedCase.note_emb): CC-0354, CC-3103, CC-1578, CC-2533",
         "source": "graph",
         "ref": "mcp:search_top_k_similarity(ClosedCase.note_emb)",
         "entity_ids": [
-          "CC-1422",
-          "CC-0873",
-          "CC-2533",
-          "CC-2788"
+          "CC-0354",
+          "CC-3103",
+          "CC-1578",
+          "CC-2533"
         ]
       }
     ],
     "similar_prior_cases": [
-      "CC-3587",
-      "CC-2964",
-      "CC-1673",
-      "CC-1422",
-      "CC-0873"
+      "CC-5489",
+      "CC-5391",
+      "CC-5128",
+      "CC-0354",
+      "CC-3103"
     ],
-    "summary": "Real-time model scored transaction 3514030 ($77.07) at 0.61. Graph-scorer trained on 5,565 cases calculated fraud probability 0.01. Card established in region 444.0\u201410 prior transactions, not a new region. Legitimate activity. Allow transaction, close case.",
+    "summary": "Model flagged $773.96 at score 0.99. Graph-feature scorer re-calibrated to 0.01 fraud probability using 5,565 closed cases. Card has prior history in region (3 earlier transactions), ruling out new-region fraud. No pattern match. Transaction legitimate; case closed.",
     "written_to_graph": true,
-    "graph_case_id": "CASE-2016-001"
+    "graph_case_id": "CASE-2016-MON-005"
   },
   "evidence_requests": [],
   "next_best_actions": {
@@ -108,6 +109,6 @@
   },
   "stop_reason": "Probability 0.01 with 2 independent signals meets the \u00a76 stopping rule; the risk score alone did not hold up.",
   "tool_calls": 17,
-  "tokens": 25678,
-  "latency_s": 84.11
+  "tokens": 25331,
+  "latency_s": 81.7
 }

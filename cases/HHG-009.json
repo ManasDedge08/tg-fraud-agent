@@ -48,19 +48,11 @@
         ]
       },
       {
-        "claim": "Known-pattern definition matched to this case: Card-not-present fraud. The number is used online without the card. Amounts and products that don't fit the cardholder's history, often in a burst of two to four within 48 hours. On its own, one unusual online purchase is ambiguous: verify. Policy R1 to R4.",
+        "claim": "Known-pattern definition matched to this case (retrieved by graph search): Card-not-present fraud. The number is used online without the card. Amounts and products that don't fit the cardholder's history, often in a burst of two to four within 48 hours. On its own, one unusual online purchase is ambiguous: verify. Policy R1 to R4.",
         "source": "document",
         "ref": "doc:PATTERN-2",
         "entity_ids": [
           "PATTERN-2"
-        ]
-      },
-      {
-        "claim": "Known-pattern definition matched to this case: Out-of-region use. Card-present purchases in a billing region the cardholder has no history in, while their normal activity continues at home. Several days of purchases in one new region is a trip, not a clone. Policy R2, R3.",
-        "source": "document",
-        "ref": "doc:PATTERN-4",
-        "entity_ids": [
-          "PATTERN-4"
         ]
       },
       {
@@ -81,7 +73,7 @@
       "CC-2804",
       "CC-0033"
     ],
-    "summary": "Customer C08299 reported not authorizing a $30.02 online charge on card C08299-K1 (transaction 3581141, December 28, 2016). The fraud-detection model scored it at 0.83 calibrated probability, consistent with card-not-present fraud. Investigation confirms fraud. Per Policy R2, the card is blocked and an internal case created. No SAR filing required (exposure $30.02 remains below the $1,000 threshold and no shared device or connected-card fraud).",
+    "summary": "Trigger: Customer C08299 denied $30.02 online purchase on 2016-12-28 (transaction 3581141). Graph model scored 0.88 fraud probability; pattern matches card-not-present fraud (online use without physical card). Device profile '? | ? | ? | ?' used this card 5 times before. Verdict: confirmed fraud. Actions: block card, create case. No regulatory filing\u2014exposure $30.02 below $1,000 threshold.",
     "written_to_graph": true,
     "graph_case_id": "CASE-2016-009"
   },
@@ -123,6 +115,6 @@
   },
   "stop_reason": "Probability 0.88 with 2 independent signals meets the \u00a76 stopping rule.",
   "tool_calls": 27,
-  "tokens": 25496,
-  "latency_s": 84.83
+  "tokens": 25091,
+  "latency_s": 76.91
 }

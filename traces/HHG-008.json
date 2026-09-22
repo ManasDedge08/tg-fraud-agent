@@ -45,7 +45,7 @@
     {
       "step": 8,
       "kind": "assess",
-      "text": "Policy graph for pattern card_not_present_fraud: rules ['R3', 'R2', 'R4', 'R1']; allowed actions ['MONITOR_CARD', 'DECLINE_TRANSACTION', 'ESCALATE_TO_ANALYST', 'CLOSE_NO_FRAUD', 'FILE_REPORT', 'VERIFY_WITH_CUSTOMER', 'STEP_UP_AUTH', 'BLOCK_CARD', 'CREATE_CASE'].",
+      "text": "Policy graph for pattern card_not_present_fraud: rules ['R3', 'R2', 'R4', 'R1']; allowed actions ['ESCALATE_TO_ANALYST', 'MONITOR_CARD', 'CLOSE_NO_FRAUD', 'VERIFY_WITH_CUSTOMER', 'STEP_UP_AUTH', 'BLOCK_CARD', 'FILE_REPORT', 'DECLINE_TRANSACTION', 'CREATE_CASE'].",
       "tool_calls": 20
     },
     {

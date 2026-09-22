@@ -48,27 +48,19 @@
         ]
       },
       {
+        "claim": "Known-pattern definition matched to this case (retrieved by vector search): Card-not-present fraud from a new device. Same as above, with the identity record marking the device as `New` for this account, sometimes behind a proxy. Stronger than pattern 2, still not proof: people buy new phones.",
+        "source": "document",
+        "ref": "doc:PATTERN-3",
+        "entity_ids": [
+          "PATTERN-3"
+        ]
+      },
+      {
         "claim": "Policy R2 (retrieved by graph search): R2. Customer denies the transaction. Recommend `BLOCK_CARD` and `CREATE_CASE`. Add `FILE_REPORT` if exposure exceeds $1,000 or the case connects to a shared device profile or another card's fraud.",
         "source": "document",
         "ref": "doc:POLICY-R2",
         "entity_ids": [
           "POLICY-R2"
-        ]
-      },
-      {
-        "claim": "Known-pattern definition matched to this case: Out-of-region use. Card-present purchases in a billing region the cardholder has no history in, while their normal activity continues at home. Several days of purchases in one new region is a trip, not a clone. Policy R2, R3.",
-        "source": "document",
-        "ref": "doc:PATTERN-4",
-        "entity_ids": [
-          "PATTERN-4"
-        ]
-      },
-      {
-        "claim": "Known-pattern definition matched to this case: Card-not-present fraud. The number is used online without the card. Amounts and products that don't fit the cardholder's history, often in a burst of two to four within 48 hours. On its own, one unusual online purchase is ambiguous: verify. Policy R1 to R4.",
-        "source": "document",
-        "ref": "doc:PATTERN-2",
-        "entity_ids": [
-          "PATTERN-2"
         ]
       },
       {
@@ -89,7 +81,7 @@
       "CC-2675",
       "CC-0249"
     ],
-    "summary": "Customer C09988 disputed $59.67 online charge (transaction 3534820, 2016-12-11). Graph-feature scorer and cardholder denial raised fraud probability to 0.91; transaction matches card-not-present-new-device pattern\u2014device marked NEW for card, merchant unknown to cardholder. Verdict: fraud confirmed. Actions: block card, create case; exposure under $1,000 threshold, no regulatory report filed.",
+    "summary": "Customer C09988 disputed $59.67 online charge (2016-12-11 22:39:08). Transaction matched card-not-present pattern: new device (Windows/Edge 16.0) never used on card C09988-K1. Cardholder confirmed unauthorized; device and merchant unknown. Fraud probability climbed to 0.91 after denial. Verdict: fraud. Card blocked, case created.",
     "written_to_graph": true,
     "graph_case_id": "CASE-2016-016"
   },
@@ -142,6 +134,6 @@
   },
   "stop_reason": "The customer's answer settled the question (\u00a76); further queries would not change the actions.",
   "tool_calls": 26,
-  "tokens": 26256,
-  "latency_s": 117.79
+  "tokens": 26967,
+  "latency_s": 96.94
 }

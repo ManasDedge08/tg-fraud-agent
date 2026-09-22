@@ -28,6 +28,7 @@ header h1{font-size:18px;margin:0;font-weight:600;letter-spacing:-.01em}
 header .sub{color:var(--muted);font-size:13px}
 .wrap{display:grid;grid-template-columns:300px 1fr;min-height:calc(100vh - 60px)}
 nav{border-right:1px solid var(--line);overflow:auto;max-height:calc(100vh - 60px)}
+.section{padding:14px 16px 4px;border-top:2px solid var(--line);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
 .tally{display:flex;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted)}
 .row{display:grid;grid-template-columns:70px 1fr 44px;gap:8px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);cursor:pointer}
 .row:hover{background:var(--panel)} .row.on{background:var(--panel);box-shadow:inset 3px 0 0 var(--accent)}
@@ -83,7 +84,7 @@ svg text{fill:var(--ink);font:11px "IBM Plex Mono",monospace}
   <nav id="nav"></nav>
   <main id="main"></main>
 </div>
-<script src="data.js"></script>
+<script>document.write('<script src="data.js?v=' + Date.now() + '"><\/script>')</script><!-- no stale cache after a rebuild -->
 <script>
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -92,12 +93,18 @@ const cases = window.CASES || [];
 const approved = new Set();
 
 function nav(sel){
-  const n = v => cases.filter(c => c.case.verdict === v).length;
-  $("#nav").innerHTML = `<div class="tally"><span class="v-fraud">${n("fraud")} fraud</span><span class="v-uncertain">${n("uncertain")} uncertain</span><span class="v-legitimate">${n("legitimate")} legitimate</span><span>${cases.filter(c=>c.sar.file).length} SAR</span></div>` +
-    cases.map(c => `<div class="row ${c.case_id===sel?"on":""}" data-id="${c.case_id}">
+  const bench = cases.filter(c => !c._monitor), mon = cases.filter(c => c._monitor);
+  const tally = (list, head) => {
+    const n = v => list.filter(c => c.case.verdict === v).length;
+    return `<div class="tally">${head}<span class="v-fraud">${n("fraud")} fraud</span><span class="v-uncertain">${n("uncertain")} uncertain</span><span class="v-legitimate">${n("legitimate")} legitimate</span><span>${list.filter(c=>c.sar.file).length} SAR</span></div>`;
+  };
+  const rows = list => list.map(c => `<div class="row ${c.case_id===sel?"on":""}" data-id="${c.case_id}">
       <span class="mono">${c.case_id}</span>
       <span class="pat"><span class="dot b-${c.case.verdict}"></span>${esc(c.case.pattern==="none"?"no fraud":c.case.pattern.replaceAll("_"," "))}</span>
       <span class="mono v-${c.case.verdict}">${c.case.fraud_probability.toFixed(2)}</span></div>`).join("");
+  const T = window.TRIAGE;
+  $("#nav").innerHTML = tally(bench, "") + rows(bench) +
+    (mon.length ? `<div class="section">Monitor · picked up by the agent${T ? `<br>${T.alerts} alerts ≥ ${T.alert_threshold}, ${mon.length} investigated` : ""}</div>` + tally(mon, "") + rows(mon) : "");
   document.querySelectorAll(".row").forEach(r => r.onclick = () => show(r.dataset.id));
 }
 

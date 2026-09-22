@@ -76,19 +76,11 @@
         ]
       },
       {
-        "claim": "Known-pattern definition matched to this case: Card-not-present fraud. The number is used online without the card. Amounts and products that don't fit the cardholder's history, often in a burst of two to four within 48 hours. On its own, one unusual online purchase is ambiguous: verify. Policy R1 to R4.",
+        "claim": "Known-pattern definition matched to this case (retrieved by graph search): Card-not-present fraud. The number is used online without the card. Amounts and products that don't fit the cardholder's history, often in a burst of two to four within 48 hours. On its own, one unusual online purchase is ambiguous: verify. Policy R1 to R4.",
         "source": "document",
         "ref": "doc:PATTERN-2",
         "entity_ids": [
           "PATTERN-2"
-        ]
-      },
-      {
-        "claim": "Known-pattern definition matched to this case: Out-of-region use. Card-present purchases in a billing region the cardholder has no history in, while their normal activity continues at home. Several days of purchases in one new region is a trip, not a clone. Policy R2, R3.",
-        "source": "document",
-        "ref": "doc:PATTERN-4",
-        "entity_ids": [
-          "PATTERN-4"
         ]
       },
       {
@@ -111,7 +103,7 @@
       "CC-5557",
       "CC-1510"
     ],
-    "summary": "Customer C13171 reported unauthorized $55.68 charge on card C13171-K2 (2016-12-19, online). Graph analysis identified card-not-present fraud pattern: baseline probability 0.72, customer denial raised final assessment to 0.95. Evidence includes previously-seen device on unknown merchant, divergence from purchase history, known fraud signature match. Verdict: fraud confirmed. Action: block card and create case per Policy R2; no regulatory filing (exposure $55.68 < $1,000, no shared-device involvement).",
+    "summary": "Customer C13171 reported $55.68 online charge (3558054, 2016-12-19) as unauthorized. Graph model scored 0.72 fraud probability; cardholder denial plus 11 prior confirmed-fraud cases elevated final probability to 0.95, matching card-not-present pattern. Device unknown to cardholder. Per Policy R2: card blocked, case created; exposure $55.68 does not trigger regulatory report.",
     "written_to_graph": true,
     "graph_case_id": "CASE-2016-008"
   },
@@ -164,6 +156,6 @@
   },
   "stop_reason": "The customer's answer settled the question (\u00a76); further queries would not change the actions.",
   "tool_calls": 25,
-  "tokens": 29360,
-  "latency_s": 117.73
+  "tokens": 26143,
+  "latency_s": 85.78
 }

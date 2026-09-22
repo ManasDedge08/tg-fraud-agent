@@ -39,22 +39,14 @@
         ]
       },
       {
-        "claim": "Known-pattern definition matched to this case: Out-of-region use. Card-present purchases in a billing region the cardholder has no history in, while their normal activity continues at home. Several days of purchases in one new region is a trip, not a clone. Policy R2, R3.",
-        "source": "document",
-        "ref": "doc:PATTERN-4",
-        "entity_ids": [
-          "PATTERN-4"
-        ]
-      },
-      {
-        "claim": "Closed cases whose analyst notes read most like this investigation (vector search over ClosedCase.note_emb): CC-4933, CC-0033, CC-4894, CC-3812",
+        "claim": "Closed cases whose analyst notes read most like this investigation (vector search over ClosedCase.note_emb): CC-0033, CC-4894, CC-3812, CC-4933",
         "source": "graph",
         "ref": "mcp:search_top_k_similarity(ClosedCase.note_emb)",
         "entity_ids": [
-          "CC-4933",
           "CC-0033",
           "CC-4894",
-          "CC-3812"
+          "CC-3812",
+          "CC-4933"
         ]
       }
     ],
@@ -62,10 +54,10 @@
       "CC-2857",
       "CC-2717",
       "CC-2400",
-      "CC-4933",
-      "CC-0033"
+      "CC-0033",
+      "CC-4894"
     ],
-    "summary": "Model flagged transaction 3523199 ($100.07, online, 2016-12-07) with score 0.54. Graph scorer recalibrated fraud probability to 0.01\u2014legitimate. Device new to card but matches out-of-region travel pattern (known safe pattern, Policy R2/R3). No fraud indicators. Final decision: allow transaction, close case as legitimate.",
+    "summary": "Real-time model flagged $100.07 online transaction (score 0.54) for review on 2016-12-07. Graph-feature scorer trained on 5,565 cases yields fraud probability 0.01 backed by independent signals. New device on card but no fraud pattern detected; analysis supports legitimate activity. Verdict: legitimate. Transaction allowed, case closed.",
     "written_to_graph": true,
     "graph_case_id": "CASE-2016-005"
   },
@@ -107,6 +99,6 @@
   },
   "stop_reason": "Probability 0.01 with 2 independent signals meets the \u00a76 stopping rule; the risk score alone did not hold up.",
   "tool_calls": 26,
-  "tokens": 50353,
-  "latency_s": 450.43
+  "tokens": 24930,
+  "latency_s": 83.89
 }

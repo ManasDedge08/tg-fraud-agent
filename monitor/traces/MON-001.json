@@ -3,19 +3,19 @@
     {
       "step": 1,
       "kind": "trigger",
-      "text": "customer_report: Customer C11923 message: 'I never made this $131.30 purchase. Please check my card.' Refers to 3583368.",
+      "text": "risk_score: Monitor alert: real-time model scored transaction 3433324 ($87.39, online) at 0.94. Picked up by the agent's own monitoring of the exam period.",
       "tool_calls": 1
     },
     {
       "step": 2,
       "kind": "open_case",
-      "text": "Case opened for card C11923-K2, flagged transaction 3583368 ($131.30, online, product C).",
+      "text": "Case opened for card C06464-K1, flagged transaction 3433324 ($87.39, online, product C).",
       "tool_calls": 1
     },
     {
       "step": 3,
       "kind": "investigate",
-      "text": "Baseline: 6214 transactions in 120 days, median $27.76, home region 284.0, products {'C': 6213, 'R': 1}.",
+      "text": "Baseline: 362 transactions in 120 days, median $30.23, home region 465.0, products {'C': 362}.",
       "tool_calls": 4
     },
     {
@@ -27,25 +27,25 @@
     {
       "step": 5,
       "kind": "investigate",
-      "text": "MCP traversal DeviceProfile\u2192Txn\u2192ClosedCase: 0 confirmed-fraud and 0 cleared closed cases used this device profile.",
+      "text": "MCP traversal DeviceProfile\u2192Txn\u2192ClosedCase: 9 confirmed-fraud and 0 cleared closed cases used this device profile.",
       "tool_calls": 19
     },
     {
       "step": 6,
       "kind": "assess",
-      "text": "Hypotheses scored: scorer -1.7, customer_report +0.8, shared_device +2.5, new_device +0.4, match_flags +0.2",
+      "text": "Hypotheses scored: scorer +0.9, shared_device +2.5, known_device -0.4, match_flags +0.2",
       "tool_calls": 19
     },
     {
       "step": 7,
       "kind": "assess",
-      "text": "Fraud probability 0.90; pattern card_not_present_new_device; 3 independent signals.",
+      "text": "Fraud probability 0.96; pattern card_not_present_fraud; 3 independent signals.",
       "tool_calls": 20
     },
     {
       "step": 8,
       "kind": "assess",
-      "text": "Policy graph for pattern card_not_present_new_device: rules ['R3', 'R2', 'R1', 'R4']; allowed actions ['MONITOR_CARD', 'DECLINE_TRANSACTION', 'ESCALATE_TO_ANALYST', 'VERIFY_WITH_CUSTOMER', 'STEP_UP_AUTH', 'BLOCK_CARD', 'CLOSE_NO_FRAUD', 'CREATE_CASE', 'FILE_REPORT'].",
+      "text": "Policy graph for pattern card_not_present_fraud: rules ['R2', 'R4', 'R3', 'R1']; allowed actions ['MONITOR_CARD', 'DECLINE_TRANSACTION', 'ESCALATE_TO_ANALYST', 'CLOSE_NO_FRAUD', 'FILE_REPORT', 'CREATE_CASE', 'VERIFY_WITH_CUSTOMER', 'STEP_UP_AUTH', 'BLOCK_CARD'].",
       "tool_calls": 21
     },
     {
@@ -57,24 +57,23 @@
     {
       "step": 10,
       "kind": "retrieve",
-      "text": "GraphRAG: 5 passages by vector search, 7 by graph path Pattern\u2192PolicyRule\u2192DocChunk, 4 closed cases by note similarity.",
+      "text": "GraphRAG: 5 passages by vector search, 6 by graph path Pattern\u2192PolicyRule\u2192DocChunk, 4 closed cases by note similarity.",
       "tool_calls": 24
     }
   ],
   "hypotheses": {
-    "scorer": -1.698530455627555,
-    "customer_report": 0.8,
+    "scorer": 0.9307314160289493,
     "shared_device": 2.5,
-    "new_device": 0.4,
+    "known_device": -0.4,
     "match_flags": 0.2
   },
   "tool_calls": [
-    "txn(3583368)",
-    "card_history(card=C11923-K2,days=120)",
+    "txn(3433324)",
+    "card_history(card=C06464-K1,days=120)",
     "card_history.products",
     "card_history.regions",
-    "card_window(card=C11923-K2)",
-    "card_window(card=C11923-K2)",
+    "card_window(card=C06464-K1)",
+    "card_window(card=C06464-K1)",
     "device_on_card_before",
     "device_neighbors",
     "device_global",
@@ -88,15 +87,15 @@
     "similar_closed_cases.structural",
     "mcp:tigergraph__run_installed_query(similar_closed_cases)",
     "mcp:tigergraph__run_installed_query(closed_cases_by_device)",
-    "similar_closed_cases.pattern(card_not_present_new_device)",
+    "similar_closed_cases.pattern(card_not_present_fraud)",
     "mcp:tigergraph__run_installed_query(policy_for_pattern)",
     "mcp:tigergraph__search_top_k_similarity(DocChunk.emb)",
     "mcp:tigergraph__run_installed_query(policy_docs)",
     "mcp:tigergraph__search_top_k_similarity(ClosedCase.note_emb)",
-    "txn(3583368)",
-    "txn(3583368)"
+    "txn(3433324)",
+    "txn(3433324)"
   ],
-  "p_model": 0.1546572934973638,
-  "p_initial": 0.9,
-  "p_final": 0.9
+  "p_model": 0.7172236503856041,
+  "p_initial": 0.96,
+  "p_final": 0.96
 }

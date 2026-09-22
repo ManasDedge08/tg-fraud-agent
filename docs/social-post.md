@@ -15,6 +15,7 @@ What worked:
 • The graph found patterns no single card shows. One device profile behind an anonymous proxy hit 24 cards in August and September, then 28 more in November. A connected-components query over the card–device graph picks it out.
 • GraphRAG over the fraud policy, the known patterns, FinCEN's SAR guidance and every closed-case note, stored as vectors next to the data they describe.
 • Case memory: every investigation is written back to the graph, where the next one can find it.
+• It monitors on its own. Of 476 alerts the bank's model raised in November and December, it triages all of them and investigates the likeliest fraud and the loudest false alarms.
 
 Write-up: <BLOG_URL>
 Code: <REPO_URL>

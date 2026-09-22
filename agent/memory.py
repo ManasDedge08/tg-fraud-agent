@@ -72,7 +72,10 @@ def similar_by_pattern(tl, pattern):
 def agent_cases_like(tl, card, dev):
     """Cases this agent wrote earlier in the run that share the card or the device profile."""
     con = _mem()
-    rows = con.execute("select graph_case_id, case_id, verdict, pattern from agent_case where opened_at<? and (card_id=? or device=?)",
+    # benchmark answers stay reproducible from the benchmark alone; the monitor's own
+    # cases (MON-*) are memory only for later monitor investigations
+    own = "" if os.environ.get("MONITOR") == "1" else " and case_id not like 'MON-%'"
+    rows = con.execute("select graph_case_id, case_id, verdict, pattern from agent_case where opened_at<? and (card_id=? or device=?)" + own,
                        (tl.as_of, card, dev)).fetchall()
     con.close()
     tl.calls.append("agent_case_memory")
@@ -81,7 +84,7 @@ def agent_cases_like(tl, card, dev):
 
 def write_case(inv, ans):
     c = inv.c
-    gid = f"CASE-{c['opened_at'].year}-{c['case_id'].split('-')[1]}"
+    gid = f"CASE-{c['opened_at'].year}-{c['case_id'].removeprefix('HHG-')}"   # MON-007 -> CASE-2016-MON-007
     con = _mem()
     con.execute("insert or replace into agent_case values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 (gid, c["case_id"], c["card_id"], c["customer_id"], c["opened_at"], ans["case"]["verdict"],

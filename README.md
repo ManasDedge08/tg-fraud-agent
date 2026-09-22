@@ -63,6 +63,7 @@ cp .env.example .env                                      # TG_HOST, TG_SECRET, 
 .venv/bin/python agent/load_graph.py all                  # schema, data, queries
 .venv/bin/python agent/graphrag.py build                  # DocChunk + note vectors, policy_docs query
 USE_LLM=1 .venv/bin/python agent/agent.py                 # all 20 cases, in opened_at order
+USE_LLM=1 .venv/bin/python agent/monitor.py 12            # optional: own monitoring of Nov–Dec, 12 investigations
 .venv/bin/python ui/build.py && python3 -m http.server -d ui 8765
 ```
 
@@ -70,7 +71,11 @@ USE_LLM=1 .venv/bin/python agent/agent.py                 # all 20 cases, in ope
 
 ## Evidence simulation
 
-Customer and analyst replies are not in the dataset. When the agent asks, the reply is simulated to be consistent with the graph evidence excluding the bank's risk score: probability ≥ 0.5 → the customer denies, otherwise confirms. The assumption is written into `evidence_requests` of every case.
+Customer and analyst replies are not in the dataset. When the agent asks, the reply is simulated to be consistent with the graph evidence excluding the bank's risk score: probability ≥ 0.5 → the customer denies, otherwise confirms. A customer report is already a denial, so for those the simulated reply only reverses it when the charge matches the cardholder's own recurring charge (R7); otherwise the customer repeats the denial, R2 applies, and if the graph evidence disagrees the case is escalated under R8. The assumption is written into `evidence_requests` of every case.
+
+## Monitoring beyond the 20 cases
+
+[`agent/monitor.py`](agent/monitor.py) watches the exam period (November–December) on its own. It picks up every transaction the bank's model scored at 0.90 or above, merges repeat alerts on a card within 72 hours, skips cards and customers in the benchmark pack, and ranks the rest by the graph-feature scorer. It investigates the top of that list (likely fraud) and the highest bank scores the scorer calls clean (likely false alarms), each through the same agent, policy lint, GraphRAG and graph write-back as the benchmark. Output is in [`monitor/`](monitor/): `cases/MON-*.json`, `traces/`, and `triage.json`, which records what happened to every alert. Monitor cases are memory for later monitor cases but not for the benchmark, so the 20 answers do not depend on them. The dashboard lists them under the benchmark cases.
 
 ## Limits
 

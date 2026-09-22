@@ -15,6 +15,11 @@ import duckdb
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 con = duckdb.connect(os.path.join(ROOT, "data", "hh.duckdb"), read_only=True)
 pack = {r[0]: r for r in con.execute("select case_id, opened_at, flagged_txn_id, card_id from cp").fetchall()}
+MON = os.path.join(ROOT, "monitor")
+if os.path.exists(os.path.join(MON, "case_pack.json")):   # cases the agent opened from its own monitoring
+    from datetime import datetime
+    for r in json.load(open(os.path.join(MON, "case_pack.json"))):
+        pack[r["case_id"]] = (r["case_id"], datetime.fromisoformat(r["opened_at"]), r["flagged_txn_id"], r["card_id"])
 
 
 def neighbourhood(case_id, answer):
@@ -45,12 +50,19 @@ def neighbourhood(case_id, answer):
 
 
 out = []
-for p in sorted(glob.glob(os.path.join(ROOT, "cases", "HHG-*.json"))):
+files = [(p, os.path.join(ROOT, "traces")) for p in sorted(glob.glob(os.path.join(ROOT, "cases", "HHG-*.json")))]
+files += [(p, os.path.join(MON, "traces")) for p in sorted(glob.glob(os.path.join(MON, "cases", "MON-*.json")))]
+for p, traces in files:
     a = json.load(open(p))
-    tp = os.path.join(ROOT, "traces", os.path.basename(p))
+    a["_monitor"] = a["case_id"].startswith("MON-")
+    tp = os.path.join(traces, os.path.basename(p))
     a["_trace"] = json.load(open(tp)) if os.path.exists(tp) else {}
     a["_graph"] = neighbourhood(a["case_id"], a)
     out.append(a)
 with open(os.path.join(os.path.dirname(__file__), "data.js"), "w") as fh:
     fh.write("window.CASES = " + json.dumps(out, default=str) + ";\n")
+    tri = os.path.join(MON, "triage.json")
+    if os.path.exists(tri):
+        t = json.load(open(tri))
+        fh.write("window.TRIAGE = " + json.dumps({k: v for k, v in t.items() if k != "alerts_list"}) + ";\n")
 print(f"bundled {len(out)} cases")

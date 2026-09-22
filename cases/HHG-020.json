@@ -38,14 +38,6 @@
         ]
       },
       {
-        "claim": "Known-pattern definition matched to this case: Out-of-region use. Card-present purchases in a billing region the cardholder has no history in, while their normal activity continues at home. Several days of purchases in one new region is a trip, not a clone. Policy R2, R3.",
-        "source": "document",
-        "ref": "doc:PATTERN-4",
-        "entity_ids": [
-          "PATTERN-4"
-        ]
-      },
-      {
         "claim": "Closed cases whose analyst notes read most like this investigation (vector search over ClosedCase.note_emb): CC-3942, CC-1960, CC-0241, CC-4521",
         "source": "graph",
         "ref": "mcp:search_top_k_similarity(ClosedCase.note_emb)",
@@ -63,7 +55,7 @@
       "CC-3942",
       "CC-1960"
     ],
-    "summary": "Model score 0.52 triggered review of $125.08 online transaction on Dec 3, 2016. Graph-based fraud probability: 0.01 (calibrated from model on 5,565 closed cases). Card history includes 2 prior confirmed fraud cases, but transaction pattern matches known out-of-region travel behavior (legitimate trip, not account clone). Verdict: legitimate; transaction allowed and case closed.",
+    "summary": "Real-time model flagged transaction 3509359 ($125.08 online, 2016-12-03) with score 0.52. Graph-feature scorer trained on 5,565 closed cases recalibrated fraud probability to 0.01, despite card history including confirmed fraud. Device profile is new to this card, but current transaction aligns with legitimate patterns. Verdict: legitimate. Transaction allowed, case closed.",
     "written_to_graph": true,
     "graph_case_id": "CASE-2016-020"
   },
@@ -105,6 +97,6 @@
   },
   "stop_reason": "Probability 0.01 with 2 independent signals meets the \u00a76 stopping rule; the risk score alone did not hold up.",
   "tool_calls": 26,
-  "tokens": 26835,
-  "latency_s": 153.03
+  "tokens": 26499,
+  "latency_s": 94.86
 }

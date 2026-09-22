@@ -39,7 +39,7 @@
     {
       "step": 7,
       "kind": "assess",
-      "text": "Policy graph for pattern account_takeover: rules ['R2', 'R8']; allowed actions ['ESCALATE_TO_ANALYST', 'FILE_REPORT', 'BLOCK_CARD', 'CREATE_CASE'].",
+      "text": "Policy graph for pattern account_takeover: rules ['R2', 'R8']; allowed actions ['ESCALATE_TO_ANALYST', 'BLOCK_CARD', 'FILE_REPORT', 'CREATE_CASE'].",
       "tool_calls": 14
     },
     {

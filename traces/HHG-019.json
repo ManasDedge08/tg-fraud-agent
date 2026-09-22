@@ -45,7 +45,7 @@
     {
       "step": 8,
       "kind": "assess",
-      "text": "Policy graph for pattern card_not_present_new_device: rules ['R3', 'R2', 'R4', 'R1']; allowed actions ['MONITOR_CARD', 'DECLINE_TRANSACTION', 'ESCALATE_TO_ANALYST', 'VERIFY_WITH_CUSTOMER', 'STEP_UP_AUTH', 'BLOCK_CARD', 'CLOSE_NO_FRAUD', 'FILE_REPORT', 'CREATE_CASE'].",
+      "text": "Policy graph for pattern card_not_present_new_device: rules ['R3', 'R4', 'R1', 'R2']; allowed actions ['MONITOR_CARD', 'DECLINE_TRANSACTION', 'ESCALATE_TO_ANALYST', 'CLOSE_NO_FRAUD', 'FILE_REPORT', 'CREATE_CASE', 'VERIFY_WITH_CUSTOMER', 'STEP_UP_AUTH', 'BLOCK_CARD'].",
       "tool_calls": 23
     },
     {

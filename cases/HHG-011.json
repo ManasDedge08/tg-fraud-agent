@@ -76,27 +76,19 @@
         ]
       },
       {
+        "claim": "Known-pattern definition matched to this case (retrieved by vector search): Card-not-present fraud from a new device. Same as above, with the identity record marking the device as `New` for this account, sometimes behind a proxy. Stronger than pattern 2, still not proof: people buy new phones.",
+        "source": "document",
+        "ref": "doc:PATTERN-3",
+        "entity_ids": [
+          "PATTERN-3"
+        ]
+      },
+      {
         "claim": "Policy R2 (retrieved by graph search): R2. Customer denies the transaction. Recommend `BLOCK_CARD` and `CREATE_CASE`. Add `FILE_REPORT` if exposure exceeds $1,000 or the case connects to a shared device profile or another card's fraud.",
         "source": "document",
         "ref": "doc:POLICY-R2",
         "entity_ids": [
           "POLICY-R2"
-        ]
-      },
-      {
-        "claim": "Known-pattern definition matched to this case: Card-not-present fraud. The number is used online without the card. Amounts and products that don't fit the cardholder's history, often in a burst of two to four within 48 hours. On its own, one unusual online purchase is ambiguous: verify. Policy R1 to R4.",
-        "source": "document",
-        "ref": "doc:PATTERN-2",
-        "entity_ids": [
-          "PATTERN-2"
-        ]
-      },
-      {
-        "claim": "Known-pattern definition matched to this case: Out-of-region use. Card-present purchases in a billing region the cardholder has no history in, while their normal activity continues at home. Several days of purchases in one new region is a trip, not a clone. Policy R2, R3.",
-        "source": "document",
-        "ref": "doc:PATTERN-4",
-        "entity_ids": [
-          "PATTERN-4"
         ]
       },
       {
@@ -108,14 +100,14 @@
         ]
       },
       {
-        "claim": "Closed cases whose analyst notes read most like this investigation (vector search over ClosedCase.note_emb): CC-2198, CC-5294, CC-5122, CC-1643",
+        "claim": "Closed cases whose analyst notes read most like this investigation (vector search over ClosedCase.note_emb): CC-2198, CC-5294, CC-1643, CC-5122",
         "source": "graph",
         "ref": "mcp:search_top_k_similarity(ClosedCase.note_emb)",
         "entity_ids": [
           "CC-2198",
           "CC-5294",
-          "CC-5122",
-          "CC-1643"
+          "CC-1643",
+          "CC-5122"
         ]
       }
     ],
@@ -127,7 +119,7 @@
       "CC-5556",
       "CC-2198"
     ],
-    "summary": "Customer C11923 reported the $131.30 online purchase on 2016-12-29 as unauthorized. Investigation revealed card-not-present fraud: the device (SM-G610F Build/NRD90M) is new to the account and was used on two other cards within 24 hours for similar suspicious transactions ($125.72, $125.59). Fraud probability is 0.90 based on customer denial, device novelty, and linked suspicious activity. Card C11923-K2 is blocked, an internal case is created, and a regulatory report is filed due to the device's connection to fraud on multiple cards.",
+    "summary": "Customer C11923 reported a $131.30 charge as unauthorized, flagging transaction 3583368 from 2016-12-29. Investigation identified this as card-not-present fraud using a device profile marked new to the account; the same device conducted suspicious transactions on two other connected cards within 24 hours. The transaction received a fraud probability of 0.90 based on cardholder denial, device newness, and match to known fraud patterns. Per Policy R2, card C11923-K2 has been blocked, an investigation case opened, connected cards monitored, and the matter reported to regulators.",
     "written_to_graph": true,
     "graph_case_id": "CASE-2016-011"
   },
@@ -182,7 +174,7 @@
   "sar": {
     "file": true,
     "reason": "R2 and 3a: coordinated or shared-origin fraud",
-    "narrative": "This Suspicious Activity Report concerns customer C11923, card C11923-K2, and related cards C03938-K1 and C05595-K1 linked through shared device SM-G610F Build/NRD90M. On 2016-12-29 at 03:27:44, an unauthorized online charge of $131.30 (product C) appeared on card C11923-K2. The customer explicitly denied making this transaction. The fraudulent purchase originated from device SM-G610F Build/NRD90M running Chrome 66.0 for Android, identified as new to customer C11923's account with no prior usage history on card C11923-K2. Within 24 hours, this same device initiated suspicious online transactions on card C03938-K1 ($125.72) and card C05595-K1 ($125.59), both rated suspicious by the bank's detection model. The pattern indicates coordinated card-not-present fraud across multiple accounts sharing a single device, consistent with account compromise or credential theft. Per Policy R2 (customer denial of charge) and Policy R6 (device-shared fraud on connected cards), card C11923-K2 has been blocked, investigation case HHG-011 has been opened, and cards C03938-K1 and C05595-K1 placed under enhanced monitoring.",
+    "narrative": "This suspicious activity report concerns customer C11923 and payment card C11923-K2. On 2016-12-29 at 03:27:44, an online purchase of $131.30 (transaction 3583368) was charged to this card. The cardholder explicitly denied making this transaction. The charge originated from device profile SM-G610F Build/NRD90M with Chrome 66.0 for Android, which is marked as new to customer C11923's account and has never before been used on card C11923-K2. Within 24 hours, the identical device profile was used to conduct additional online transactions: $125.72 charged to connected card C03938-K1 and $125.59 charged to connected card C05595-K1, both marked as suspicious. This activity pattern is consistent with card-not-present fraud conducted from a new device, a known fraud methodology used to circumvent standard verification controls. Customer C11923's account history shows 10 confirmed fraud cases among 11 total closed cases, indicating substantial account risk. In response to these findings, card C11923-K2 has been blocked to prevent further unauthorized activity, connected cards C03938-K1 and C05595-K1 have been placed under enhanced monitoring, and a formal investigation case has been created. This report is filed pursuant to Policy R2 based on customer denial of the transaction combined with the shared device profile that links multiple cards to suspicious activity.",
     "subjects": [
       "C11923",
       "C11923-K2",
@@ -198,6 +190,6 @@
   },
   "stop_reason": "Probability 0.90 with 3 independent signals meets the \u00a76 stopping rule.",
   "tool_calls": 27,
-  "tokens": 28365,
-  "latency_s": 107.97
+  "tokens": 28625,
+  "latency_s": 109.55
 }

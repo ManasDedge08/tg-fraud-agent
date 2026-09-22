@@ -49,14 +49,6 @@
         ]
       },
       {
-        "claim": "Known-pattern definition matched to this case: Out-of-region use. Card-present purchases in a billing region the cardholder has no history in, while their normal activity continues at home. Several days of purchases in one new region is a trip, not a clone. Policy R2, R3.",
-        "source": "document",
-        "ref": "doc:PATTERN-4",
-        "entity_ids": [
-          "PATTERN-4"
-        ]
-      },
-      {
         "claim": "Closed cases whose analyst notes read most like this investigation (vector search over ClosedCase.note_emb): CC-5062, CC-0657, CC-3366, CC-2533",
         "source": "graph",
         "ref": "mcp:search_top_k_similarity(ClosedCase.note_emb)",
@@ -75,7 +67,7 @@
       "CC-5062",
       "CC-0657"
     ],
-    "summary": "Real-time model flagged transaction 3514948 ($111.92, in-person, region 264.0) at score 0.87. Graph-feature scorer recalibrated fraud probability to 0.05 using trained signals and card history. Card shows 2,178 prior transactions in region 264.0\u2014established cardholder activity, not new territory. Verdict: legitimate. Transaction allowed, case closed.",
+    "summary": "Real-time model scored transaction $111.92 at 0.87 (calibrated 0.05 fraud probability). Card has 2178 prior transactions in region 264.0 (not new region); graph scorer confirms low risk despite M6 mismatch flag. Verdict: legitimate. Action: allow and close case.",
     "written_to_graph": true,
     "graph_case_id": "CASE-2016-007"
   },
@@ -117,6 +109,6 @@
   },
   "stop_reason": "Probability 0.05 with 2 independent signals meets the \u00a76 stopping rule; the risk score alone did not hold up.",
   "tool_calls": 17,
-  "tokens": 25625,
-  "latency_s": 211.65
+  "tokens": 26098,
+  "latency_s": 87.43
 }

@@ -50,27 +50,19 @@
         ]
       },
       {
+        "claim": "Known-pattern definition matched to this case (retrieved by vector search): Card-not-present fraud from a new device. Same as above, with the identity record marking the device as `New` for this account, sometimes behind a proxy. Stronger than pattern 2, still not proof: people buy new phones.",
+        "source": "document",
+        "ref": "doc:PATTERN-3",
+        "entity_ids": [
+          "PATTERN-3"
+        ]
+      },
+      {
         "claim": "Policy R2 (retrieved by graph search): R2. Customer denies the transaction. Recommend `BLOCK_CARD` and `CREATE_CASE`. Add `FILE_REPORT` if exposure exceeds $1,000 or the case connects to a shared device profile or another card's fraud.",
         "source": "document",
         "ref": "doc:POLICY-R2",
         "entity_ids": [
           "POLICY-R2"
-        ]
-      },
-      {
-        "claim": "Known-pattern definition matched to this case: Card-not-present fraud. The number is used online without the card. Amounts and products that don't fit the cardholder's history, often in a burst of two to four within 48 hours. On its own, one unusual online purchase is ambiguous: verify. Policy R1 to R4.",
-        "source": "document",
-        "ref": "doc:PATTERN-2",
-        "entity_ids": [
-          "PATTERN-2"
-        ]
-      },
-      {
-        "claim": "Known-pattern definition matched to this case: Out-of-region use. Card-present purchases in a billing region the cardholder has no history in, while their normal activity continues at home. Several days of purchases in one new region is a trip, not a clone. Policy R2, R3.",
-        "source": "document",
-        "ref": "doc:PATTERN-4",
-        "entity_ids": [
-          "PATTERN-4"
         ]
       },
       {
@@ -93,7 +85,7 @@
       "CC-5556",
       "CC-0033"
     ],
-    "summary": "Transaction 3503878 ($99.92, online, Dec 1 2016) triggered at model score 0.90; analysis raised fraud probability to 0.95. Card-not-present from new device (Windows/Chrome); cardholder denied charge and confirmed physical card possession. Card history shows three confirmed fraud cases. Block card and create case; no regulatory filing\u2014exposure below $1,000 threshold, no connected cards.",
+    "summary": "Transaction $99.92 on card C07987-K2 (December 1, 2016, online) triggered a 0.90 model score and was investigated using graph-based fraud detection. Evidence supports card-not-present fraud: the device is new to this account, the cardholder explicitly denied the transaction while confirming they retained the physical card, and the card history shows three prior confirmed frauds. Fraud probability assessed at 0.95. Action: block the card and create an internal investigation case; exposure threshold for regulatory filing is not met.",
     "written_to_graph": true,
     "graph_case_id": "CASE-2016-019"
   },
@@ -156,6 +148,6 @@
   },
   "stop_reason": "The customer's answer settled the question (\u00a76); further queries would not change the actions.",
   "tool_calls": 28,
-  "tokens": 26995,
-  "latency_s": 117.44
+  "tokens": 25538,
+  "latency_s": 82.96
 }

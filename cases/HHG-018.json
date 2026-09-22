@@ -78,15 +78,7 @@
         ]
       },
       {
-        "claim": "Known-pattern definition matched to this case: Out-of-region use. Card-present purchases in a billing region the cardholder has no history in, while their normal activity continues at home. Several days of purchases in one new region is a trip, not a clone. Policy R2, R3.",
-        "source": "document",
-        "ref": "doc:PATTERN-4",
-        "entity_ids": [
-          "PATTERN-4"
-        ]
-      },
-      {
-        "claim": "Known-pattern definition matched to this case: Account takeover. Mixed-channel activity inconsistent with the cardholder, often with device and match-flag anomalies, pointing to stolen credentials rather than a stolen number.",
+        "claim": "Known-pattern definition matched to this case (retrieved by graph search): Account takeover. Mixed-channel activity inconsistent with the cardholder, often with device and match-flag anomalies, pointing to stolen credentials rather than a stolen number.",
         "source": "document",
         "ref": "doc:PATTERN-5",
         "entity_ids": [
@@ -113,7 +105,7 @@
       "CC-5562",
       "CC-0657"
     ],
-    "summary": "Customer C02354 disputed $39.08 charge (2016-11-27), claiming unauthorized. Graph showed three in-person transactions totaling $124.08 in region 126.0 from 2016-11-24 through 2016-11-27. Card has 540 prior transactions in region; cardholder denies merchant or device knowledge. Prior fraud history: 12 confirmed cases. Match flags M5, M6 mismatched. Customer denial raised fraud probability from 0.71 to 0.92, consistent with account takeover. Verdict: fraud confirmed. Card blocked per Policy R2; case created; exposure $124.08 below SAR threshold.",
+    "summary": "Customer C02354 disputed a $39.08 charge dated November 27, 2016. Investigation revealed three in-person transactions totaling $124.08 across region 126.0 over three days (November 24\u201327). Graph-feature analysis and Vesta match-flag mismatches (M5, M6) combined with cardholder denial elevated fraud probability to 0.92, consistent with account takeover pattern. Card history shows 12 prior confirmed fraud cases, most recent being card-not-present fraud (CC-5558). Verdict: fraud confirmed. Action: card blocked; case created.",
     "written_to_graph": true,
     "graph_case_id": "CASE-2016-018"
   },
@@ -166,6 +158,6 @@
   },
   "stop_reason": "The customer's answer settled the question (\u00a76); further queries would not change the actions.",
   "tool_calls": 21,
-  "tokens": 28151,
-  "latency_s": 107.35
+  "tokens": 29031,
+  "latency_s": 117.01
 }

@@ -3,19 +3,19 @@
     {
       "step": 1,
       "kind": "trigger",
-      "text": "risk_score: Real-time model scored transaction 3514948 ($111.92, in billing region 264.0) at 0.87. Review and decide.",
+      "text": "risk_score: Monitor alert: real-time model scored transaction 3446975 ($1,331.06, in billing region 327.0) at 0.98. Picked up by the agent's own monitoring of the exam period.",
       "tool_calls": 1
     },
     {
       "step": 2,
       "kind": "open_case",
-      "text": "Case opened for card C09933-K2, flagged transaction 3514948 ($111.92, in_person, product W).",
+      "text": "Case opened for card C08269-K1, flagged transaction 3446975 ($1,331.06, in_person, product W).",
       "tool_calls": 1
     },
     {
       "step": 3,
       "kind": "investigate",
-      "text": "Baseline: 1753 transactions in 120 days, median $77.97, home region 264.0, products {'W': 1670, 'H': 53, 'R': 23, 'C': 6, 'S': 1}.",
+      "text": "Baseline: 460 transactions in 120 days, median $92.03, home region 204.0, products {'W': 421, 'R': 20, 'H': 13, 'C': 5, 'S': 1}.",
       "tool_calls": 4
     },
     {
@@ -27,19 +27,19 @@
     {
       "step": 5,
       "kind": "assess",
-      "text": "Hypotheses scored: scorer -2.9, known_region -0.3, match_flags +0.2",
+      "text": "Hypotheses scored: scorer -4.3, known_region -0.3, match_flags +0.2",
       "tool_calls": 12
     },
     {
       "step": 6,
       "kind": "assess",
-      "text": "Fraud probability 0.05; pattern none; 2 independent signals.",
+      "text": "Fraud probability 0.01; pattern none; 2 independent signals.",
       "tool_calls": 12
     },
     {
       "step": 7,
       "kind": "assess",
-      "text": "Policy graph for pattern none: rules ['R3', 'R7']; allowed actions ['WARN_CUSTOMER', 'VERIFY_WITH_CUSTOMER', 'CREATE_CASE', 'CLOSE_NO_FRAUD'].",
+      "text": "Policy graph for pattern none: rules ['R3', 'R7']; allowed actions ['WARN_CUSTOMER', 'CLOSE_NO_FRAUD', 'CREATE_CASE', 'VERIFY_WITH_CUSTOMER'].",
       "tool_calls": 13
     },
     {
@@ -56,19 +56,19 @@
     }
   ],
   "hypotheses": {
-    "scorer": -2.8639385008280094,
+    "scorer": -4.293107280294696,
     "known_region": -0.3,
     "match_flags": 0.2
   },
   "tool_calls": [
-    "txn(3514948)",
-    "card_history(card=C09933-K2,days=120)",
+    "txn(3446975)",
+    "card_history(card=C08269-K1,days=120)",
     "card_history.products",
     "card_history.regions",
-    "card_window(card=C09933-K2)",
-    "card_window(card=C09933-K2)",
+    "card_window(card=C08269-K1)",
+    "card_window(card=C08269-K1)",
     "region_on_card_before",
-    "card_window(card=C09933-K2)",
+    "card_window(card=C08269-K1)",
     "recurring_charge",
     "episode(uid)",
     "similar_closed_cases.structural",
@@ -78,7 +78,7 @@
     "mcp:tigergraph__run_installed_query(policy_docs)",
     "mcp:tigergraph__search_top_k_similarity(ClosedCase.note_emb)"
   ],
-  "p_model": 0.05396527451900516,
-  "p_initial": 0.05,
-  "p_final": 0.05
+  "p_model": 0.013478260869565216,
+  "p_initial": 0.01,
+  "p_final": 0.01
 }
