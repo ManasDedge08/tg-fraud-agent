@@ -98,7 +98,7 @@
       "CC-4124",
       "CC-0033"
     ],
-    "summary": "Customer C07297 denied a $482.12 purchase on card C07297-K1 (November 21, 2016). Investigation found four online purchases within 30 minutes, each structured just under $500 ($478.95, $456.96, $488.04, $482.12; total $1,906.07), from two device profiles and two regions. Pattern matches five prior September 2016 cases (CC-3748, CC-3841, CC-3907, CC-4086, CC-4124), confirming systematic sub-$500 threshold-evasion fraud. Verdict: confirmed (probability 0.9). Card blocked; case created under Policy R9; report filed to regulators (exposure $1,906.07 exceeds $1,000).",
+    "summary": "Customer C07297 reported a $482.12 online purchase as unauthorized. Investigation revealed four rapid online purchases totaling $1,906.07 within 30 minutes on November 21, 2016, each structured just under the $500 authorization threshold, executed from two distinct device profiles across two billing regions. This pattern precisely matches five prior confirmed fraud cases, indicating compromised card used for organized fraudulent transactions. Verdict: confirmed fraud (probability 0.9, Policy R9). Actions taken: card blocked, case created, regulatory report filed, escalated to analyst.",
     "written_to_graph": true,
     "graph_case_id": "CASE-2016-006"
   },
@@ -153,7 +153,7 @@
   "sar": {
     "file": true,
     "reason": "R9/R6 and 3a: coordinated or shared-origin fraud",
-    "narrative": "Customer C07297 reported unauthorized activity on card C07297-K1. Between 20:00 and 20:30 on November 21, 2016, four purchases totaling $1,906.07 were charged without authorization: $478.95, $456.96, $488.04, and $482.12. The transactions originated from two distinct device profiles (Windows 7 desktop with Internet Explorer 11 and iOS mobile device with Safari 11.0) and occurred across two geographic regions (264 and 476). Each purchase amount was structured to remain just under the $500 authorization review threshold, a deliberate technique designed to evade transaction controls. Investigation identified this identical structuring pattern in five prior closed fraud cases from September 2016 (CC-3748, CC-3841, CC-3907, CC-4086, CC-4124), each involving multiple online purchases within a forty-minute window, each just under $500, on different compromised cards. The consistent application of the sub-$500 structuring technique across multiple fraud cases demonstrates systematic methodology and planning rather than isolated compromised-card misuse. Card C07297-K1 has been blocked. Based on confirmed fraud status and exposure of $1,906.07 exceeding $1,000, this activity is reported pursuant to Policy R9 (undocumented patterns with coordinated abuse) and Policy Section 3a (suspicious activity reporting threshold).",
+    "narrative": "On November 21, 2016, between 20:00 and 20:30, card C07297-K1 (customer C07297) was used for four rapid online purchases: $478.95, $456.96, $488.04, and $482.12, totaling $1,906.07 in exposure. Customer C07297 reported the final transaction ($482.12, transaction ID 3476682 at 20:30) as not authorized by the cardholder. Each transaction amount was deliberately structured to remain just below the $500 authorization threshold, suggesting an attempt to evade detection controls. The purchases originated from two distinct device profiles\u2014one using Windows 7 with Internet Explorer 11.0 (1920\u00d71080 resolution) and another using iOS 11.2.1 with Mobile Safari (2208\u00d71242 resolution)\u2014and were processed through two different billing regions (264.0 and 476.0). This pattern of structured sub-$500 transactions combined with rapid, coordinated use from multiple device profiles indicates card compromise and organized fraudulent activity. Notably, an identical structuring pattern appears in five prior closed cases (CC-3748, CC-3841, CC-3907, CC-4086, CC-4124), suggesting systematic targeting of compromised cards by an organized fraud ring. Per Policy R9 (undocumented coordinated patterns), the card has been blocked, an investigation case has been created, and the matter has been escalated to an analyst for review of connected accounts and device profiles.",
     "subjects": [
       "C07297",
       "C07297-K1",
@@ -168,6 +168,6 @@
   },
   "stop_reason": "Pattern matched confirmed closed cases and the cardholder denial settled the verdict; further queries would not change the actions.",
   "tool_calls": 34,
-  "tokens": 31396,
-  "latency_s": 135.69
+  "tokens": 29308,
+  "latency_s": 113.58
 }

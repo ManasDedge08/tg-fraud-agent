@@ -39,25 +39,25 @@
     {
       "step": 7,
       "kind": "assess",
-      "text": "Policy graph for pattern none: rules ['R3', 'R7']; allowed actions ['WARN_CUSTOMER', 'CLOSE_NO_FRAUD', 'CREATE_CASE', 'VERIFY_WITH_CUSTOMER'].",
+      "text": "Policy graph for pattern none: rules ['R3', 'R7']; allowed actions ['WARN_CUSTOMER', 'CLOSE_NO_FRAUD', 'VERIFY_WITH_CUSTOMER', 'CREATE_CASE'].",
       "tool_calls": 13
     },
     {
       "step": 8,
       "kind": "gather_evidence",
-      "text": "Requested customer validation; assumed reply: Shown the merchant, date and device, the cardholder recognises the charge as their own (a household member's purchase on the account) and withdraws the dispute (simulated, consistent with the graph evidence)",
+      "text": "Requested customer validation; assumed reply: Cardholder repeats that they did not make the charge and has the card; the device and merchant are unknown to them (simulated, the customer's own report stands even though the graph evidence is weak)",
       "tool_calls": 13
     },
     {
       "step": 9,
       "kind": "recommend",
-      "text": "Initial: ['CREATE_CASE', 'VERIFY_WITH_CUSTOMER', 'MONITOR_CARD']. Final: ['CLOSE_NO_FRAUD']. Customer confirmation lowered probability from 0.07 to 0.03; under R3 the case closes as legitimate and nothing is blocked.",
+      "text": "Initial: ['CREATE_CASE', 'VERIFY_WITH_CUSTOMER', 'MONITOR_CARD']. Final: ['BLOCK_CARD', 'CREATE_CASE', 'ESCALATE_TO_ANALYST']. The customer repeated the denial, so R2 now calls for a block. The graph evidence stays weak (0.07 to 0.27), so the verdict stays uncertain and an analyst reviews the conflict under R8.",
       "tool_calls": 13
     },
     {
       "step": 10,
       "kind": "retrieve",
-      "text": "GraphRAG: 5 passages by vector search, 3 by graph path Pattern\u2192PolicyRule\u2192DocChunk, 4 closed cases by note similarity.",
+      "text": "GraphRAG: 5 passages by vector search, 5 by graph path Pattern\u2192PolicyRule\u2192DocChunk, 4 closed cases by note similarity.",
       "tool_calls": 16
     }
   ],
@@ -83,9 +83,10 @@
     "mcp:tigergraph__run_installed_query(policy_for_pattern)",
     "mcp:tigergraph__search_top_k_similarity(DocChunk.emb)",
     "mcp:tigergraph__run_installed_query(policy_docs)",
-    "mcp:tigergraph__search_top_k_similarity(ClosedCase.note_emb)"
+    "mcp:tigergraph__search_top_k_similarity(ClosedCase.note_emb)",
+    "txn(3530164)"
   ],
   "p_model": 0.035428089413749475,
   "p_initial": 0.07,
-  "p_final": 0.03
+  "p_final": 0.27
 }

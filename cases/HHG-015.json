@@ -39,14 +39,6 @@
         ]
       },
       {
-        "claim": "Known-pattern definition matched to this case: Out-of-region use. Card-present purchases in a billing region the cardholder has no history in, while their normal activity continues at home. Several days of purchases in one new region is a trip, not a clone. Policy R2, R3.",
-        "source": "document",
-        "ref": "doc:PATTERN-4",
-        "entity_ids": [
-          "PATTERN-4"
-        ]
-      },
-      {
         "claim": "Closed cases whose analyst notes read most like this investigation (vector search over ClosedCase.note_emb): CC-5111, CC-1960, CC-4521, CC-2014",
         "source": "graph",
         "ref": "mcp:search_top_k_similarity(ClosedCase.note_emb)",
@@ -65,7 +57,7 @@
       "CC-5111",
       "CC-1960"
     ],
-    "summary": "Transaction 3464869 ($599.94, online) triggered the real-time model at score 0.77 on November 17, 2016. Graph analysis recalibrated the fraud probability to 0.00 through two independent signals: the trained feature scorer's assessment and device/pattern analysis. The transaction matched the out-of-region use pattern but was correctly interpreted as legitimate travel activity\u2014the cardholder's normal activity continues at home while this represents activity in region 327 over multiple days. Transaction allowed; case closed as no fraud.",
+    "summary": "Transaction $599.94 (online, 2016-11-17 14:03:36) triggered at model score 0.77. Graph-feature analysis recalibrated fraud probability to 0.00 using 5,565 historical cases, backed by two independent signals. Device profile new to card but no fraud indicators found in comparable cases. Verdict: allow transaction and close as legitimate.",
     "written_to_graph": true,
     "graph_case_id": "CASE-2016-015"
   },
@@ -107,6 +99,6 @@
   },
   "stop_reason": "Probability 0.01 with 2 independent signals meets the \u00a76 stopping rule; the risk score alone did not hold up.",
   "tool_calls": 26,
-  "tokens": 27467,
-  "latency_s": 104.71
+  "tokens": 26357,
+  "latency_s": 89.87
 }

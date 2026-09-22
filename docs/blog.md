@@ -68,6 +68,7 @@ Two patterns in the data aren't among the five documented ones, and one case can
 - The bank's risk score is a weak guide in this data: a scorer trained on the closed cases reached AUC 0.91 on October against 0.87 for the risk score, and most alerts above 0.7 were legitimate.
 - The dataset hides structure in its IDs. `card_id` isn't a column; it's customer plus the rank of (network, card type), which we checked against every closed case.
 - Putting the policy in code, not in the prompt, removed a whole class of errors: wrong routes, missing cases behind reports, blocks on a single weak signal.
+- A simulated reply must not contradict the trigger. Our first version let the evidence simulator have a customer withdraw their own complaint whenever the scorer said legitimate. A customer report is already a denial, so now the reply only reverses it when the charge matches the cardholder's recurring pattern (R7). Otherwise R2 blocks the card, and when the graph evidence disagrees the case goes to an analyst under R8.
 
 ## With more time
 

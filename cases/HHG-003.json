@@ -1,16 +1,18 @@
 {
   "case_id": "HHG-003",
   "case": {
-    "status": "closed_legitimate",
-    "verdict": "legitimate",
-    "fraud_probability": 0.03,
-    "pattern": "none",
+    "status": "escalated",
+    "verdict": "uncertain",
+    "fraud_probability": 0.27,
+    "pattern": "account_takeover",
     "pattern_description": "",
-    "affected_txn_ids": [],
-    "first_suspicious_txn_id": "",
+    "affected_txn_ids": [
+      "3530164"
+    ],
+    "first_suspicious_txn_id": "3530164",
     "connected_card_ids": [],
     "connected_device_profiles": [],
-    "exposure_usd": 0,
+    "exposure_usd": 49.0,
     "evidence": [
       {
         "claim": "Graph-feature scorer trained on 5,565 closed cases gives this transaction a calibrated fraud probability of 0.04 (bank model score 0.40); features include Vesta's unnamed C, D, M and V columns, used as signals only",
@@ -58,11 +60,35 @@
         ]
       },
       {
-        "claim": "Shown the merchant, date and device, the cardholder recognises the charge as their own (a household member's purchase on the account) and withdraws the dispute",
+        "claim": "Cardholder repeats that they did not make the charge and has the card; the device and merchant are unknown to them",
         "source": "customer",
         "ref": "evidence_request:1",
         "entity_ids": [
           "C08623"
+        ]
+      },
+      {
+        "claim": "Policy R2 (retrieved by graph search): R2. Customer denies the transaction. Recommend `BLOCK_CARD` and `CREATE_CASE`. Add `FILE_REPORT` if exposure exceeds $1,000 or the case connects to a shared device profile or another card's fraud.",
+        "source": "document",
+        "ref": "doc:POLICY-R2",
+        "entity_ids": [
+          "POLICY-R2"
+        ]
+      },
+      {
+        "claim": "Policy R8 (retrieved by graph search): R8. Escalate when uncertain and exposed. If the verdict is `uncertain` and exposure exceeds $500, or the evidence conflicts, recommend `ESCALATE_TO_ANALYST`.",
+        "source": "document",
+        "ref": "doc:POLICY-R8",
+        "entity_ids": [
+          "POLICY-R8"
+        ]
+      },
+      {
+        "claim": "Known-pattern definition matched to this case: Account takeover. Mixed-channel activity inconsistent with the cardholder, often with device and match-flag anomalies, pointing to stolen credentials rather than a stolen number.",
+        "source": "document",
+        "ref": "doc:PATTERN-5",
+        "entity_ids": [
+          "PATTERN-5"
         ]
       },
       {
@@ -71,14 +97,6 @@
         "ref": "doc:PATTERN-4",
         "entity_ids": [
           "PATTERN-4"
-        ]
-      },
-      {
-        "claim": "Policy R3 (retrieved by graph search): R3. Customer confirms the transaction. Recommend `CLOSE_NO_FRAUD`. Note the confirmation in the case file.",
-        "source": "document",
-        "ref": "doc:POLICY-R3",
-        "entity_ids": [
-          "POLICY-R3"
         ]
       },
       {
@@ -100,7 +118,7 @@
       "CC-0354",
       "CC-0873"
     ],
-    "summary": "Customer C08623 disputed $49 charge on 2016-12-10. Detection model scored 0.04 fraud probability. When shown merchant/date/device details, cardholder recognized purchase as household member's transaction and withdrew dispute. Verdict: legitimate. Case closes under Policy R3; no regulatory filing.",
+    "summary": "Customer C08623 disputed $49 charge (Dec 10, 2016, in-person, region 330, card C08623-K2) as unauthorized. Model fraud probability 0.07 to 0.27; calibrated score 0.04. Pattern account_takeover; 5 prior confirmed fraud cases on card; match-flag mismatch. Cardholder denied twice, holds card. Verdict: uncertain\u2014cardholder denies but model shows 0.27 fraud probability. Actions: block card, create case, escalate to analyst.",
     "written_to_graph": true,
     "graph_case_id": "CASE-2016-003"
   },
@@ -108,7 +126,7 @@
     {
       "type": "customer_validation",
       "asked_after_step": 7,
-      "assumed_response": "Shown the merchant, date and device, the cardholder recognises the charge as their own (a household member's purchase on the account) and withdraws the dispute (simulated, consistent with the graph evidence)"
+      "assumed_response": "Cardholder repeats that they did not make the charge and has the card; the device and merchant are unknown to them (simulated, the customer's own report stands even though the graph evidence is weak)"
     }
   ],
   "next_best_actions": {
@@ -131,23 +149,33 @@
     ],
     "final": [
       {
-        "action": "CLOSE_NO_FRAUD",
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: customer denied the charge twice; exposure $49.00 \u2264 $2,500"
+      },
+      {
+        "action": "CREATE_CASE",
         "route": "auto",
-        "reason": "R3: customer confirmed the transaction; confirmation noted in the case file"
+        "reason": "R2 and 3a: customer disputes a charge"
+      },
+      {
+        "action": "ESCALATE_TO_ANALYST",
+        "route": "auto",
+        "reason": "R8: evidence conflicts; the customer denies the charge but the graph evidence puts fraud at 0.27"
       }
     ],
-    "what_changed": "Customer confirmation lowered probability from 0.07 to 0.03; under R3 the case closes as legitimate and nothing is blocked."
+    "what_changed": "The customer repeated the denial, so R2 now calls for a block. The graph evidence stays weak (0.07 to 0.27), so the verdict stays uncertain and an analyst reviews the conflict under R8."
   },
   "sar": {
     "file": false,
-    "reason": "3a: no fraud found, no report.",
+    "reason": "3a: exposure $49.00 is under $1,000 and no shared device, region cluster or coordinated pattern; case only.",
     "narrative": "",
     "subjects": [],
     "total_amount_usd": 0,
     "activity_dates": []
   },
-  "stop_reason": "The customer's confirmation settled the question (\u00a76).",
-  "tool_calls": 17,
-  "tokens": 26322,
-  "latency_s": 91.36
+  "stop_reason": "Further graph queries would not resolve the conflict between the denial and the graph evidence (\u00a76); the analyst takes it from here under R8.",
+  "tool_calls": 18,
+  "tokens": 30519,
+  "latency_s": 130.11
 }

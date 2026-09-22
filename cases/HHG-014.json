@@ -89,8 +89,8 @@
         "ref": "mcp:device_rings(focus=C13487-K1, days=30)",
         "entity_ids": [
           "C02910-K1",
-          "C11082-K1",
           "C05448-K2",
+          "C11082-K1",
           "C10193-K2",
           "C09975-K1",
           "C10326-K1",
@@ -103,9 +103,9 @@
           "C04274-K1",
           "C03676-K2",
           "C01289-K1",
-          "C06710-K1",
-          "C01996-K2",
           "C02975-K1",
+          "C01996-K2",
+          "C06710-K1",
           "SM-G935F Build/NRD90M | Android 7.0 | chrome 62.0 for android | 1920x1080"
         ]
       },
@@ -153,7 +153,7 @@
       "CC-4936",
       "CC-5482"
     ],
-    "summary": "Analyst flagged a suspicious device profile (SM-G935F, Android 7.0) used across multiple cards this month. Graph traversal revealed the same device, always behind an anonymous proxy and marked New, was used to make 1\u20133 mid-sized purchases on 44 cards (24 in Aug\u2013Sep 2016; 20 since 11 November 2016), then abandoned\u2014a coordinated pattern matching none of the known fraud categories. Customer C13487 denied both unauthorized transactions on card C13487-K1 ($112.37 on 15 November, $74.96 on 22 November), confirming fraud at probability 0.9. Card blocked; case created and escalated to analyst; Suspicious Activity Report filed; 19 other cards sharing the device are now under monitoring per Policies R2, R6, and R9.",
+    "summary": "Analysis of flagged transaction $74.96 on card C13487-K1 (November 22, 2016) revealed a coordinated fraud pattern spanning 44 cards since August 2016, using a single device profile (SM-G935F Build/NRD90M | Android 7.0 | chrome 62.0 for android | 1920x1080) behind an anonymous proxy, marked new on each account. This device made 1\u20133 purchases ($35\u2013$250) on each card before switching to the next; it appeared in 4 prior confirmed fraud cases and 20 additional recent cases. The cardholder denied both charges on this card ($187.33 total) and confirmed they still hold the card. Fraud probability reached 0.9. Card C13487-K1 has been blocked, 19 other cards sharing this device are under monitoring, the case has been escalated to an analyst, and a regulatory report filed.",
     "written_to_graph": true,
     "graph_case_id": "CASE-2016-014"
   },
@@ -224,7 +224,7 @@
   "sar": {
     "file": true,
     "reason": "R9/R6 and 3a: coordinated or shared-origin fraud",
-    "narrative": "Customer C13487, card C13487-K1, reports unauthorized online purchases on 15 November 2016 ($112.37) and 22 November 2016 ($74.96) and states the card remains in their possession. Both transactions originated from device profile SM-G935F Build/NRD90M | Android 7.0 | chrome 62.0 for android | 1920x1080 operating behind an anonymous IP proxy, marked New to this account. Bank investigation identified the same device profile and proxy in use across 44 customer cards over two months (24 cards in August\u2013September 2016; 20 cards from 14 November 2016 onward), with each card showing 1\u20133 online purchases of $35\u2013$250 followed by no further activity from that device\u2014a coordinated pattern inconsistent with legitimate use. The device appears in four previously confirmed fraud cases (CC-2971, CC-3035, CC-2649, CC-2985). Cardholder confirmed denial; fraud probability assessed at 0.9. Actions taken: card C13487-K1 blocked; case HHG-014 created for investigation and escalated to analyst; 19 connected cards placed under monitoring; graph evidence retained to support ongoing analysis of the shared device profile (Policy R6, R9).",
+    "narrative": "Customer C13487, card C13487-K1, experienced two unauthorized online purchases in region 191.0 between November 15, 2016 (20:30, $112.37) and November 22, 2016 (16:11, $74.96). Both transactions originated from device SM-G935F Build/NRD90M | Android 7.0 | chrome 62.0 for android | 1920x1080 operating behind an anonymous IP proxy and marked new to this account; the cardholder denied these charges and confirmed they still possess the card. Investigation revealed this device profile appears on 44 cards total\u201424 linked to prior confirmed fraud cases in August\u2013September 2016, and 20 additional cards since November 14, 2016. On each affected card, this device conducted 1\u20133 online purchases ($35\u2013$250) before becoming inactive, indicating systematic targeting of unrelated customers through card-not-present fraud. This pattern is undocumented in the bank's known fraud typologies but demonstrates coordinated abuse across multiple customers. The bank's fraud detection model assigned a probability of 0.9 based on device behavior, proxy usage, new-device status, and cross-account pattern consistency. Actions taken include blocking the card (Policy R2: customer denial), creating an internal investigation case (Policy R9: undocumented coordinated pattern), placing 19 other cards with the shared device under monitoring (Policy R6: shared device origin), and escalating to an analyst. This report is filed per Policies R2, R6, and R9 due to confirmed fraud with exposure linked to a shared device profile across multiple customers and an undocumented pattern of coordinated abuse.",
     "subjects": [
       "C13487",
       "C13487-K1",
@@ -257,6 +257,6 @@
   },
   "stop_reason": "Pattern matched confirmed closed cases and the cardholder denial settled the verdict; further queries would not change the actions.",
   "tool_calls": 29,
-  "tokens": 26820,
-  "latency_s": 89.26
+  "tokens": 31564,
+  "latency_s": 132.5
 }

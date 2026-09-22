@@ -62,6 +62,7 @@ class Investigation:
         self.pattern_description = ""
         self.shared_origin = False
         self.coordinated = False
+        self.recurring = False   # R7: the disputed charge matches the cardholder's own recurring charge
         self.signals = 0         # independent evidence count
 
     # --- helpers -------------------------------------------------------------
@@ -199,6 +200,7 @@ class Investigation:
                 self.ev(f"Card has {rg['prior_in_region']} earlier transactions in billing region {f['addr1']}; not a new region", "graph",
                         f"query:region_cluster(addr1={f['addr1']})", [f["tid"]])
         if rc["hit"]:
+            self.recurring = True
             self.hyp["recurring"] = -2.5
             self.signals += 1
             self.ev(f"Same amount under product {f['pcd']} charged roughly monthly before ({', '.join(money(x['amt']) for x in rc['txns'][-3:])}); looks like the cardholder's own recurring charge",
@@ -225,6 +227,7 @@ class Investigation:
 
         # --- assess ------------------------------------------------------------
         p0 = sigmoid(sum(self.hyp.values()))
+        self.candidate_pattern = self.known_pattern(dv, rg, mf)
         if self.pattern == "none" and p0 >= 0.30:
             self.pattern = self.known_pattern(dv, rg, mf)
         if p0 >= 0.30 and self.pattern not in ("undocumented",) and not self.amounts:
@@ -375,12 +378,15 @@ class Investigation:
                     init.insert(2, A(ask, exp0, "R1: ask the cardholder directly as well"))
 
         # simulated reply: the evidence simulator answers the way the graph evidence
-        # (excluding the bank's risk score) points; the assumption is stated in the file
-        deny = p0 >= 0.5
+        # (excluding the bank's risk score) points; the assumption is stated in the file.
+        # A customer report is already a denial, so the reply only reverses it when the
+        # charge matches the cardholder's own recurring charge (R7).
+        deny = p0 >= 0.5 or (cust and not self.recurring)
         if cust:
-            resp = ("Cardholder repeats that they did not make the charge and has the card; the device and merchant are unknown to them (simulated, consistent with the graph evidence)"
+            resp = (("Cardholder repeats that they did not make the charge and has the card; the device and merchant are unknown to them (simulated, "
+                     + ("consistent with the graph evidence)" if p0 >= 0.5 else "the customer's own report stands even though the graph evidence is weak)"))
                     if deny else
-                    "Shown the merchant, date and device, the cardholder recognises the charge as their own (a household member's purchase on the account) and withdraws the dispute (simulated, consistent with the graph evidence)")
+                    "Shown the earlier charges of the same amount, the cardholder recognises the recurring charge and withdraws the dispute (simulated, consistent with the recurring-charge evidence)")
         else:
             resp = ("Cardholder says they did not make the transaction and still has the card (simulated, consistent with the graph evidence)"
                     if deny else "Cardholder confirms they made the transaction (simulated, consistent with the graph evidence)")
@@ -396,7 +402,16 @@ class Investigation:
                 self.affect([f])
             exp = round(sum(self.amounts.values()), 2)
             p1 = round(min(0.95, sigmoid(logit(p0) + 1.6)), 2)
-            if p1 < 0.7:
+            if p1 < 0.7 and cust:
+                verdict = "uncertain"
+                if self.pattern == "none":  # the denial makes fraud a live hypothesis; name the pattern it would be
+                    self.pattern = self.candidate_pattern
+                final = [A("BLOCK_CARD", exp, f"R2: customer denied the charge twice; exposure {money(exp)} " + ("≤" if exp <= 2500 else ">") + " $2,500"),
+                         A("CREATE_CASE", exp, "R2 and 3a: customer disputes a charge"),
+                         A("ESCALATE_TO_ANALYST", exp, f"R8: evidence conflicts; the customer denies the charge but the graph evidence puts fraud at {p1:.2f}")]
+                what = (f"The customer repeated the denial, so R2 now calls for a block. The graph evidence stays weak ({p0:.2f} to {p1:.2f}), "
+                        "so the verdict stays uncertain and an analyst reviews the conflict under R8.")
+            elif p1 < 0.7:
                 verdict = "uncertain"
                 final = [A("CREATE_CASE", exp, "3a"), A("MONITOR_CARD", exp, "R4-style hold while the analyst reviews"),
                          A("DECLINE_TRANSACTION", exp, "Pending authorizations held while evidence conflicts")]
@@ -412,12 +427,18 @@ class Investigation:
                 if self.connected_cards:
                     final.append(A("MONITOR_CONNECTED_CARDS", exp, "Linked cards share the device profile"))
                 what = f"Customer denial raised probability from {p0:.2f} to {p1:.2f}; R2 now calls for a block" + (" and a report." if any(a["action"] == "FILE_REPORT" for a in final) else "; exposure and links stay below the report threshold, so case only.")
-            self.finish(p1, verdict, init, final, what, "The customer's answer settled the question (§6); further queries would not change the actions.")
+            stop = ("The customer's answer settled the question (§6); further queries would not change the actions." if verdict == "fraud" else
+                    "Further graph queries would not resolve the conflict between the denial and the graph evidence (§6); the analyst takes it from here under R8.")
+            self.finish(p1, verdict, init, final, what, stop)
         else:
             self.amounts = {}
             p1 = round(max(0.03, sigmoid(logit(p0) - 2.2)), 2)
             final = [A("CLOSE_NO_FRAUD", 0, "R3: customer confirmed the transaction; confirmation noted in the case file")]
-            if not cust:
+            if cust:  # only reached on an R7 match
+                final = [A("CREATE_CASE", 0, "R7 and 3a: customer disputed a charge"),
+                         A("WARN_CUSTOMER", 0, "R7: remind the cardholder of the recurring charge"),
+                         A("CLOSE_NO_FRAUD", 0, "R7/R3: cardholder recognised the recurring charge; noted in the case file")]
+            else:
                 final.insert(0, A("ALLOW_TRANSACTION", 0, "R3"))
             what = f"Customer confirmation lowered probability from {p0:.2f} to {p1:.2f}; under R3 the case closes as legitimate and nothing is blocked."
             self.finish(p1, "legitimate", init, final, what, "The customer's confirmation settled the question (§6).")
@@ -505,8 +526,8 @@ def ground(inv):
         rid = p["id"].replace("POLICY-", "")
         if p["id"].startswith("POLICY-R") and rid in cited:
             inv.ev(f"Policy {rid} (retrieved by {p['via']} search): {p['text'][:260]}", "document", f"doc:{p['id']}", [p["id"]])
-        elif p["id"].startswith("PATTERN-") and p["via"] == "graph":
-            inv.ev(f"Known-pattern definition matched to this case: {p['text'][:260]}", "document", f"doc:{p['id']}", [p["id"]])
+        elif p["id"].startswith("PATTERN-") and graphrag.PATTERN_KEYS.get(p["id"][8:]) == inv.pattern:
+            inv.ev(f"Known-pattern definition matched to this case (retrieved by {p['via']} search): {p['text'][:260]}", "document", f"doc:{p['id']}", [p["id"]])
     fincen = [p for p in passages if p["id"].startswith("FINCEN")]
     if fincen and any(a["action"] == "FILE_REPORT" for a in inv.final):
         inv.ev("SAR narrative written against FinCEN narrative guidance passages retrieved for this case (who, what, when, where, how, why)",
