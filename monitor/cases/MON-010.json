@@ -1,0 +1,154 @@
+{
+  "case_id": "MON-010",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.94,
+    "pattern": "card_not_present_fraud",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3549837"
+    ],
+    "first_suspicious_txn_id": "3549837",
+    "connected_card_ids": [],
+    "connected_device_profiles": [],
+    "exposure_usd": 299.94,
+    "evidence": [
+      {
+        "claim": "Graph-feature scorer trained on 5,565 closed cases gives this transaction a calibrated fraud probability of 0.83 (bank model score 0.99); features include Vesta's unnamed C, D, M and V columns, used as signals only",
+        "source": "graph",
+        "ref": "query:score_transaction(txn_id=3549837)",
+        "entity_ids": [
+          "3549837"
+        ]
+      },
+      {
+        "claim": "Device profile 'iOS Device | iOS 11.3.0 | mobile safari 11.0 | 2208x1242' was used on this card 3 times before",
+        "source": "graph",
+        "ref": "query:device_neighbors(device='iOS Device | iOS 11.3.0 | mobile safari 11.0 | 2208x1242')",
+        "entity_ids": [
+          "3549837"
+        ]
+      },
+      {
+        "claim": "Card history holds 12 earlier closed cases (12 confirmed fraud, 0 cleared); most recent CC-5431 (account_takeover, confirmed_fraud)",
+        "source": "graph",
+        "ref": "query:similar_closed_cases(card_id=C00750-K2)",
+        "entity_ids": [
+          "CC-5431",
+          "CC-4964",
+          "CC-4387",
+          "CC-4214",
+          "CC-4066"
+        ]
+      },
+      {
+        "claim": "Cardholder says they did not make the transaction and still has the card",
+        "source": "customer",
+        "ref": "evidence_request:1",
+        "entity_ids": [
+          "C00750"
+        ]
+      },
+      {
+        "claim": "Policy R2 (retrieved by graph search): R2. Customer denies the transaction. Recommend `BLOCK_CARD` and `CREATE_CASE`. Add `FILE_REPORT` if exposure exceeds $1,000 or the case connects to a shared device profile or another card's fraud.",
+        "source": "document",
+        "ref": "doc:POLICY-R2",
+        "entity_ids": [
+          "POLICY-R2"
+        ]
+      },
+      {
+        "claim": "Known-pattern definition matched to this case (retrieved by graph search): Card-not-present fraud. The number is used online without the card. Amounts and products that don't fit the cardholder's history, often in a burst of two to four within 48 hours. On its own, one unusual online purchase is ambiguous: verify. Policy R1 to R4.",
+        "source": "document",
+        "ref": "doc:PATTERN-2",
+        "entity_ids": [
+          "PATTERN-2"
+        ]
+      },
+      {
+        "claim": "Closed cases whose analyst notes read most like this investigation (vector search over ClosedCase.note_emb): CC-1792, CC-0033, CC-2878, CC-2082",
+        "source": "graph",
+        "ref": "mcp:search_top_k_similarity(ClosedCase.note_emb)",
+        "entity_ids": [
+          "CC-1792",
+          "CC-0033",
+          "CC-2878",
+          "CC-2082"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-5431",
+      "CC-4964",
+      "CC-4387",
+      "CC-5558",
+      "CC-5557",
+      "CC-1792"
+    ],
+    "summary": "Real-time monitoring flagged transaction 3549837 ($299.94 online purchase on 2016-12-16 23:40:18) with an initial model score of 0.99. Graph analysis confirmed a calibrated fraud probability of 0.83, supported by the device profile's three prior uses on this card and the card's history of 12 confirmed fraud cases. When the cardholder denied making the transaction and confirmed they still possess the physical card, fraud probability rose to 0.94. Per Policy R2, the card is blocked and a case is created for internal record; exposure of $299.94 remains below the $1,000 reporting threshold and no shared devices or connected cards are involved, so regulatory filing is not required.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-MON-010"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 8,
+      "assumed_response": "Cardholder says they did not make the transaction and still has the card (simulated, consistent with the graph evidence)"
+    },
+    {
+      "type": "step_up_auth",
+      "asked_after_step": 8,
+      "assumed_response": "One-time passcode not completed by the device owner (simulated)"
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: evidence requested and probability above 0.30"
+      },
+      {
+        "action": "STEP_UP_AUTH",
+        "route": "auto",
+        "reason": "R1: probability 0.76 rests on weak signals; verify before any block"
+      },
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: ask the cardholder directly as well"
+      },
+      {
+        "action": "MONITOR_CARD",
+        "route": "auto",
+        "reason": "Raise monitoring for 72 hours while verification is pending"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: customer denied; exposure $299.94 \u2264 $2,500"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2"
+      }
+    ],
+    "what_changed": "Customer denial raised probability from 0.76 to 0.94; R2 now calls for a block; exposure and links stay below the report threshold, so case only."
+  },
+  "sar": {
+    "file": false,
+    "reason": "3a: exposure $299.94 is under $1,000 and no shared device, region cluster or coordinated pattern; case only.",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0,
+    "activity_dates": []
+  },
+  "stop_reason": "The customer's answer settled the question (\u00a76); further queries would not change the actions.",
+  "tool_calls": 28,
+  "tokens": 25624,
+  "latency_s": 84.31
+}

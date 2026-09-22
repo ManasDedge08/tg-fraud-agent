@@ -1,0 +1,175 @@
+{
+  "case_id": "MON-012",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.98,
+    "pattern": "card_not_present_fraud",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3588844"
+    ],
+    "first_suspicious_txn_id": "3588844",
+    "connected_card_ids": [
+      "C01890-K1",
+      "C06663-K2",
+      "C07562-K2",
+      "C11787-K1",
+      "C11847-K2"
+    ],
+    "connected_device_profiles": [
+      "MotoG3 Build/MPIS24.65-33.1-2-16 | ? | chrome 66.0 for android | ?"
+    ],
+    "exposure_usd": 22.74,
+    "evidence": [
+      {
+        "claim": "Graph-feature scorer trained on 5,565 closed cases gives this transaction a calibrated fraud probability of 0.76 (bank model score 0.90); features include Vesta's unnamed C, D, M and V columns, used as signals only",
+        "source": "graph",
+        "ref": "query:score_transaction(txn_id=3588844)",
+        "entity_ids": [
+          "3588844"
+        ]
+      },
+      {
+        "claim": "Device profile 'MotoG3 Build/MPIS24.65-33.1-2-16 | ? | chrome 66.0 for android | ?' was used on 5 other cards within 24 hours ($82.59, $82.65, $22.72, $14.48, $14.48, $14.38), and the scorer rates those transactions as suspicious",
+        "source": "graph",
+        "ref": "query:device_neighbors(device='MotoG3 Build/MPIS24.65-33.1-2-16 | ? | chrome 66.0 for android | ?', hours=24)",
+        "entity_ids": [
+          "C01890-K1",
+          "C06663-K2",
+          "C07562-K2",
+          "C11787-K1",
+          "C11847-K2",
+          "3586760",
+          "3586787",
+          "3588854",
+          "3588886",
+          "3588890",
+          "3588897"
+        ]
+      },
+      {
+        "claim": "Match flags M4 show a mismatch (Vesta match flags; exact meaning unpublished)",
+        "source": "graph",
+        "ref": "query:txn(3588844)",
+        "entity_ids": [
+          "3588844"
+        ]
+      },
+      {
+        "claim": "Card history holds 12 earlier closed cases (12 confirmed fraud, 0 cleared); most recent CC-5539 (card_not_present_new_device, confirmed_fraud)",
+        "source": "graph",
+        "ref": "query:similar_closed_cases(card_id=C07508-K2)",
+        "entity_ids": [
+          "CC-5539",
+          "CC-4929",
+          "CC-4706",
+          "CC-4218",
+          "CC-4034"
+        ]
+      },
+      {
+        "claim": "Known-pattern definition matched to this case (retrieved by graph search): Card-not-present fraud. The number is used online without the card. Amounts and products that don't fit the cardholder's history, often in a burst of two to four within 48 hours. On its own, one unusual online purchase is ambiguous: verify. Policy R1 to R4.",
+        "source": "document",
+        "ref": "doc:PATTERN-2",
+        "entity_ids": [
+          "PATTERN-2"
+        ]
+      },
+      {
+        "claim": "Closed cases whose analyst notes read most like this investigation (vector search over ClosedCase.note_emb): CC-1734, CC-5311, CC-1154, CC-3452",
+        "source": "graph",
+        "ref": "mcp:search_top_k_similarity(ClosedCase.note_emb)",
+        "entity_ids": [
+          "CC-1734",
+          "CC-5311",
+          "CC-1154",
+          "CC-3452"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-5539",
+      "CC-4929",
+      "CC-4706",
+      "CC-5558",
+      "CC-5557",
+      "CC-1734"
+    ],
+    "summary": "A $22.74 online transaction on card C07508-K2 by customer C07508 on December 31, 2016, was flagged by the bank's fraud detection system with a high fraud probability of 0.98. The investigation revealed the device used (a MotoG3 Android mobile) had also been used for multiple suspicious transactions on five other cards within the same 24-hour period, and card C07508-K2 itself has a history of 12 prior confirmed fraud cases. The transaction matches the known pattern of card-not-present fraud, and the shared device profile across multiple cards suggests coordinated fraudulent activity. In response, the bank has blocked the card, created an investigation case, placed connected cards under monitoring, and is filing a suspicious activity report.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-MON-012"
+  },
+  "evidence_requests": [],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "\u00a76: 2 independent signals put probability at 0.98; exposure $22.74 \u2264 $2,500"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: probability above 0.30; R6 shared origin"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile links this card to other cards' suspicious activity"
+      },
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: C01890-K1, C06663-K2, C07562-K2, C11787-K1, C11847-K2 share the device profile"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "\u00a76: 2 independent signals put probability at 0.98; exposure $22.74 \u2264 $2,500"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: probability above 0.30; R6 shared origin"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile links this card to other cards' suspicious activity"
+      },
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: C01890-K1, C06663-K2, C07562-K2, C11787-K1, C11847-K2 share the device profile"
+      }
+    ],
+    "what_changed": "nothing"
+  },
+  "sar": {
+    "file": true,
+    "reason": "R2 and 3a: coordinated or shared-origin fraud",
+    "narrative": "On December 31, 2016, at 13:20:31, customer C07508 made an online transaction of $22.74 using card C07508-K2. The transaction was flagged by the bank's fraud detection model with a score of 0.90 and confirmed as fraudulent through subsequent analysis, with a final fraud probability of 0.98. The transaction exhibits characteristics consistent with card-not-present fraud: the card was used online without physical presentation. Investigation revealed the device used (MotoG3 mobile device running Android with Chrome browser, identified as Build/MPIS24.65-33.1-2-16) was active on five other bank cards within the same 24-hour period, conducting transactions of $82.59, $82.65, $22.72, $14.48, $14.48, and $14.38, all of which were flagged as suspicious. Card C07508-K2 carries a history of 12 prior confirmed fraudulent transactions, with the most recent case (CC-5539) also involving card-not-present fraud originating from a new device. The device profile represents a shared origin point for fraudulent activity across multiple cards (C01890-K1, C06663-K2, C07562-K2, C11787-K1, C11847-K2), indicating coordinated fraud activity. The bank has responded by blocking card C07508-K2, creating an investigation case, placing the connected cards under enhanced monitoring, and filing this report in accordance with policy R6 regarding shared device profiles linked to suspicious activity across multiple cards.",
+    "subjects": [
+      "C07508",
+      "C07508-K2",
+      "C01890-K1",
+      "C06663-K2",
+      "C07562-K2",
+      "C11787-K1",
+      "C11847-K2",
+      "MotoG3 Build/MPIS24.65-33.1-2-16 | ? | chrome 66.0 for android | ?"
+    ],
+    "total_amount_usd": 22.74,
+    "activity_dates": [
+      "2016-12-31",
+      "2016-12-31"
+    ]
+  },
+  "stop_reason": "Probability 0.98 with 2 independent signals meets the \u00a76 stopping rule.",
+  "tool_calls": 27,
+  "tokens": 30723,
+  "latency_s": 132.55
+}

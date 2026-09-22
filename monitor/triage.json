@@ -1,0 +1,4301 @@
+{
+  "alert_threshold": 0.9,
+  "period": [
+    "2016-11-01",
+    "2017-01-01"
+  ],
+  "budget": 12,
+  "alerts": 476,
+  "by_triage": {
+    "skipped": 23,
+    "merged": 50,
+    "investigated": 12,
+    "queued": 391
+  },
+  "alerts_list": [
+    {
+      "txn_id": "3417819",
+      "ts": "2016-11-01 02:09:58",
+      "card_id": "C01521-K2",
+      "amount": 150.15,
+      "bank_score": 0.94,
+      "scorer": 0.709,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3417919",
+      "ts": "2016-11-01 02:50:23",
+      "card_id": "C03598-K2",
+      "amount": 834.04,
+      "bank_score": 0.94,
+      "scorer": 0.098,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3417968",
+      "ts": "2016-11-01 03:15:28",
+      "card_id": "C11522-K2",
+      "amount": 29.92,
+      "bank_score": 0.95,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3418213",
+      "ts": "2016-11-01 09:50:35",
+      "card_id": "C05029-K1",
+      "amount": 77.04,
+      "bank_score": 0.95,
+      "scorer": 0.667,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3418256",
+      "ts": "2016-11-01 11:41:12",
+      "card_id": "C05786-K2",
+      "amount": 24.5,
+      "bank_score": 0.92,
+      "scorer": 0.098,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3418313",
+      "ts": "2016-11-01 12:26:58",
+      "card_id": "C11000-K2",
+      "amount": 111.95,
+      "bank_score": 0.97,
+      "scorer": 0.384,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3418442",
+      "ts": "2016-11-01 13:30:58",
+      "card_id": "C06224-K2",
+      "amount": 200.05,
+      "bank_score": 0.94,
+      "scorer": 0.112,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3419149",
+      "ts": "2016-11-01 17:02:19",
+      "card_id": "C04196-K2",
+      "amount": 4.95,
+      "bank_score": 0.9,
+      "scorer": 0.036,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3419403",
+      "ts": "2016-11-01 18:03:47",
+      "card_id": "C11031-K2",
+      "amount": 199.92,
+      "bank_score": 0.9,
+      "scorer": 0.04,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3419582",
+      "ts": "2016-11-01 18:51:23",
+      "card_id": "C09657-K2",
+      "amount": 35.39,
+      "bank_score": 0.9,
+      "scorer": 0.072,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3420108",
+      "ts": "2016-11-01 21:07:03",
+      "card_id": "C09933-K2",
+      "amount": 58.91,
+      "bank_score": 0.9,
+      "scorer": 0.621,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3420174",
+      "ts": "2016-11-01 21:23:43",
+      "card_id": "C12690-K2",
+      "amount": 250.04,
+      "bank_score": 0.92,
+      "scorer": 0.312,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3420203",
+      "ts": "2016-11-01 21:32:46",
+      "card_id": "C08962-K2",
+      "amount": 114.04,
+      "bank_score": 0.9,
+      "scorer": 0.647,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3420785",
+      "ts": "2016-11-02 00:19:55",
+      "card_id": "C01138-K2",
+      "amount": 107.95,
+      "bank_score": 0.94,
+      "scorer": 0.667,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3420923",
+      "ts": "2016-11-02 01:03:27",
+      "card_id": "C11227-K2",
+      "amount": 199.99,
+      "bank_score": 0.95,
+      "scorer": 0.681,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3420927",
+      "ts": "2016-11-02 01:07:09",
+      "card_id": "C08041-K1",
+      "amount": 444.99,
+      "bank_score": 0.9,
+      "scorer": 0.019,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3421217",
+      "ts": "2016-11-02 02:43:22",
+      "card_id": "C07562-K2",
+      "amount": 12.26,
+      "bank_score": 0.92,
+      "scorer": 0.384,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3421761",
+      "ts": "2016-11-02 12:36:10",
+      "card_id": "C08737-K1",
+      "amount": 1265.53,
+      "bank_score": 0.91,
+      "scorer": 0.155,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3421977",
+      "ts": "2016-11-02 13:58:16",
+      "card_id": "C09363-K2",
+      "amount": 117.0,
+      "bank_score": 0.91,
+      "scorer": 0.069,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3422146",
+      "ts": "2016-11-02 14:48:05",
+      "card_id": "C10349-K1",
+      "amount": 200.03,
+      "bank_score": 0.9,
+      "scorer": 0.004,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3424892",
+      "ts": "2016-11-03 02:37:19",
+      "card_id": "C06962-K2",
+      "amount": 10.05,
+      "bank_score": 0.94,
+      "scorer": 0.647,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3424953",
+      "ts": "2016-11-03 03:02:19",
+      "card_id": "C06190-K1",
+      "amount": 224.99,
+      "bank_score": 0.93,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3424985",
+      "ts": "2016-11-03 03:13:23",
+      "card_id": "C04597-K2",
+      "amount": 74.15,
+      "bank_score": 0.97,
+      "scorer": 0.647,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3425471",
+      "ts": "2016-11-03 13:12:11",
+      "card_id": "C10127-K2",
+      "amount": 160.03,
+      "bank_score": 0.92,
+      "scorer": 0.384,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3425527",
+      "ts": "2016-11-03 13:32:48",
+      "card_id": "C12897-K1",
+      "amount": 99.94,
+      "bank_score": 0.91,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3426229",
+      "ts": "2016-11-03 17:05:46",
+      "card_id": "C01333-K2",
+      "amount": 24.95,
+      "bank_score": 0.9,
+      "scorer": 0.03,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3426294",
+      "ts": "2016-11-03 17:24:32",
+      "card_id": "C10139-K1",
+      "amount": 38.95,
+      "bank_score": 0.93,
+      "scorer": 0.312,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3426299",
+      "ts": "2016-11-03 17:25:11",
+      "card_id": "C11000-K2",
+      "amount": 50.0,
+      "bank_score": 0.92,
+      "scorer": 0.003,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3427056",
+      "ts": "2016-11-03 20:41:34",
+      "card_id": "C05704-K2",
+      "amount": 39.99,
+      "bank_score": 0.92,
+      "scorer": 0.013,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3428087",
+      "ts": "2016-11-04 01:30:39",
+      "card_id": "C00750-K2",
+      "amount": 50.0,
+      "bank_score": 0.91,
+      "scorer": 0.011,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3428155",
+      "ts": "2016-11-04 01:59:02",
+      "card_id": "C03218-K2",
+      "amount": 673.4,
+      "bank_score": 0.9,
+      "scorer": 0.02,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3428279",
+      "ts": "2016-11-04 02:47:56",
+      "card_id": "C05171-K1",
+      "amount": 171.94,
+      "bank_score": 0.96,
+      "scorer": 0.155,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3429187",
+      "ts": "2016-11-04 15:31:50",
+      "card_id": "C11509-K2",
+      "amount": 17.8,
+      "bank_score": 0.9,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3429526",
+      "ts": "2016-11-04 17:17:07",
+      "card_id": "C13410-K1",
+      "amount": 1675.69,
+      "bank_score": 0.92,
+      "scorer": 0.013,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3430075",
+      "ts": "2016-11-04 19:59:01",
+      "card_id": "C11249-K1",
+      "amount": 226.08,
+      "bank_score": 0.91,
+      "scorer": 0.054,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3431615",
+      "ts": "2016-11-05 09:24:30",
+      "card_id": "C01155-K2",
+      "amount": 300.05,
+      "bank_score": 0.95,
+      "scorer": 0.254,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3432025",
+      "ts": "2016-11-05 14:35:11",
+      "card_id": "C00750-K2",
+      "amount": 150.04,
+      "bank_score": 0.91,
+      "scorer": 0.054,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3432414",
+      "ts": "2016-11-05 16:28:21",
+      "card_id": "C07513-K1",
+      "amount": 189.99,
+      "bank_score": 0.9,
+      "scorer": 0.492,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3432762",
+      "ts": "2016-11-05 17:58:35",
+      "card_id": "C03019-K2",
+      "amount": 401.91,
+      "bank_score": 0.9,
+      "scorer": 0.709,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3432904",
+      "ts": "2016-11-05 18:39:38",
+      "card_id": "C09241-K2",
+      "amount": 1118.96,
+      "bank_score": 0.93,
+      "scorer": 0.01,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3433324",
+      "ts": "2016-11-05 20:33:27",
+      "card_id": "C06464-K1",
+      "amount": 87.39,
+      "bank_score": 0.94,
+      "scorer": 0.717,
+      "triage": "investigated as MON-001"
+    },
+    {
+      "txn_id": "3433485",
+      "ts": "2016-11-05 21:20:49",
+      "card_id": "C06224-K2",
+      "amount": 49.98,
+      "bank_score": 0.9,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3434526",
+      "ts": "2016-11-06 03:10:17",
+      "card_id": "C07562-K2",
+      "amount": 29.79,
+      "bank_score": 0.95,
+      "scorer": 0.709,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3434696",
+      "ts": "2016-11-06 05:46:34",
+      "card_id": "C05381-K2",
+      "amount": 35.45,
+      "bank_score": 0.97,
+      "scorer": 0.621,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3435233",
+      "ts": "2016-11-06 15:18:42",
+      "card_id": "C11792-K1",
+      "amount": 49.96,
+      "bank_score": 0.93,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3435335",
+      "ts": "2016-11-06 15:48:02",
+      "card_id": "C05245-K2",
+      "amount": 100.07,
+      "bank_score": 0.92,
+      "scorer": 0.0,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3435487",
+      "ts": "2016-11-06 16:37:30",
+      "card_id": "C09454-K1",
+      "amount": 49.06,
+      "bank_score": 0.9,
+      "scorer": 0.709,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3435502",
+      "ts": "2016-11-06 16:43:35",
+      "card_id": "C11923-K2",
+      "amount": 52.07,
+      "bank_score": 0.96,
+      "scorer": 0.003,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3435510",
+      "ts": "2016-11-06 16:44:55",
+      "card_id": "C01954-K1",
+      "amount": 67.97,
+      "bank_score": 0.93,
+      "scorer": 0.004,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3435614",
+      "ts": "2016-11-06 17:14:46",
+      "card_id": "C01155-K2",
+      "amount": 99.97,
+      "bank_score": 0.98,
+      "scorer": 0.007,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3435788",
+      "ts": "2016-11-06 18:06:53",
+      "card_id": "C09800-K2",
+      "amount": 100.02,
+      "bank_score": 0.94,
+      "scorer": 0.002,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3435877",
+      "ts": "2016-11-06 18:32:21",
+      "card_id": "C00854-K2",
+      "amount": 75.01,
+      "bank_score": 0.95,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3436153",
+      "ts": "2016-11-06 19:54:10",
+      "card_id": "C04687-K1",
+      "amount": 60.05,
+      "bank_score": 0.93,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3436563",
+      "ts": "2016-11-06 21:59:53",
+      "card_id": "C13290-K1",
+      "amount": 201.07,
+      "bank_score": 0.9,
+      "scorer": 0.254,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3436706",
+      "ts": "2016-11-06 22:43:38",
+      "card_id": "C01154-K1",
+      "amount": 554.03,
+      "bank_score": 0.99,
+      "scorer": 0.312,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3436914",
+      "ts": "2016-11-06 23:59:18",
+      "card_id": "C07867-K2",
+      "amount": 28.97,
+      "bank_score": 0.9,
+      "scorer": 0.069,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3437259",
+      "ts": "2016-11-07 01:51:03",
+      "card_id": "C04828-K2",
+      "amount": 663.94,
+      "bank_score": 0.91,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3437721",
+      "ts": "2016-11-07 11:30:28",
+      "card_id": "C00750-K2",
+      "amount": 60.02,
+      "bank_score": 0.91,
+      "scorer": 0.621,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3438270",
+      "ts": "2016-11-07 15:54:16",
+      "card_id": "C02704-K1",
+      "amount": 432.91,
+      "bank_score": 0.91,
+      "scorer": 0.054,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3438583",
+      "ts": "2016-11-07 17:32:48",
+      "card_id": "C09301-K2",
+      "amount": 14.93,
+      "bank_score": 0.92,
+      "scorer": 0.069,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3438917",
+      "ts": "2016-11-07 19:13:11",
+      "card_id": "C02716-K2",
+      "amount": 444.98,
+      "bank_score": 0.9,
+      "scorer": 0.254,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3440100",
+      "ts": "2016-11-08 01:26:45",
+      "card_id": "C02079-K1",
+      "amount": 200.07,
+      "bank_score": 0.91,
+      "scorer": 0.155,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3440437",
+      "ts": "2016-11-08 05:26:52",
+      "card_id": "C07508-K2",
+      "amount": 46.07,
+      "bank_score": 0.92,
+      "scorer": 0.681,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3441405",
+      "ts": "2016-11-08 17:42:35",
+      "card_id": "C02231-K1",
+      "amount": 311.95,
+      "bank_score": 0.94,
+      "scorer": 0.072,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3442120",
+      "ts": "2016-11-08 21:20:19",
+      "card_id": "C06224-K2",
+      "amount": 445.06,
+      "bank_score": 0.92,
+      "scorer": 0.384,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3442507",
+      "ts": "2016-11-08 23:33:18",
+      "card_id": "C03649-K1",
+      "amount": 99.97,
+      "bank_score": 0.92,
+      "scorer": 0.02,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3442910",
+      "ts": "2016-11-09 01:46:20",
+      "card_id": "C11309-K1",
+      "amount": 150.09,
+      "bank_score": 0.94,
+      "scorer": 0.621,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3442937",
+      "ts": "2016-11-09 01:57:30",
+      "card_id": "C07518-K2",
+      "amount": 200.01,
+      "bank_score": 0.9,
+      "scorer": 0.112,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3442995",
+      "ts": "2016-11-09 02:28:40",
+      "card_id": "C07212-K2",
+      "amount": 150.04,
+      "bank_score": 0.95,
+      "scorer": 0.681,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3443054",
+      "ts": "2016-11-09 03:02:02",
+      "card_id": "C11965-K1",
+      "amount": 250.08,
+      "bank_score": 0.95,
+      "scorer": 0.002,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3443183",
+      "ts": "2016-11-09 04:45:06",
+      "card_id": "C08962-K2",
+      "amount": 30.96,
+      "bank_score": 0.92,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3443466",
+      "ts": "2016-11-09 13:10:41",
+      "card_id": "C06162-K1",
+      "amount": 699.98,
+      "bank_score": 0.96,
+      "scorer": 0.006,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3443520",
+      "ts": "2016-11-09 13:39:22",
+      "card_id": "C03728-K1",
+      "amount": 250.0,
+      "bank_score": 0.94,
+      "scorer": 0.002,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3443871",
+      "ts": "2016-11-09 15:50:56",
+      "card_id": "C03040-K2",
+      "amount": 75.03,
+      "bank_score": 0.94,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3444288",
+      "ts": "2016-11-09 17:53:51",
+      "card_id": "C00854-K2",
+      "amount": 50.0,
+      "bank_score": 0.91,
+      "scorer": 0.04,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3444310",
+      "ts": "2016-11-09 18:02:26",
+      "card_id": "C09363-K2",
+      "amount": 200.09,
+      "bank_score": 0.93,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3444558",
+      "ts": "2016-11-09 19:24:41",
+      "card_id": "C09241-K2",
+      "amount": 77.01,
+      "bank_score": 0.93,
+      "scorer": 0.548,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3444653",
+      "ts": "2016-11-09 19:53:58",
+      "card_id": "C02782-K2",
+      "amount": 22.1,
+      "bank_score": 0.94,
+      "scorer": 0.0,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3444912",
+      "ts": "2016-11-09 21:15:57",
+      "card_id": "C12517-K2",
+      "amount": 225.0,
+      "bank_score": 0.96,
+      "scorer": 0.155,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3445913",
+      "ts": "2016-11-10 04:21:15",
+      "card_id": "C07789-K1",
+      "amount": 77.64,
+      "bank_score": 0.9,
+      "scorer": 0.709,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3446270",
+      "ts": "2016-11-10 13:48:37",
+      "card_id": "C07196-K2",
+      "amount": 30.06,
+      "bank_score": 0.91,
+      "scorer": 0.036,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3446911",
+      "ts": "2016-11-10 17:51:52",
+      "card_id": "C05031-K2",
+      "amount": 179.43,
+      "bank_score": 0.93,
+      "scorer": 0.0,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3446975",
+      "ts": "2016-11-10 18:15:24",
+      "card_id": "C08269-K1",
+      "amount": 1331.06,
+      "bank_score": 0.98,
+      "scorer": 0.013,
+      "triage": "investigated as MON-002"
+    },
+    {
+      "txn_id": "3446976",
+      "ts": "2016-11-10 18:15:36",
+      "card_id": "C09165-K2",
+      "amount": 175.08,
+      "bank_score": 0.92,
+      "scorer": 0.035,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3448063",
+      "ts": "2016-11-11 00:08:27",
+      "card_id": "C06224-K2",
+      "amount": 116.96,
+      "bank_score": 0.92,
+      "scorer": 0.098,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3448240",
+      "ts": "2016-11-11 01:15:35",
+      "card_id": "C11923-K2",
+      "amount": 25.34,
+      "bank_score": 0.93,
+      "scorer": 0.006,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3448544",
+      "ts": "2016-11-11 03:45:30",
+      "card_id": "C05031-K2",
+      "amount": 12.99,
+      "bank_score": 0.94,
+      "scorer": 0.02,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3448598",
+      "ts": "2016-11-11 04:49:15",
+      "card_id": "C06630-K2",
+      "amount": 40.36,
+      "bank_score": 0.92,
+      "scorer": 0.667,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3448674",
+      "ts": "2016-11-11 07:27:23",
+      "card_id": "C10837-K2",
+      "amount": 46.12,
+      "bank_score": 0.95,
+      "scorer": 0.621,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3448684",
+      "ts": "2016-11-11 08:07:31",
+      "card_id": "C04386-K1",
+      "amount": 46.19,
+      "bank_score": 0.9,
+      "scorer": 0.667,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3449070",
+      "ts": "2016-11-11 14:38:52",
+      "card_id": "C12028-K2",
+      "amount": 46.09,
+      "bank_score": 0.93,
+      "scorer": 0.492,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3449389",
+      "ts": "2016-11-11 16:33:06",
+      "card_id": "C09454-K1",
+      "amount": 77.07,
+      "bank_score": 0.92,
+      "scorer": 0.112,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3449597",
+      "ts": "2016-11-11 17:49:52",
+      "card_id": "C01154-K1",
+      "amount": 99.95,
+      "bank_score": 0.92,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3449679",
+      "ts": "2016-11-11 18:18:19",
+      "card_id": "C08597-K2",
+      "amount": 445.04,
+      "bank_score": 0.91,
+      "scorer": 0.155,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3449681",
+      "ts": "2016-11-11 18:19:31",
+      "card_id": "C08918-K2",
+      "amount": 100.07,
+      "bank_score": 0.9,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3449908",
+      "ts": "2016-11-11 19:34:55",
+      "card_id": "C04261-K1",
+      "amount": 160.92,
+      "bank_score": 0.92,
+      "scorer": 0.054,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3450941",
+      "ts": "2016-11-12 01:52:45",
+      "card_id": "C06224-K2",
+      "amount": 50.05,
+      "bank_score": 0.96,
+      "scorer": 0.002,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3450957",
+      "ts": "2016-11-12 02:00:47",
+      "card_id": "C06224-K2",
+      "amount": 99.91,
+      "bank_score": 0.92,
+      "scorer": 0.004,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3451832",
+      "ts": "2016-11-12 15:43:33",
+      "card_id": "C11923-K2",
+      "amount": 104.4,
+      "bank_score": 0.92,
+      "scorer": 0.054,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3451956",
+      "ts": "2016-11-12 16:30:58",
+      "card_id": "C03060-K1",
+      "amount": 884.01,
+      "bank_score": 0.94,
+      "scorer": 0.04,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3452160",
+      "ts": "2016-11-12 17:41:04",
+      "card_id": "C02250-K2",
+      "amount": 201.08,
+      "bank_score": 0.92,
+      "scorer": 0.03,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3452360",
+      "ts": "2016-11-12 18:50:42",
+      "card_id": "C06514-K1",
+      "amount": 14.98,
+      "bank_score": 0.9,
+      "scorer": 0.072,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3452399",
+      "ts": "2016-11-12 19:00:32",
+      "card_id": "C11509-K2",
+      "amount": 6.8,
+      "bank_score": 0.96,
+      "scorer": 0.312,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3452554",
+      "ts": "2016-11-12 19:54:54",
+      "card_id": "C09735-K1",
+      "amount": 77.08,
+      "bank_score": 0.96,
+      "scorer": 0.155,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3453189",
+      "ts": "2016-11-12 23:31:38",
+      "card_id": "C12897-K1",
+      "amount": 99.97,
+      "bank_score": 0.91,
+      "scorer": 0.013,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3453268",
+      "ts": "2016-11-12 23:49:56",
+      "card_id": "C12987-K1",
+      "amount": 131.23,
+      "bank_score": 0.92,
+      "scorer": 0.17,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3454257",
+      "ts": "2016-11-13 14:23:44",
+      "card_id": "C07360-K1",
+      "amount": 29.0,
+      "bank_score": 0.97,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3454333",
+      "ts": "2016-11-13 14:57:53",
+      "card_id": "C08363-K1",
+      "amount": 149.99,
+      "bank_score": 0.93,
+      "scorer": 0.004,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3454621",
+      "ts": "2016-11-13 16:42:21",
+      "card_id": "C00889-K2",
+      "amount": 38.92,
+      "bank_score": 0.94,
+      "scorer": 0.254,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3454709",
+      "ts": "2016-11-13 17:16:38",
+      "card_id": "C03047-K2",
+      "amount": 14.92,
+      "bank_score": 0.93,
+      "scorer": 0.342,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3454785",
+      "ts": "2016-11-13 17:47:45",
+      "card_id": "C10585-K2",
+      "amount": 74.95,
+      "bank_score": 0.91,
+      "scorer": 0.01,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3455125",
+      "ts": "2016-11-13 19:38:00",
+      "card_id": "C01983-K1",
+      "amount": 150.01,
+      "bank_score": 0.95,
+      "scorer": 0.492,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3455502",
+      "ts": "2016-11-13 21:40:15",
+      "card_id": "C02147-K2",
+      "amount": 22.8,
+      "bank_score": 0.9,
+      "scorer": 0.717,
+      "triage": "investigated as MON-003"
+    },
+    {
+      "txn_id": "3455590",
+      "ts": "2016-11-13 22:09:56",
+      "card_id": "C01155-K2",
+      "amount": 50.02,
+      "bank_score": 0.9,
+      "scorer": 0.01,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3456279",
+      "ts": "2016-11-14 02:11:55",
+      "card_id": "C11709-K2",
+      "amount": 653.97,
+      "bank_score": 0.9,
+      "scorer": 0.036,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3456421",
+      "ts": "2016-11-14 03:21:33",
+      "card_id": "C11709-K2",
+      "amount": 654.0,
+      "bank_score": 0.9,
+      "scorer": 0.155,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3457197",
+      "ts": "2016-11-14 16:24:03",
+      "card_id": "C08943-K2",
+      "amount": 40.09,
+      "bank_score": 0.96,
+      "scorer": 0.006,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3457462",
+      "ts": "2016-11-14 17:52:56",
+      "card_id": "C04615-K1",
+      "amount": 100.08,
+      "bank_score": 0.95,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3457590",
+      "ts": "2016-11-14 18:32:43",
+      "card_id": "C02449-K1",
+      "amount": 553.92,
+      "bank_score": 0.93,
+      "scorer": 0.04,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3457787",
+      "ts": "2016-11-14 19:33:17",
+      "card_id": "C07646-K2",
+      "amount": 554.02,
+      "bank_score": 0.9,
+      "scorer": 0.01,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3457869",
+      "ts": "2016-11-14 20:01:03",
+      "card_id": "C00667-K1",
+      "amount": 200.01,
+      "bank_score": 0.91,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3458777",
+      "ts": "2016-11-15 01:03:48",
+      "card_id": "C01434-K1",
+      "amount": 26.21,
+      "bank_score": 0.9,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3459142",
+      "ts": "2016-11-15 04:03:54",
+      "card_id": "C07033-K1",
+      "amount": 40.01,
+      "bank_score": 0.92,
+      "scorer": 0.002,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3459218",
+      "ts": "2016-11-15 05:56:16",
+      "card_id": "C02545-K2",
+      "amount": 14.39,
+      "bank_score": 0.9,
+      "scorer": 0.647,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3459498",
+      "ts": "2016-11-15 13:48:05",
+      "card_id": "C08494-K1",
+      "amount": 299.91,
+      "bank_score": 0.91,
+      "scorer": 0.036,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3459573",
+      "ts": "2016-11-15 14:24:47",
+      "card_id": "C11847-K2",
+      "amount": 107.29,
+      "bank_score": 0.91,
+      "scorer": 0.342,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3459601",
+      "ts": "2016-11-15 14:34:14",
+      "card_id": "C05039-K1",
+      "amount": 99.98,
+      "bank_score": 0.9,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3459785",
+      "ts": "2016-11-15 15:41:41",
+      "card_id": "C06962-K2",
+      "amount": 14.95,
+      "bank_score": 0.92,
+      "scorer": 0.709,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3460220",
+      "ts": "2016-11-15 18:11:35",
+      "card_id": "C09454-K1",
+      "amount": 48.98,
+      "bank_score": 0.97,
+      "scorer": 0.681,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3460263",
+      "ts": "2016-11-15 18:27:52",
+      "card_id": "C11000-K2",
+      "amount": 1407.04,
+      "bank_score": 0.93,
+      "scorer": 0.019,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3460490",
+      "ts": "2016-11-15 19:40:28",
+      "card_id": "C11597-K2",
+      "amount": 12.37,
+      "bank_score": 0.95,
+      "scorer": 0.667,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3460651",
+      "ts": "2016-11-15 20:34:03",
+      "card_id": "C05031-K2",
+      "amount": 35.97,
+      "bank_score": 0.95,
+      "scorer": 0.226,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3461301",
+      "ts": "2016-11-16 00:03:40",
+      "card_id": "C12961-K2",
+      "amount": 2595.0,
+      "bank_score": 0.9,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3461303",
+      "ts": "2016-11-16 00:04:11",
+      "card_id": "C02902-K2",
+      "amount": 49.92,
+      "bank_score": 0.9,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3463007",
+      "ts": "2016-11-16 18:35:54",
+      "card_id": "C06962-K2",
+      "amount": 15.05,
+      "bank_score": 0.9,
+      "scorer": 0.717,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3463196",
+      "ts": "2016-11-16 19:40:02",
+      "card_id": "C11309-K1",
+      "amount": 199.92,
+      "bank_score": 0.94,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3463277",
+      "ts": "2016-11-16 20:12:24",
+      "card_id": "C07212-K2",
+      "amount": 50.02,
+      "bank_score": 0.94,
+      "scorer": 0.004,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3463292",
+      "ts": "2016-11-16 20:18:21",
+      "card_id": "C05031-K2",
+      "amount": 73.75,
+      "bank_score": 0.9,
+      "scorer": 0.069,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3463763",
+      "ts": "2016-11-16 23:05:05",
+      "card_id": "C12211-K2",
+      "amount": 264.98,
+      "bank_score": 0.91,
+      "scorer": 0.166,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3463902",
+      "ts": "2016-11-16 23:48:32",
+      "card_id": "C01790-K1",
+      "amount": 35.98,
+      "bank_score": 0.91,
+      "scorer": 0.709,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3464045",
+      "ts": "2016-11-17 00:37:06",
+      "card_id": "C07612-K2",
+      "amount": 106.93,
+      "bank_score": 0.9,
+      "scorer": 0.155,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3464478",
+      "ts": "2016-11-17 04:31:16",
+      "card_id": "C06940-K1",
+      "amount": 44.96,
+      "bank_score": 0.95,
+      "scorer": 0.03,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3465112",
+      "ts": "2016-11-17 15:29:10",
+      "card_id": "C02809-K2",
+      "amount": 1367.12,
+      "bank_score": 0.93,
+      "scorer": 0.013,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3465491",
+      "ts": "2016-11-17 17:44:35",
+      "card_id": "C08945-K2",
+      "amount": 29.96,
+      "bank_score": 0.92,
+      "scorer": 0.004,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3465704",
+      "ts": "2016-11-17 19:08:16",
+      "card_id": "C06948-K1",
+      "amount": 99.92,
+      "bank_score": 0.95,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3465713",
+      "ts": "2016-11-17 19:09:52",
+      "card_id": "C11000-K2",
+      "amount": 2080.0,
+      "bank_score": 0.91,
+      "scorer": 0.035,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3466576",
+      "ts": "2016-11-17 23:38:59",
+      "card_id": "C09691-K1",
+      "amount": 294.99,
+      "bank_score": 0.94,
+      "scorer": 0.072,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3467310",
+      "ts": "2016-11-18 09:11:22",
+      "card_id": "C04034-K2",
+      "amount": 51.6,
+      "bank_score": 0.98,
+      "scorer": 0.155,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3467594",
+      "ts": "2016-11-18 13:57:35",
+      "card_id": "C04034-K2",
+      "amount": 46.42,
+      "bank_score": 0.94,
+      "scorer": 0.166,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3467658",
+      "ts": "2016-11-18 14:24:45",
+      "card_id": "C05704-K2",
+      "amount": 399.93,
+      "bank_score": 0.91,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3467724",
+      "ts": "2016-11-18 14:49:46",
+      "card_id": "C03778-K1",
+      "amount": 15.0,
+      "bank_score": 0.94,
+      "scorer": 0.02,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3468526",
+      "ts": "2016-11-18 19:36:19",
+      "card_id": "C12028-K2",
+      "amount": 16.64,
+      "bank_score": 0.92,
+      "scorer": 0.069,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3468612",
+      "ts": "2016-11-18 20:05:01",
+      "card_id": "C07612-K2",
+      "amount": 115.05,
+      "bank_score": 0.91,
+      "scorer": 0.098,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3468650",
+      "ts": "2016-11-18 20:17:02",
+      "card_id": "C12680-K1",
+      "amount": 260.99,
+      "bank_score": 0.9,
+      "scorer": 0.667,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3469260",
+      "ts": "2016-11-18 23:55:51",
+      "card_id": "C04108-K2",
+      "amount": 149.97,
+      "bank_score": 0.9,
+      "scorer": 0.035,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3469567",
+      "ts": "2016-11-19 01:49:23",
+      "card_id": "C08391-K2",
+      "amount": 41.94,
+      "bank_score": 0.93,
+      "scorer": 0.054,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3469573",
+      "ts": "2016-11-19 01:52:00",
+      "card_id": "C06464-K1",
+      "amount": 38.41,
+      "bank_score": 0.99,
+      "scorer": 0.014,
+      "triage": "investigated as MON-004"
+    },
+    {
+      "txn_id": "3469923",
+      "ts": "2016-11-19 05:46:44",
+      "card_id": "C09933-K2",
+      "amount": 97.09,
+      "bank_score": 0.9,
+      "scorer": 0.098,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3469960",
+      "ts": "2016-11-19 09:04:44",
+      "card_id": "C05876-K2",
+      "amount": 605.01,
+      "bank_score": 0.91,
+      "scorer": 0.081,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3470427",
+      "ts": "2016-11-19 15:05:35",
+      "card_id": "C11543-K2",
+      "amount": 1565.01,
+      "bank_score": 0.91,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3471965",
+      "ts": "2016-11-19 23:42:32",
+      "card_id": "C06962-K2",
+      "amount": 773.96,
+      "bank_score": 0.99,
+      "scorer": 0.007,
+      "triage": "investigated as MON-005"
+    },
+    {
+      "txn_id": "3472506",
+      "ts": "2016-11-20 03:30:59",
+      "card_id": "C04965-K2",
+      "amount": 4577.63,
+      "bank_score": 0.91,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3473713",
+      "ts": "2016-11-20 18:38:17",
+      "card_id": "C11543-K2",
+      "amount": 1849.97,
+      "bank_score": 0.93,
+      "scorer": 0.03,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3473840",
+      "ts": "2016-11-20 19:21:14",
+      "card_id": "C02354-K2",
+      "amount": 54.46,
+      "bank_score": 0.93,
+      "scorer": 0.04,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3474691",
+      "ts": "2016-11-20 23:45:40",
+      "card_id": "C10647-K1",
+      "amount": 226.05,
+      "bank_score": 0.95,
+      "scorer": 0.054,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3475039",
+      "ts": "2016-11-21 01:46:07",
+      "card_id": "C07425-K1",
+      "amount": 25.05,
+      "bank_score": 0.9,
+      "scorer": 0.004,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3475372",
+      "ts": "2016-11-21 07:29:10",
+      "card_id": "C05307-K2",
+      "amount": 12.43,
+      "bank_score": 0.91,
+      "scorer": 0.04,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3475508",
+      "ts": "2016-11-21 12:37:01",
+      "card_id": "C10139-K1",
+      "amount": 76.97,
+      "bank_score": 0.92,
+      "scorer": 0.054,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3475611",
+      "ts": "2016-11-21 13:48:36",
+      "card_id": "C07614-K2",
+      "amount": 812.02,
+      "bank_score": 0.91,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3475631",
+      "ts": "2016-11-21 13:56:41",
+      "card_id": "C12166-K2",
+      "amount": 1331.0,
+      "bank_score": 0.92,
+      "scorer": 0.054,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3475830",
+      "ts": "2016-11-21 15:24:58",
+      "card_id": "C05560-K2",
+      "amount": 99.93,
+      "bank_score": 0.9,
+      "scorer": 0.004,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3475896",
+      "ts": "2016-11-21 15:49:13",
+      "card_id": "C10139-K1",
+      "amount": 96.98,
+      "bank_score": 0.91,
+      "scorer": 0.069,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3475913",
+      "ts": "2016-11-21 15:52:43",
+      "card_id": "C05560-K2",
+      "amount": 49.94,
+      "bank_score": 0.97,
+      "scorer": 0.02,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3476337",
+      "ts": "2016-11-21 18:25:37",
+      "card_id": "C03038-K1",
+      "amount": 762.96,
+      "bank_score": 0.9,
+      "scorer": 0.013,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3476395",
+      "ts": "2016-11-21 18:45:46",
+      "card_id": "C01154-K1",
+      "amount": 300.01,
+      "bank_score": 0.93,
+      "scorer": 0.036,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3476511",
+      "ts": "2016-11-21 19:27:55",
+      "card_id": "C08489-K2",
+      "amount": 49.94,
+      "bank_score": 0.91,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3476589",
+      "ts": "2016-11-21 19:55:56",
+      "card_id": "C08597-K2",
+      "amount": 255.03,
+      "bank_score": 0.91,
+      "scorer": 0.036,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3477354",
+      "ts": "2016-11-22 00:28:49",
+      "card_id": "C10139-K1",
+      "amount": 76.96,
+      "bank_score": 0.94,
+      "scorer": 0.04,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3478054",
+      "ts": "2016-11-22 12:49:47",
+      "card_id": "C12942-K2",
+      "amount": 10.03,
+      "bank_score": 0.9,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3478345",
+      "ts": "2016-11-22 14:49:08",
+      "card_id": "C13036-K1",
+      "amount": 25.97,
+      "bank_score": 0.93,
+      "scorer": 0.456,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3479290",
+      "ts": "2016-11-22 20:32:53",
+      "card_id": "C09657-K2",
+      "amount": 96.64,
+      "bank_score": 0.94,
+      "scorer": 0.647,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3480007",
+      "ts": "2016-11-23 00:34:19",
+      "card_id": "C04125-K2",
+      "amount": 335.09,
+      "bank_score": 0.92,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3480273",
+      "ts": "2016-11-23 02:56:18",
+      "card_id": "C06224-K2",
+      "amount": 200.08,
+      "bank_score": 0.92,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3480425",
+      "ts": "2016-11-23 05:41:33",
+      "card_id": "C02000-K2",
+      "amount": 142.01,
+      "bank_score": 0.93,
+      "scorer": 0.254,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3480648",
+      "ts": "2016-11-23 13:18:49",
+      "card_id": "C10601-K1",
+      "amount": 100.08,
+      "bank_score": 0.92,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3480705",
+      "ts": "2016-11-23 13:52:54",
+      "card_id": "C01215-K1",
+      "amount": 49.91,
+      "bank_score": 0.96,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3481115",
+      "ts": "2016-11-23 16:33:33",
+      "card_id": "C11923-K2",
+      "amount": 17.53,
+      "bank_score": 0.94,
+      "scorer": 0.0,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3482406",
+      "ts": "2016-11-23 23:32:54",
+      "card_id": "C06810-K1",
+      "amount": 261.91,
+      "bank_score": 0.9,
+      "scorer": 0.035,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3482756",
+      "ts": "2016-11-24 01:30:57",
+      "card_id": "C00750-K2",
+      "amount": 99.93,
+      "bank_score": 0.93,
+      "scorer": 0.254,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3482761",
+      "ts": "2016-11-24 01:34:26",
+      "card_id": "C02673-K2",
+      "amount": 562.02,
+      "bank_score": 0.95,
+      "scorer": 0.011,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3483452",
+      "ts": "2016-11-24 14:37:43",
+      "card_id": "C01155-K2",
+      "amount": 99.92,
+      "bank_score": 0.92,
+      "scorer": 0.013,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3483487",
+      "ts": "2016-11-24 14:51:39",
+      "card_id": "C02542-K1",
+      "amount": 99.97,
+      "bank_score": 0.91,
+      "scorer": 0.019,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3483815",
+      "ts": "2016-11-24 16:59:53",
+      "card_id": "C05381-K2",
+      "amount": 14.36,
+      "bank_score": 0.9,
+      "scorer": 0.709,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3483836",
+      "ts": "2016-11-24 17:04:40",
+      "card_id": "C11807-K1",
+      "amount": 62.63,
+      "bank_score": 0.9,
+      "scorer": 0.155,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3484912",
+      "ts": "2016-11-24 22:47:41",
+      "card_id": "C09778-K1",
+      "amount": 40.01,
+      "bank_score": 0.94,
+      "scorer": 0.011,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3485463",
+      "ts": "2016-11-25 02:00:50",
+      "card_id": "C12992-K1",
+      "amount": 99.97,
+      "bank_score": 0.91,
+      "scorer": 0.002,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3485520",
+      "ts": "2016-11-25 02:33:37",
+      "card_id": "C00059-K2",
+      "amount": 317.59,
+      "bank_score": 0.92,
+      "scorer": 0.036,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3485654",
+      "ts": "2016-11-25 04:05:03",
+      "card_id": "C01799-K2",
+      "amount": 106.1,
+      "bank_score": 0.9,
+      "scorer": 0.054,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3486090",
+      "ts": "2016-11-25 14:16:28",
+      "card_id": "C03861-K1",
+      "amount": 427.08,
+      "bank_score": 0.9,
+      "scorer": 0.01,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3486186",
+      "ts": "2016-11-25 14:53:50",
+      "card_id": "C09241-K2",
+      "amount": 29.92,
+      "bank_score": 0.96,
+      "scorer": 0.548,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3486736",
+      "ts": "2016-11-25 18:09:57",
+      "card_id": "C01155-K2",
+      "amount": 170.94,
+      "bank_score": 0.9,
+      "scorer": 0.054,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3487309",
+      "ts": "2016-11-25 21:05:39",
+      "card_id": "C04034-K2",
+      "amount": 389.86,
+      "bank_score": 0.93,
+      "scorer": 0.312,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3487319",
+      "ts": "2016-11-25 21:10:56",
+      "card_id": "C03040-K2",
+      "amount": 50.09,
+      "bank_score": 0.92,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3488113",
+      "ts": "2016-11-26 01:45:21",
+      "card_id": "C00426-K2",
+      "amount": 35.34,
+      "bank_score": 0.93,
+      "scorer": 0.155,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3488429",
+      "ts": "2016-11-26 07:59:33",
+      "card_id": "C04828-K2",
+      "amount": 553.98,
+      "bank_score": 0.9,
+      "scorer": 0.086,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3489129",
+      "ts": "2016-11-26 16:35:26",
+      "card_id": "C10127-K2",
+      "amount": 140.96,
+      "bank_score": 0.91,
+      "scorer": 0.155,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3489358",
+      "ts": "2016-11-26 17:51:21",
+      "card_id": "C05530-K2",
+      "amount": 117.0,
+      "bank_score": 0.9,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3490095",
+      "ts": "2016-11-26 21:56:40",
+      "card_id": "C06443-K1",
+      "amount": 199.95,
+      "bank_score": 0.92,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3490108",
+      "ts": "2016-11-26 22:00:46",
+      "card_id": "C02131-K1",
+      "amount": 749.93,
+      "bank_score": 0.9,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3490469",
+      "ts": "2016-11-26 23:50:10",
+      "card_id": "C02147-K2",
+      "amount": 139.24,
+      "bank_score": 0.92,
+      "scorer": 0.03,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3490808",
+      "ts": "2016-11-27 02:09:59",
+      "card_id": "C09359-K2",
+      "amount": 110.73,
+      "bank_score": 0.91,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3490813",
+      "ts": "2016-11-27 02:12:27",
+      "card_id": "C11509-K2",
+      "amount": 15.22,
+      "bank_score": 0.94,
+      "scorer": 0.312,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3491016",
+      "ts": "2016-11-27 04:44:54",
+      "card_id": "C00917-K1",
+      "amount": 1565.01,
+      "bank_score": 0.94,
+      "scorer": 0.002,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3491054",
+      "ts": "2016-11-27 05:57:10",
+      "card_id": "C12961-K2",
+      "amount": 213.96,
+      "bank_score": 0.9,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3491243",
+      "ts": "2016-11-27 12:30:51",
+      "card_id": "C09206-K2",
+      "amount": 49.93,
+      "bank_score": 0.91,
+      "scorer": 0.013,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3492329",
+      "ts": "2016-11-27 19:08:10",
+      "card_id": "C11509-K2",
+      "amount": 44.2,
+      "bank_score": 0.92,
+      "scorer": 0.681,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3492498",
+      "ts": "2016-11-27 20:03:51",
+      "card_id": "C01982-K2",
+      "amount": 52.98,
+      "bank_score": 0.95,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3492599",
+      "ts": "2016-11-27 20:31:40",
+      "card_id": "C07185-K2",
+      "amount": 76.99,
+      "bank_score": 0.93,
+      "scorer": 0.04,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3493497",
+      "ts": "2016-11-28 01:26:06",
+      "card_id": "C07518-K2",
+      "amount": 199.98,
+      "bank_score": 0.91,
+      "scorer": 0.155,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3493558",
+      "ts": "2016-11-28 01:50:47",
+      "card_id": "C08807-K1",
+      "amount": 550.41,
+      "bank_score": 0.9,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3493827",
+      "ts": "2016-11-28 04:40:44",
+      "card_id": "C03479-K1",
+      "amount": 149.96,
+      "bank_score": 0.96,
+      "scorer": 0.155,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3493993",
+      "ts": "2016-11-28 11:43:03",
+      "card_id": "C10016-K2",
+      "amount": 29.02,
+      "bank_score": 0.94,
+      "scorer": 0.155,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3494007",
+      "ts": "2016-11-28 11:51:48",
+      "card_id": "C10139-K1",
+      "amount": 77.05,
+      "bank_score": 0.92,
+      "scorer": 0.112,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3494858",
+      "ts": "2016-11-28 17:10:19",
+      "card_id": "C01162-K1",
+      "amount": 99.94,
+      "bank_score": 0.94,
+      "scorer": 0.004,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3495137",
+      "ts": "2016-11-28 18:44:38",
+      "card_id": "C07930-K1",
+      "amount": 400.0,
+      "bank_score": 0.93,
+      "scorer": 0.002,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3495811",
+      "ts": "2016-11-28 22:14:50",
+      "card_id": "C05381-K2",
+      "amount": 111.34,
+      "bank_score": 0.9,
+      "scorer": 0.621,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3495982",
+      "ts": "2016-11-28 23:05:45",
+      "card_id": "C03363-K2",
+      "amount": 554.08,
+      "bank_score": 0.91,
+      "scorer": 0.069,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3496325",
+      "ts": "2016-11-29 01:03:58",
+      "card_id": "C09588-K1",
+      "amount": 350.82,
+      "bank_score": 0.92,
+      "scorer": 0.709,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3497655",
+      "ts": "2016-11-29 17:16:04",
+      "card_id": "C01782-K2",
+      "amount": 149.97,
+      "bank_score": 0.97,
+      "scorer": 0.01,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3497662",
+      "ts": "2016-11-29 17:18:46",
+      "card_id": "C11309-K1",
+      "amount": 1347.54,
+      "bank_score": 0.9,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3498141",
+      "ts": "2016-11-29 19:53:10",
+      "card_id": "C06224-K2",
+      "amount": 335.01,
+      "bank_score": 0.91,
+      "scorer": 0.166,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3498625",
+      "ts": "2016-11-29 22:05:38",
+      "card_id": "C05996-K1",
+      "amount": 14.36,
+      "bank_score": 0.91,
+      "scorer": 0.717,
+      "triage": "investigated as MON-006"
+    },
+    {
+      "txn_id": "3498826",
+      "ts": "2016-11-29 23:21:30",
+      "card_id": "C05996-K1",
+      "amount": 14.3,
+      "bank_score": 0.9,
+      "scorer": 0.734,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3499369",
+      "ts": "2016-11-30 03:12:42",
+      "card_id": "C12259-K1",
+      "amount": 36.97,
+      "bank_score": 0.94,
+      "scorer": 0.001,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3500355",
+      "ts": "2016-11-30 15:25:50",
+      "card_id": "C07325-K1",
+      "amount": 161.07,
+      "bank_score": 0.97,
+      "scorer": 0.155,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3500526",
+      "ts": "2016-11-30 16:18:10",
+      "card_id": "C12680-K1",
+      "amount": 69.66,
+      "bank_score": 0.98,
+      "scorer": 0.548,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3500654",
+      "ts": "2016-11-30 16:51:35",
+      "card_id": "C06224-K2",
+      "amount": 225.95,
+      "bank_score": 0.94,
+      "scorer": 0.342,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3500750",
+      "ts": "2016-11-30 17:15:26",
+      "card_id": "C08962-K2",
+      "amount": 165.16,
+      "bank_score": 0.93,
+      "scorer": 0.709,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3501018",
+      "ts": "2016-11-30 18:28:21",
+      "card_id": "C02716-K2",
+      "amount": 70.02,
+      "bank_score": 0.91,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3501547",
+      "ts": "2016-11-30 21:02:39",
+      "card_id": "C13440-K2",
+      "amount": 50.08,
+      "bank_score": 0.92,
+      "scorer": 0.492,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3502073",
+      "ts": "2016-11-30 23:24:23",
+      "card_id": "C13171-K2",
+      "amount": 14.39,
+      "bank_score": 0.91,
+      "scorer": 0.717,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3502292",
+      "ts": "2016-12-01 00:31:31",
+      "card_id": "C08662-K1",
+      "amount": 361.91,
+      "bank_score": 0.92,
+      "scorer": 0.011,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3502436",
+      "ts": "2016-12-01 01:17:32",
+      "card_id": "C11543-K2",
+      "amount": 1650.97,
+      "bank_score": 0.94,
+      "scorer": 0.254,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3503256",
+      "ts": "2016-12-01 14:08:41",
+      "card_id": "C02171-K1",
+      "amount": 99.91,
+      "bank_score": 0.92,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3503590",
+      "ts": "2016-12-01 16:02:42",
+      "card_id": "C01377-K1",
+      "amount": 774.05,
+      "bank_score": 0.9,
+      "scorer": 0.03,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3503878",
+      "ts": "2016-12-01 17:28:53",
+      "card_id": "C07987-K2",
+      "amount": 99.92,
+      "bank_score": 0.9,
+      "scorer": 0.717,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3503978",
+      "ts": "2016-12-01 17:59:02",
+      "card_id": "C00889-K2",
+      "amount": 49.07,
+      "bank_score": 0.93,
+      "scorer": 0.054,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3503988",
+      "ts": "2016-12-01 18:00:57",
+      "card_id": "C06224-K2",
+      "amount": 100.0,
+      "bank_score": 0.91,
+      "scorer": 0.756,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3505756",
+      "ts": "2016-12-02 03:05:06",
+      "card_id": "C06224-K2",
+      "amount": 40.0,
+      "bank_score": 0.91,
+      "scorer": 0.007,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3505846",
+      "ts": "2016-12-02 04:02:14",
+      "card_id": "C03744-K2",
+      "amount": 30.88,
+      "bank_score": 0.9,
+      "scorer": 0.001,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3505982",
+      "ts": "2016-12-02 06:34:20",
+      "card_id": "C02354-K2",
+      "amount": 44.45,
+      "bank_score": 0.91,
+      "scorer": 0.019,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3506142",
+      "ts": "2016-12-02 11:25:47",
+      "card_id": "C01996-K2",
+      "amount": 553.98,
+      "bank_score": 0.91,
+      "scorer": 0.036,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3506181",
+      "ts": "2016-12-02 11:51:38",
+      "card_id": "C07867-K2",
+      "amount": 49.97,
+      "bank_score": 0.94,
+      "scorer": 0.004,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3506725",
+      "ts": "2016-12-02 15:18:27",
+      "card_id": "C10434-K1",
+      "amount": 1000.03,
+      "bank_score": 0.9,
+      "scorer": 0.003,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3506854",
+      "ts": "2016-12-02 15:54:33",
+      "card_id": "C01982-K2",
+      "amount": 734.99,
+      "bank_score": 0.93,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3508708",
+      "ts": "2016-12-03 00:21:44",
+      "card_id": "C11923-K2",
+      "amount": 28.93,
+      "bank_score": 0.92,
+      "scorer": 0.03,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3509436",
+      "ts": "2016-12-03 10:42:08",
+      "card_id": "C01155-K2",
+      "amount": 984.03,
+      "bank_score": 0.91,
+      "scorer": 0.129,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3509619",
+      "ts": "2016-12-03 12:53:09",
+      "card_id": "C05192-K2",
+      "amount": 59.09,
+      "bank_score": 0.91,
+      "scorer": 0.312,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3509719",
+      "ts": "2016-12-03 13:36:44",
+      "card_id": "C01348-K1",
+      "amount": 117.01,
+      "bank_score": 0.93,
+      "scorer": 0.069,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3509800",
+      "ts": "2016-12-03 14:09:36",
+      "card_id": "C02320-K2",
+      "amount": 664.05,
+      "bank_score": 0.91,
+      "scorer": 0.04,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3509995",
+      "ts": "2016-12-03 15:11:33",
+      "card_id": "C12094-K2",
+      "amount": 280.08,
+      "bank_score": 0.9,
+      "scorer": 0.013,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3510100",
+      "ts": "2016-12-03 15:49:39",
+      "card_id": "C08918-K2",
+      "amount": 1296.67,
+      "bank_score": 0.93,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3510684",
+      "ts": "2016-12-03 18:46:52",
+      "card_id": "C00050-K1",
+      "amount": 773.92,
+      "bank_score": 0.94,
+      "scorer": 0.17,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3510727",
+      "ts": "2016-12-03 18:57:44",
+      "card_id": "C08281-K2",
+      "amount": 32.23,
+      "bank_score": 0.95,
+      "scorer": 0.647,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3511331",
+      "ts": "2016-12-03 21:41:12",
+      "card_id": "C00750-K2",
+      "amount": 100.0,
+      "bank_score": 0.9,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3511357",
+      "ts": "2016-12-03 21:51:07",
+      "card_id": "C06224-K2",
+      "amount": 200.07,
+      "bank_score": 0.91,
+      "scorer": 0.069,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3511485",
+      "ts": "2016-12-03 22:29:42",
+      "card_id": "C01599-K1",
+      "amount": 81.99,
+      "bank_score": 0.92,
+      "scorer": 0.035,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3511767",
+      "ts": "2016-12-03 23:56:40",
+      "card_id": "C05029-K1",
+      "amount": 49.06,
+      "bank_score": 0.97,
+      "scorer": 0.647,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3512097",
+      "ts": "2016-12-04 01:51:50",
+      "card_id": "C12913-K1",
+      "amount": 200.05,
+      "bank_score": 0.93,
+      "scorer": 0.002,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3512240",
+      "ts": "2016-12-04 02:56:32",
+      "card_id": "C07648-K2",
+      "amount": 552.0,
+      "bank_score": 0.93,
+      "scorer": 0.013,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3512271",
+      "ts": "2016-12-04 03:14:04",
+      "card_id": "C11923-K2",
+      "amount": 25.9,
+      "bank_score": 0.9,
+      "scorer": 0.01,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3513910",
+      "ts": "2016-12-04 19:17:39",
+      "card_id": "C07925-K1",
+      "amount": 25.0,
+      "bank_score": 0.91,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3514247",
+      "ts": "2016-12-04 20:59:46",
+      "card_id": "C12897-K1",
+      "amount": 275.06,
+      "bank_score": 0.96,
+      "scorer": 0.717,
+      "triage": "investigated as MON-007"
+    },
+    {
+      "txn_id": "3514573",
+      "ts": "2016-12-04 22:40:36",
+      "card_id": "C09933-K2",
+      "amount": 36.97,
+      "bank_score": 0.95,
+      "scorer": 0.013,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3514585",
+      "ts": "2016-12-04 22:43:20",
+      "card_id": "C06605-K1",
+      "amount": 114.06,
+      "bank_score": 0.91,
+      "scorer": 0.254,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3514694",
+      "ts": "2016-12-04 23:19:25",
+      "card_id": "C12680-K1",
+      "amount": 83.41,
+      "bank_score": 0.92,
+      "scorer": 0.492,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3514963",
+      "ts": "2016-12-05 00:53:40",
+      "card_id": "C09251-K1",
+      "amount": 199.92,
+      "bank_score": 0.94,
+      "scorer": 0.112,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3515079",
+      "ts": "2016-12-05 01:38:54",
+      "card_id": "C11670-K2",
+      "amount": 280.09,
+      "bank_score": 0.9,
+      "scorer": 0.04,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3515310",
+      "ts": "2016-12-05 03:14:50",
+      "card_id": "C06224-K2",
+      "amount": 974.06,
+      "bank_score": 0.93,
+      "scorer": 0.098,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3515392",
+      "ts": "2016-12-05 04:01:37",
+      "card_id": "C11444-K1",
+      "amount": 99.69,
+      "bank_score": 0.97,
+      "scorer": 0.681,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3515509",
+      "ts": "2016-12-05 07:12:16",
+      "card_id": "C13171-K2",
+      "amount": 86.62,
+      "bank_score": 0.93,
+      "scorer": 0.717,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3515795",
+      "ts": "2016-12-05 13:29:45",
+      "card_id": "C04258-K1",
+      "amount": 1694.85,
+      "bank_score": 0.94,
+      "scorer": 0.004,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3516131",
+      "ts": "2016-12-05 15:46:13",
+      "card_id": "C06224-K2",
+      "amount": 149.96,
+      "bank_score": 0.97,
+      "scorer": 0.006,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3517218",
+      "ts": "2016-12-05 21:22:47",
+      "card_id": "C01155-K2",
+      "amount": 24.99,
+      "bank_score": 0.96,
+      "scorer": 0.007,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3517282",
+      "ts": "2016-12-05 21:43:43",
+      "card_id": "C00693-K1",
+      "amount": 226.04,
+      "bank_score": 0.91,
+      "scorer": 0.019,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3518126",
+      "ts": "2016-12-06 02:10:39",
+      "card_id": "C05031-K2",
+      "amount": 44.36,
+      "bank_score": 0.94,
+      "scorer": 0.681,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3518362",
+      "ts": "2016-12-06 04:26:18",
+      "card_id": "C12897-K1",
+      "amount": 375.02,
+      "bank_score": 0.9,
+      "scorer": 0.717,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3518372",
+      "ts": "2016-12-06 04:31:11",
+      "card_id": "C04597-K2",
+      "amount": 119.01,
+      "bank_score": 0.91,
+      "scorer": 0.019,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3518497",
+      "ts": "2016-12-06 09:13:25",
+      "card_id": "C11000-K2",
+      "amount": 300.05,
+      "bank_score": 0.94,
+      "scorer": 0.709,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3518611",
+      "ts": "2016-12-06 12:20:54",
+      "card_id": "C03403-K1",
+      "amount": 58.92,
+      "bank_score": 0.92,
+      "scorer": 0.054,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3518672",
+      "ts": "2016-12-06 12:54:07",
+      "card_id": "C09043-K1",
+      "amount": 199.97,
+      "bank_score": 0.94,
+      "scorer": 0.002,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3519198",
+      "ts": "2016-12-06 16:16:39",
+      "card_id": "C02716-K2",
+      "amount": 107.87,
+      "bank_score": 0.92,
+      "scorer": 0.384,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3520093",
+      "ts": "2016-12-06 20:25:57",
+      "card_id": "C12983-K1",
+      "amount": 200.0,
+      "bank_score": 0.92,
+      "scorer": 0.01,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3520930",
+      "ts": "2016-12-07 00:29:54",
+      "card_id": "C06198-K1",
+      "amount": 15.03,
+      "bank_score": 0.95,
+      "scorer": 0.006,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3521127",
+      "ts": "2016-12-07 01:46:55",
+      "card_id": "C08962-K2",
+      "amount": 10.98,
+      "bank_score": 0.93,
+      "scorer": 0.005,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3522431",
+      "ts": "2016-12-07 17:31:14",
+      "card_id": "C11385-K1",
+      "amount": 39.96,
+      "bank_score": 0.9,
+      "scorer": 0.002,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3524192",
+      "ts": "2016-12-08 03:43:06",
+      "card_id": "C06764-K2",
+      "amount": 480.0,
+      "bank_score": 0.93,
+      "scorer": 0.069,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3524449",
+      "ts": "2016-12-08 12:10:19",
+      "card_id": "C12991-K1",
+      "amount": 57.95,
+      "bank_score": 0.92,
+      "scorer": 0.548,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3524462",
+      "ts": "2016-12-08 12:24:30",
+      "card_id": "C07867-K2",
+      "amount": 50.05,
+      "bank_score": 0.95,
+      "scorer": 0.097,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3524594",
+      "ts": "2016-12-08 13:35:22",
+      "card_id": "C07212-K2",
+      "amount": 60.08,
+      "bank_score": 0.98,
+      "scorer": 0.007,
+      "triage": "investigated as MON-008"
+    },
+    {
+      "txn_id": "3524665",
+      "ts": "2016-12-08 14:13:12",
+      "card_id": "C11153-K1",
+      "amount": 884.04,
+      "bank_score": 0.9,
+      "scorer": 0.035,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3524929",
+      "ts": "2016-12-08 15:57:49",
+      "card_id": "C12942-K2",
+      "amount": 74.98,
+      "bank_score": 0.9,
+      "scorer": 0.011,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3525668",
+      "ts": "2016-12-08 20:03:52",
+      "card_id": "C09241-K2",
+      "amount": 19.93,
+      "bank_score": 0.92,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3525770",
+      "ts": "2016-12-08 20:36:57",
+      "card_id": "C02354-K2",
+      "amount": 58.95,
+      "bank_score": 0.92,
+      "scorer": 0.384,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3525939",
+      "ts": "2016-12-08 21:34:09",
+      "card_id": "C01155-K2",
+      "amount": 100.05,
+      "bank_score": 0.92,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3526069",
+      "ts": "2016-12-08 22:13:53",
+      "card_id": "C13216-K1",
+      "amount": 199.99,
+      "bank_score": 0.97,
+      "scorer": 0.717,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3526196",
+      "ts": "2016-12-08 22:48:04",
+      "card_id": "C05560-K2",
+      "amount": 160.09,
+      "bank_score": 0.95,
+      "scorer": 0.02,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3526200",
+      "ts": "2016-12-08 22:49:57",
+      "card_id": "C11890-K1",
+      "amount": 349.95,
+      "bank_score": 0.93,
+      "scorer": 0.069,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3526473",
+      "ts": "2016-12-09 00:16:55",
+      "card_id": "C04447-K1",
+      "amount": 75.02,
+      "bank_score": 0.9,
+      "scorer": 0.069,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3526605",
+      "ts": "2016-12-09 01:01:04",
+      "card_id": "C07607-K1",
+      "amount": 511.93,
+      "bank_score": 0.93,
+      "scorer": 0.004,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3527347",
+      "ts": "2016-12-09 13:47:09",
+      "card_id": "C12680-K1",
+      "amount": 34.93,
+      "bank_score": 0.91,
+      "scorer": 0.717,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3527815",
+      "ts": "2016-12-09 16:37:42",
+      "card_id": "C05690-K1",
+      "amount": 28.08,
+      "bank_score": 0.9,
+      "scorer": 0.621,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3528012",
+      "ts": "2016-12-09 17:45:37",
+      "card_id": "C08391-K2",
+      "amount": 3.95,
+      "bank_score": 0.9,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3528137",
+      "ts": "2016-12-09 18:25:00",
+      "card_id": "C03738-K2",
+      "amount": 58.97,
+      "bank_score": 0.97,
+      "scorer": 0.086,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3529185",
+      "ts": "2016-12-09 23:47:35",
+      "card_id": "C06190-K1",
+      "amount": 199.99,
+      "bank_score": 0.96,
+      "scorer": 0.04,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3529321",
+      "ts": "2016-12-10 00:28:04",
+      "card_id": "C12340-K2",
+      "amount": 26.0,
+      "bank_score": 0.9,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3529869",
+      "ts": "2016-12-10 04:56:14",
+      "card_id": "C11923-K2",
+      "amount": 23.04,
+      "bank_score": 0.92,
+      "scorer": 0.002,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3529970",
+      "ts": "2016-12-10 10:34:43",
+      "card_id": "C10553-K1",
+      "amount": 100.03,
+      "bank_score": 0.9,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3530385",
+      "ts": "2016-12-10 14:33:32",
+      "card_id": "C10661-K1",
+      "amount": 100.02,
+      "bank_score": 0.94,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3530760",
+      "ts": "2016-12-10 16:45:54",
+      "card_id": "C00854-K2",
+      "amount": 1393.75,
+      "bank_score": 0.93,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3531465",
+      "ts": "2016-12-10 20:32:31",
+      "card_id": "C06224-K2",
+      "amount": 150.02,
+      "bank_score": 0.91,
+      "scorer": 0.04,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3532175",
+      "ts": "2016-12-11 00:13:27",
+      "card_id": "C05031-K2",
+      "amount": 44.36,
+      "bank_score": 0.93,
+      "scorer": 0.097,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3532519",
+      "ts": "2016-12-11 02:16:52",
+      "card_id": "C10114-K1",
+      "amount": 45.82,
+      "bank_score": 0.93,
+      "scorer": 0.548,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3532939",
+      "ts": "2016-12-11 12:03:08",
+      "card_id": "C00734-K1",
+      "amount": 149.92,
+      "bank_score": 0.94,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3533089",
+      "ts": "2016-12-11 13:27:56",
+      "card_id": "C05690-K1",
+      "amount": 34.94,
+      "bank_score": 0.91,
+      "scorer": 0.004,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3533246",
+      "ts": "2016-12-11 14:27:59",
+      "card_id": "C05755-K1",
+      "amount": 250.0,
+      "bank_score": 0.93,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3533347",
+      "ts": "2016-12-11 15:02:24",
+      "card_id": "C11143-K1",
+      "amount": 553.94,
+      "bank_score": 0.91,
+      "scorer": 0.011,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3533383",
+      "ts": "2016-12-11 15:15:59",
+      "card_id": "C02354-K2",
+      "amount": 116.99,
+      "bank_score": 0.9,
+      "scorer": 0.342,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3533785",
+      "ts": "2016-12-11 17:33:55",
+      "card_id": "C01367-K1",
+      "amount": 100.03,
+      "bank_score": 0.96,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3533883",
+      "ts": "2016-12-11 17:58:28",
+      "card_id": "C01982-K2",
+      "amount": 894.95,
+      "bank_score": 0.93,
+      "scorer": 0.011,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3534446",
+      "ts": "2016-12-11 20:41:21",
+      "card_id": "C13171-K2",
+      "amount": 24.96,
+      "bank_score": 0.9,
+      "scorer": 0.007,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3535214",
+      "ts": "2016-12-12 00:45:58",
+      "card_id": "C08391-K2",
+      "amount": 21.63,
+      "bank_score": 0.9,
+      "scorer": 0.003,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3535947",
+      "ts": "2016-12-12 12:53:18",
+      "card_id": "C06224-K2",
+      "amount": 75.07,
+      "bank_score": 0.92,
+      "scorer": 0.01,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3535986",
+      "ts": "2016-12-12 13:14:25",
+      "card_id": "C00294-K2",
+      "amount": 42.19,
+      "bank_score": 0.93,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3536205",
+      "ts": "2016-12-12 14:49:28",
+      "card_id": "C12961-K2",
+      "amount": 59.75,
+      "bank_score": 0.9,
+      "scorer": 0.681,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3536637",
+      "ts": "2016-12-12 17:18:32",
+      "card_id": "C08967-K1",
+      "amount": 2242.04,
+      "bank_score": 0.9,
+      "scorer": 0.01,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3536693",
+      "ts": "2016-12-12 17:36:24",
+      "card_id": "C05704-K2",
+      "amount": 25.03,
+      "bank_score": 0.92,
+      "scorer": 0.02,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3537745",
+      "ts": "2016-12-12 22:51:36",
+      "card_id": "C01155-K2",
+      "amount": 149.94,
+      "bank_score": 0.93,
+      "scorer": 0.054,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3538200",
+      "ts": "2016-12-13 01:29:29",
+      "card_id": "C02716-K2",
+      "amount": 3163.98,
+      "bank_score": 0.9,
+      "scorer": 0.01,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3538368",
+      "ts": "2016-12-13 02:41:15",
+      "card_id": "C12961-K2",
+      "amount": 58.95,
+      "bank_score": 0.95,
+      "scorer": 0.069,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3538506",
+      "ts": "2016-12-13 04:12:19",
+      "card_id": "C11597-K2",
+      "amount": 12.22,
+      "bank_score": 0.93,
+      "scorer": 0.647,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3538635",
+      "ts": "2016-12-13 10:05:07",
+      "card_id": "C01155-K2",
+      "amount": 24.97,
+      "bank_score": 0.92,
+      "scorer": 0.004,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3538767",
+      "ts": "2016-12-13 12:56:35",
+      "card_id": "C09241-K2",
+      "amount": 50.09,
+      "bank_score": 0.91,
+      "scorer": 0.006,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3539120",
+      "ts": "2016-12-13 15:23:04",
+      "card_id": "C06224-K2",
+      "amount": 49.95,
+      "bank_score": 0.95,
+      "scorer": 0.003,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3540382",
+      "ts": "2016-12-13 21:28:42",
+      "card_id": "C06663-K2",
+      "amount": 34.61,
+      "bank_score": 0.96,
+      "scorer": 0.004,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3540865",
+      "ts": "2016-12-14 00:04:01",
+      "card_id": "C06224-K2",
+      "amount": 99.95,
+      "bank_score": 0.95,
+      "scorer": 0.0,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3540877",
+      "ts": "2016-12-14 00:08:27",
+      "card_id": "C01982-K2",
+      "amount": 487.05,
+      "bank_score": 0.91,
+      "scorer": 0.02,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3541390",
+      "ts": "2016-12-14 03:50:18",
+      "card_id": "C09187-K1",
+      "amount": 99.93,
+      "bank_score": 0.91,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3541996",
+      "ts": "2016-12-14 14:32:58",
+      "card_id": "C11137-K1",
+      "amount": 124.12,
+      "bank_score": 0.92,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3542004",
+      "ts": "2016-12-14 14:37:08",
+      "card_id": "C02716-K2",
+      "amount": 75.0,
+      "bank_score": 0.98,
+      "scorer": 0.04,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3542994",
+      "ts": "2016-12-14 18:52:35",
+      "card_id": "C04597-K2",
+      "amount": 15.9,
+      "bank_score": 0.91,
+      "scorer": 0.717,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3543203",
+      "ts": "2016-12-14 19:58:11",
+      "card_id": "C05312-K1",
+      "amount": 30.0,
+      "bank_score": 0.91,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3543586",
+      "ts": "2016-12-14 21:43:22",
+      "card_id": "C06224-K2",
+      "amount": 974.09,
+      "bank_score": 0.91,
+      "scorer": 0.226,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3544198",
+      "ts": "2016-12-15 00:43:21",
+      "card_id": "C13171-K2",
+      "amount": 78.87,
+      "bank_score": 0.95,
+      "scorer": 0.02,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3544483",
+      "ts": "2016-12-15 02:36:36",
+      "card_id": "C11655-K1",
+      "amount": 3047.95,
+      "bank_score": 0.9,
+      "scorer": 0.035,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3544582",
+      "ts": "2016-12-15 03:37:05",
+      "card_id": "C11000-K2",
+      "amount": 124.99,
+      "bank_score": 0.94,
+      "scorer": 0.006,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3544629",
+      "ts": "2016-12-15 04:01:23",
+      "card_id": "C03593-K1",
+      "amount": 50.01,
+      "bank_score": 0.9,
+      "scorer": 0.01,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3544633",
+      "ts": "2016-12-15 04:03:04",
+      "card_id": "C06962-K2",
+      "amount": 15.02,
+      "bank_score": 0.9,
+      "scorer": 0.681,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3545605",
+      "ts": "2016-12-15 16:43:53",
+      "card_id": "C05416-K1",
+      "amount": 200.07,
+      "bank_score": 0.91,
+      "scorer": 0.828,
+      "triage": "investigated as MON-009"
+    },
+    {
+      "txn_id": "3545839",
+      "ts": "2016-12-15 17:53:23",
+      "card_id": "C00942-K2",
+      "amount": 20.05,
+      "bank_score": 0.92,
+      "scorer": 0.006,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3545990",
+      "ts": "2016-12-15 18:37:52",
+      "card_id": "C11000-K2",
+      "amount": 199.91,
+      "bank_score": 0.92,
+      "scorer": 0.734,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3546115",
+      "ts": "2016-12-15 19:14:22",
+      "card_id": "C08918-K2",
+      "amount": 149.95,
+      "bank_score": 0.95,
+      "scorer": 0.035,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3546496",
+      "ts": "2016-12-15 21:20:51",
+      "card_id": "C02231-K1",
+      "amount": 150.03,
+      "bank_score": 0.94,
+      "scorer": 0.054,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3546897",
+      "ts": "2016-12-15 23:33:08",
+      "card_id": "C03933-K1",
+      "amount": 553.94,
+      "bank_score": 0.9,
+      "scorer": 0.456,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3547067",
+      "ts": "2016-12-16 00:27:53",
+      "card_id": "C03933-K1",
+      "amount": 546.09,
+      "bank_score": 0.91,
+      "scorer": 0.548,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3547448",
+      "ts": "2016-12-16 03:03:19",
+      "card_id": "C09657-K2",
+      "amount": 38.07,
+      "bank_score": 0.95,
+      "scorer": 0.04,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3547575",
+      "ts": "2016-12-16 04:38:50",
+      "card_id": "C03285-K2",
+      "amount": 25.09,
+      "bank_score": 0.9,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3547582",
+      "ts": "2016-12-16 04:46:44",
+      "card_id": "C05031-K2",
+      "amount": 41.27,
+      "bank_score": 0.91,
+      "scorer": 0.03,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3547633",
+      "ts": "2016-12-16 06:18:08",
+      "card_id": "C09430-K2",
+      "amount": 25.06,
+      "bank_score": 0.91,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3548313",
+      "ts": "2016-12-16 15:48:17",
+      "card_id": "C10553-K1",
+      "amount": 3499.94,
+      "bank_score": 0.9,
+      "scorer": 0.011,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3548361",
+      "ts": "2016-12-16 16:03:13",
+      "card_id": "C10553-K1",
+      "amount": 3500.0,
+      "bank_score": 0.93,
+      "scorer": 0.02,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3548369",
+      "ts": "2016-12-16 16:05:04",
+      "card_id": "C03608-K1",
+      "amount": 58.93,
+      "bank_score": 0.95,
+      "scorer": 0.03,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3548568",
+      "ts": "2016-12-16 17:08:26",
+      "card_id": "C12592-K1",
+      "amount": 149.95,
+      "bank_score": 0.92,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3549093",
+      "ts": "2016-12-16 19:44:03",
+      "card_id": "C09241-K2",
+      "amount": 199.91,
+      "bank_score": 0.93,
+      "scorer": 0.097,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3549837",
+      "ts": "2016-12-16 23:40:18",
+      "card_id": "C00750-K2",
+      "amount": 299.94,
+      "bank_score": 0.99,
+      "scorer": 0.828,
+      "triage": "investigated as MON-010"
+    },
+    {
+      "txn_id": "3550532",
+      "ts": "2016-12-17 05:41:42",
+      "card_id": "C01618-K2",
+      "amount": 48.92,
+      "bank_score": 0.92,
+      "scorer": 0.112,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3551715",
+      "ts": "2016-12-17 18:31:45",
+      "card_id": "C03405-K2",
+      "amount": 1331.07,
+      "bank_score": 0.92,
+      "scorer": 0.035,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3551830",
+      "ts": "2016-12-17 19:12:41",
+      "card_id": "C11031-K2",
+      "amount": 92.0,
+      "bank_score": 0.91,
+      "scorer": 0.054,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3552178",
+      "ts": "2016-12-17 20:55:59",
+      "card_id": "C12942-K2",
+      "amount": 200.09,
+      "bank_score": 0.91,
+      "scorer": 0.019,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3552928",
+      "ts": "2016-12-18 00:45:19",
+      "card_id": "C10837-K2",
+      "amount": 8.33,
+      "bank_score": 0.92,
+      "scorer": 0.312,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3553184",
+      "ts": "2016-12-18 02:33:04",
+      "card_id": "C11844-K2",
+      "amount": 28.01,
+      "bank_score": 0.91,
+      "scorer": 0.035,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3553217",
+      "ts": "2016-12-18 02:50:14",
+      "card_id": "C12429-K1",
+      "amount": 335.06,
+      "bank_score": 0.9,
+      "scorer": 0.069,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3554075",
+      "ts": "2016-12-18 15:48:28",
+      "card_id": "C09165-K2",
+      "amount": 1331.08,
+      "bank_score": 0.91,
+      "scorer": 0.072,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3554115",
+      "ts": "2016-12-18 16:01:39",
+      "card_id": "C06224-K2",
+      "amount": 1103.98,
+      "bank_score": 0.91,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3554584",
+      "ts": "2016-12-18 18:16:44",
+      "card_id": "C05029-K1",
+      "amount": 51.08,
+      "bank_score": 0.96,
+      "scorer": 0.647,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3555955",
+      "ts": "2016-12-19 01:34:19",
+      "card_id": "C00885-K1",
+      "amount": 60.39,
+      "bank_score": 0.93,
+      "scorer": 0.006,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3556929",
+      "ts": "2016-12-19 15:59:01",
+      "card_id": "C05560-K2",
+      "amount": 199.97,
+      "bank_score": 0.92,
+      "scorer": 0.006,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3557050",
+      "ts": "2016-12-19 16:39:27",
+      "card_id": "C08260-K1",
+      "amount": 64.82,
+      "bank_score": 0.94,
+      "scorer": 0.625,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3557112",
+      "ts": "2016-12-19 16:54:12",
+      "card_id": "C12680-K1",
+      "amount": 28.86,
+      "bank_score": 0.92,
+      "scorer": 0.254,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3557247",
+      "ts": "2016-12-19 17:33:08",
+      "card_id": "C12897-K1",
+      "amount": 906.99,
+      "bank_score": 0.91,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3557318",
+      "ts": "2016-12-19 17:56:12",
+      "card_id": "C04108-K2",
+      "amount": 250.01,
+      "bank_score": 0.93,
+      "scorer": 0.548,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3557360",
+      "ts": "2016-12-19 18:10:47",
+      "card_id": "C02609-K1",
+      "amount": 1164.95,
+      "bank_score": 0.92,
+      "scorer": 0.01,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3557594",
+      "ts": "2016-12-19 19:26:44",
+      "card_id": "C01119-K2",
+      "amount": 67.98,
+      "bank_score": 0.95,
+      "scorer": 0.019,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3558524",
+      "ts": "2016-12-20 00:36:45",
+      "card_id": "C03740-K1",
+      "amount": 279.94,
+      "bank_score": 0.92,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3558885",
+      "ts": "2016-12-20 03:13:55",
+      "card_id": "C00849-K1",
+      "amount": 199.98,
+      "bank_score": 0.91,
+      "scorer": 0.02,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3559077",
+      "ts": "2016-12-20 07:23:55",
+      "card_id": "C06224-K2",
+      "amount": 299.99,
+      "bank_score": 0.91,
+      "scorer": 0.828,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3559381",
+      "ts": "2016-12-20 13:51:38",
+      "card_id": "C07212-K2",
+      "amount": 149.99,
+      "bank_score": 0.94,
+      "scorer": 0.01,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3559407",
+      "ts": "2016-12-20 14:06:35",
+      "card_id": "C08037-K1",
+      "amount": 20.06,
+      "bank_score": 0.92,
+      "scorer": 0.002,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3559662",
+      "ts": "2016-12-20 15:59:18",
+      "card_id": "C11275-K1",
+      "amount": 57.97,
+      "bank_score": 0.95,
+      "scorer": 0.002,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3560063",
+      "ts": "2016-12-20 18:10:15",
+      "card_id": "C02716-K2",
+      "amount": 49.94,
+      "bank_score": 0.91,
+      "scorer": 0.0,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3560959",
+      "ts": "2016-12-20 23:00:36",
+      "card_id": "C01855-K2",
+      "amount": 1103.93,
+      "bank_score": 0.91,
+      "scorer": 0.254,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3561130",
+      "ts": "2016-12-21 00:00:48",
+      "card_id": "C03318-K1",
+      "amount": 200.04,
+      "bank_score": 0.9,
+      "scorer": 0.006,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3561840",
+      "ts": "2016-12-21 12:32:18",
+      "card_id": "C08374-K1",
+      "amount": 99.94,
+      "bank_score": 0.96,
+      "scorer": 0.004,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3561899",
+      "ts": "2016-12-21 13:10:19",
+      "card_id": "C03040-K2",
+      "amount": 1867.6,
+      "bank_score": 0.95,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3562266",
+      "ts": "2016-12-21 14:40:31",
+      "card_id": "C11852-K1",
+      "amount": 75.09,
+      "bank_score": 0.92,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3562388",
+      "ts": "2016-12-21 15:14:33",
+      "card_id": "C05704-K2",
+      "amount": 211.02,
+      "bank_score": 0.94,
+      "scorer": 0.312,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3565434",
+      "ts": "2016-12-22 12:56:45",
+      "card_id": "C09165-K2",
+      "amount": 150.04,
+      "bank_score": 0.91,
+      "scorer": 0.667,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3565860",
+      "ts": "2016-12-22 15:34:20",
+      "card_id": "C04108-K2",
+      "amount": 1596.94,
+      "bank_score": 0.93,
+      "scorer": 0.006,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3565983",
+      "ts": "2016-12-22 16:20:11",
+      "card_id": "C10757-K2",
+      "amount": 369.96,
+      "bank_score": 0.96,
+      "scorer": 0.05,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3566010",
+      "ts": "2016-12-22 16:31:58",
+      "card_id": "C11000-K2",
+      "amount": 100.02,
+      "bank_score": 0.91,
+      "scorer": 0.011,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3566104",
+      "ts": "2016-12-22 17:07:42",
+      "card_id": "C02716-K2",
+      "amount": 99.99,
+      "bank_score": 0.95,
+      "scorer": 0.051,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3566552",
+      "ts": "2016-12-22 19:26:49",
+      "card_id": "C09933-K2",
+      "amount": 58.92,
+      "bank_score": 0.9,
+      "scorer": 0.254,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3567084",
+      "ts": "2016-12-22 21:57:15",
+      "card_id": "C00750-K2",
+      "amount": 24.93,
+      "bank_score": 0.91,
+      "scorer": 0.001,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3567136",
+      "ts": "2016-12-22 22:13:16",
+      "card_id": "C04597-K2",
+      "amount": 16.32,
+      "bank_score": 0.95,
+      "scorer": 0.548,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3567483",
+      "ts": "2016-12-23 00:07:45",
+      "card_id": "C07648-K2",
+      "amount": 311.97,
+      "bank_score": 0.9,
+      "scorer": 0.155,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3567534",
+      "ts": "2016-12-23 00:27:05",
+      "card_id": "C03066-K1",
+      "amount": 149.94,
+      "bank_score": 0.91,
+      "scorer": 0.004,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3568325",
+      "ts": "2016-12-23 13:37:39",
+      "card_id": "C00854-K2",
+      "amount": 1201.89,
+      "bank_score": 0.93,
+      "scorer": 0.01,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3569331",
+      "ts": "2016-12-23 19:43:04",
+      "card_id": "C06224-K2",
+      "amount": 125.06,
+      "bank_score": 0.91,
+      "scorer": 0.006,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3570481",
+      "ts": "2016-12-24 02:31:13",
+      "card_id": "C04034-K2",
+      "amount": 80.24,
+      "bank_score": 0.92,
+      "scorer": 0.709,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3570593",
+      "ts": "2016-12-24 03:27:16",
+      "card_id": "C12059-K1",
+      "amount": 312.9,
+      "bank_score": 0.91,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3571630",
+      "ts": "2016-12-24 17:41:26",
+      "card_id": "C05312-K1",
+      "amount": 50.03,
+      "bank_score": 0.96,
+      "scorer": 0.492,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3571955",
+      "ts": "2016-12-24 19:25:21",
+      "card_id": "C06708-K2",
+      "amount": 499.97,
+      "bank_score": 0.92,
+      "scorer": 0.717,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3573061",
+      "ts": "2016-12-25 01:43:51",
+      "card_id": "C05381-K2",
+      "amount": 119.18,
+      "bank_score": 0.93,
+      "scorer": 0.342,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3573138",
+      "ts": "2016-12-25 02:20:56",
+      "card_id": "C03773-K1",
+      "amount": 39.51,
+      "bank_score": 0.95,
+      "scorer": 0.667,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3573232",
+      "ts": "2016-12-25 03:07:23",
+      "card_id": "C12680-K1",
+      "amount": 10.73,
+      "bank_score": 0.93,
+      "scorer": 0.621,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3573628",
+      "ts": "2016-12-25 13:32:58",
+      "card_id": "C07516-K1",
+      "amount": 199.96,
+      "bank_score": 0.9,
+      "scorer": 0.019,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3574213",
+      "ts": "2016-12-25 17:08:01",
+      "card_id": "C08962-K2",
+      "amount": 62.94,
+      "bank_score": 0.9,
+      "scorer": 0.226,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3574223",
+      "ts": "2016-12-25 17:10:35",
+      "card_id": "C09800-K2",
+      "amount": 99.95,
+      "bank_score": 0.92,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3574229",
+      "ts": "2016-12-25 17:13:58",
+      "card_id": "C04571-K2",
+      "amount": 49.0,
+      "bank_score": 0.93,
+      "scorer": 0.166,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3575075",
+      "ts": "2016-12-25 22:10:04",
+      "card_id": "C12028-K2",
+      "amount": 8.11,
+      "bank_score": 0.94,
+      "scorer": 0.384,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3575083",
+      "ts": "2016-12-25 22:13:42",
+      "card_id": "C02137-K1",
+      "amount": 554.0,
+      "bank_score": 0.93,
+      "scorer": 0.004,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3576472",
+      "ts": "2016-12-26 15:35:39",
+      "card_id": "C09301-K2",
+      "amount": 76.99,
+      "bank_score": 0.94,
+      "scorer": 0.226,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3576615",
+      "ts": "2016-12-26 16:37:00",
+      "card_id": "C07648-K2",
+      "amount": 199.94,
+      "bank_score": 0.9,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3577506",
+      "ts": "2016-12-26 21:26:15",
+      "card_id": "C09800-K2",
+      "amount": 25.03,
+      "bank_score": 0.93,
+      "scorer": 0.004,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3577828",
+      "ts": "2016-12-26 23:10:47",
+      "card_id": "C02181-K2",
+      "amount": 59.12,
+      "bank_score": 0.91,
+      "scorer": 0.734,
+      "triage": "investigated as MON-011"
+    },
+    {
+      "txn_id": "3578126",
+      "ts": "2016-12-27 01:13:49",
+      "card_id": "C01333-K2",
+      "amount": 75.05,
+      "bank_score": 0.9,
+      "scorer": 0.011,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3578158",
+      "ts": "2016-12-27 01:27:04",
+      "card_id": "C00329-K2",
+      "amount": 150.09,
+      "bank_score": 0.9,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3578385",
+      "ts": "2016-12-27 03:18:06",
+      "card_id": "C05381-K2",
+      "amount": 16.33,
+      "bank_score": 0.9,
+      "scorer": 0.681,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3579019",
+      "ts": "2016-12-27 15:13:57",
+      "card_id": "C01155-K2",
+      "amount": 100.06,
+      "bank_score": 0.91,
+      "scorer": 0.011,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3579509",
+      "ts": "2016-12-27 18:21:45",
+      "card_id": "C01982-K2",
+      "amount": 1232.52,
+      "bank_score": 0.9,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3579593",
+      "ts": "2016-12-27 18:51:22",
+      "card_id": "C09800-K2",
+      "amount": 96.94,
+      "bank_score": 0.92,
+      "scorer": 0.002,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3580814",
+      "ts": "2016-12-28 02:27:53",
+      "card_id": "C06403-K2",
+      "amount": 60.03,
+      "bank_score": 0.91,
+      "scorer": 0.019,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3580824",
+      "ts": "2016-12-28 02:33:11",
+      "card_id": "C10114-K1",
+      "amount": 193.0,
+      "bank_score": 0.95,
+      "scorer": 0.342,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3581276",
+      "ts": "2016-12-28 13:46:11",
+      "card_id": "C11000-K2",
+      "amount": 2557.24,
+      "bank_score": 0.97,
+      "scorer": 0.02,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3581530",
+      "ts": "2016-12-28 15:33:36",
+      "card_id": "C05381-K2",
+      "amount": 18.12,
+      "bank_score": 0.97,
+      "scorer": 0.312,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3581669",
+      "ts": "2016-12-28 16:25:19",
+      "card_id": "C10035-K2",
+      "amount": 450.09,
+      "bank_score": 0.91,
+      "scorer": 0.625,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3581923",
+      "ts": "2016-12-28 17:53:19",
+      "card_id": "C03689-K1",
+      "amount": 199.97,
+      "bank_score": 0.92,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3581996",
+      "ts": "2016-12-28 18:19:38",
+      "card_id": "C04125-K2",
+      "amount": 107.04,
+      "bank_score": 0.92,
+      "scorer": 0.02,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3582535",
+      "ts": "2016-12-28 21:36:57",
+      "card_id": "C06744-K2",
+      "amount": 17.58,
+      "bank_score": 0.95,
+      "scorer": 0.254,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3583685",
+      "ts": "2016-12-29 13:28:05",
+      "card_id": "C12007-K2",
+      "amount": 993.98,
+      "bank_score": 0.9,
+      "scorer": 0.155,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3583899",
+      "ts": "2016-12-29 15:11:53",
+      "card_id": "C04125-K2",
+      "amount": 224.06,
+      "bank_score": 0.94,
+      "scorer": 0.155,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3583982",
+      "ts": "2016-12-29 15:48:31",
+      "card_id": "C09530-K1",
+      "amount": 1219.97,
+      "bank_score": 0.9,
+      "scorer": 0.254,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3584451",
+      "ts": "2016-12-29 18:32:49",
+      "card_id": "C07212-K2",
+      "amount": 99.91,
+      "bank_score": 0.9,
+      "scorer": 0.013,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3584704",
+      "ts": "2016-12-29 20:00:20",
+      "card_id": "C02342-K1",
+      "amount": 1651.07,
+      "bank_score": 0.91,
+      "scorer": 0.02,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3584725",
+      "ts": "2016-12-29 20:09:31",
+      "card_id": "C01981-K1",
+      "amount": 90.07,
+      "bank_score": 0.95,
+      "scorer": 0.667,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3584947",
+      "ts": "2016-12-29 21:30:25",
+      "card_id": "C05704-K2",
+      "amount": 1369.97,
+      "bank_score": 0.9,
+      "scorer": 0.005,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3585060",
+      "ts": "2016-12-29 22:09:08",
+      "card_id": "C03196-K1",
+      "amount": 49.93,
+      "bank_score": 0.95,
+      "scorer": 0.013,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3585434",
+      "ts": "2016-12-30 00:23:48",
+      "card_id": "C09933-K2",
+      "amount": 275.06,
+      "bank_score": 0.9,
+      "scorer": 0.621,
+      "triage": "skipped: benchmark card or customer"
+    },
+    {
+      "txn_id": "3585627",
+      "ts": "2016-12-30 01:32:18",
+      "card_id": "C07220-K1",
+      "amount": 29.88,
+      "bank_score": 0.94,
+      "scorer": 0.647,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3586316",
+      "ts": "2016-12-30 14:26:55",
+      "card_id": "C11159-K1",
+      "amount": 1650.94,
+      "bank_score": 0.91,
+      "scorer": 0.04,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3586713",
+      "ts": "2016-12-30 16:45:10",
+      "card_id": "C09231-K1",
+      "amount": 149.92,
+      "bank_score": 0.91,
+      "scorer": 0.384,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3586921",
+      "ts": "2016-12-30 18:00:55",
+      "card_id": "C00854-K2",
+      "amount": 280.04,
+      "bank_score": 0.91,
+      "scorer": 0.112,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3587064",
+      "ts": "2016-12-30 18:47:01",
+      "card_id": "C01982-K2",
+      "amount": 213.05,
+      "bank_score": 0.91,
+      "scorer": 0.035,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3587229",
+      "ts": "2016-12-30 19:39:39",
+      "card_id": "C07518-K2",
+      "amount": 10.05,
+      "bank_score": 0.95,
+      "scorer": 0.002,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3587307",
+      "ts": "2016-12-30 20:05:56",
+      "card_id": "C05690-K1",
+      "amount": 2430.77,
+      "bank_score": 0.92,
+      "scorer": 0.01,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3587839",
+      "ts": "2016-12-30 23:17:53",
+      "card_id": "C01399-K1",
+      "amount": 99.97,
+      "bank_score": 0.9,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3588717",
+      "ts": "2016-12-31 12:17:45",
+      "card_id": "C11031-K2",
+      "amount": 944.01,
+      "bank_score": 0.96,
+      "scorer": 0.035,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3588844",
+      "ts": "2016-12-31 13:20:31",
+      "card_id": "C07508-K2",
+      "amount": 22.74,
+      "bank_score": 0.9,
+      "scorer": 0.756,
+      "triage": "investigated as MON-012"
+    },
+    {
+      "txn_id": "3588902",
+      "ts": "2016-12-31 13:45:30",
+      "card_id": "C11496-K2",
+      "amount": 50.07,
+      "bank_score": 0.93,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3588912",
+      "ts": "2016-12-31 13:49:34",
+      "card_id": "C09241-K2",
+      "amount": 75.02,
+      "bank_score": 0.95,
+      "scorer": 0.014,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3588984",
+      "ts": "2016-12-31 14:15:05",
+      "card_id": "C09241-K2",
+      "amount": 92.06,
+      "bank_score": 0.96,
+      "scorer": 0.069,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3589011",
+      "ts": "2016-12-31 14:25:05",
+      "card_id": "C01155-K2",
+      "amount": 75.08,
+      "bank_score": 0.95,
+      "scorer": 0.007,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3589377",
+      "ts": "2016-12-31 16:29:01",
+      "card_id": "C06224-K2",
+      "amount": 25.05,
+      "bank_score": 0.9,
+      "scorer": 0.003,
+      "triage": "queued: below the investigation budget"
+    },
+    {
+      "txn_id": "3589501",
+      "ts": "2016-12-31 17:09:37",
+      "card_id": "C01982-K2",
+      "amount": 24.96,
+      "bank_score": 0.92,
+      "scorer": 0.014,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3589720",
+      "ts": "2016-12-31 18:09:46",
+      "card_id": "C01982-K2",
+      "amount": 20.08,
+      "bank_score": 0.93,
+      "scorer": 0.098,
+      "triage": "merged: same card within 72 hours of an earlier alert"
+    },
+    {
+      "txn_id": "3589881",
+      "ts": "2016-12-31 19:02:21",
+      "card_id": "C11509-K2",
+      "amount": 70.68,
+      "bank_score": 0.97,
+      "scorer": 0.647,
+      "triage": "queued: below the investigation budget"
+    }
+  ]
+}
