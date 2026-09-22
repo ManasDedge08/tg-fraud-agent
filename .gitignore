@@ -2,3 +2,7 @@ data/
 .env
 __pycache__/
 .venv/
+
+brag-output/
+brag-output-*/
+BRIEF.txt

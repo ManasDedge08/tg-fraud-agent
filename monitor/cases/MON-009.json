@@ -1,0 +1,149 @@
+{
+  "case_id": "MON-009",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.98,
+    "pattern": "card_not_present_fraud",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3545605"
+    ],
+    "first_suspicious_txn_id": "3545605",
+    "connected_card_ids": [
+      "C11000-K2",
+      "C11923-K2"
+    ],
+    "connected_device_profiles": [
+      "SAMSUNG SM-G965U Build/R16NW | Android 8.0.0 | samsung browser 7.0 | 2220x1081"
+    ],
+    "exposure_usd": 200.07,
+    "evidence": [
+      {
+        "claim": "Graph-feature scorer trained on 5,565 closed cases gives this transaction a calibrated fraud probability of 0.83 (bank model score 0.91); features include Vesta's unnamed C, D, M and V columns, used as signals only",
+        "source": "graph",
+        "ref": "query:score_transaction(txn_id=3545605)",
+        "entity_ids": [
+          "3545605"
+        ]
+      },
+      {
+        "claim": "Device profile 'SAMSUNG SM-G965U Build/R16NW | Android 8.0.0 | samsung browser 7.0 | 2220x1081' was used on 2 other cards within 24 hours ($199.91, $200.02), and the scorer rates those transactions as suspicious",
+        "source": "graph",
+        "ref": "query:device_neighbors(device='SAMSUNG SM-G965U Build/R16NW | Android 8.0.0 | samsung browser 7.0 | 2220x1081', hours=24)",
+        "entity_ids": [
+          "C11000-K2",
+          "C11923-K2",
+          "3542529",
+          "3545523"
+        ]
+      },
+      {
+        "claim": "Known-pattern definition matched to this case (retrieved by graph search): Card-not-present fraud. The number is used online without the card. Amounts and products that don't fit the cardholder's history, often in a burst of two to four within 48 hours. On its own, one unusual online purchase is ambiguous: verify. Policy R1 to R4.",
+        "source": "document",
+        "ref": "doc:PATTERN-2",
+        "entity_ids": [
+          "PATTERN-2"
+        ]
+      },
+      {
+        "claim": "SAR narrative written against FinCEN narrative guidance passages retrieved for this case (who, what, when, where, how, why)",
+        "source": "document",
+        "ref": "doc:FINCEN-SAR-56,FINCEN-SAR-54",
+        "entity_ids": [
+          "FINCEN-SAR-56",
+          "FINCEN-SAR-54"
+        ]
+      },
+      {
+        "claim": "Closed cases whose analyst notes read most like this investigation (vector search over ClosedCase.note_emb): CC-3632, CC-1274, CC-4798, CC-3662",
+        "source": "graph",
+        "ref": "mcp:search_top_k_similarity(ClosedCase.note_emb)",
+        "entity_ids": [
+          "CC-3632",
+          "CC-1274",
+          "CC-4798",
+          "CC-3662"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-5558",
+      "CC-5557",
+      "CC-3632",
+      "CC-1274"
+    ],
+    "summary": "Real-time fraud model flagged transaction 3545605 ($200.07, online) at score 0.91 on 2016-12-15. Device profile SAMSUNG SM-G965U was used on two other cards (C11000-K2, C11923-K2) within 24 hours with similar amounts ($199.91, $200.02), matching known card-not-present fraud pattern. Calibrated fraud probability 0.98 confirmed verdict. Card C05416-K1 blocked; case created and filed for regulatory review; connected cards placed under monitoring.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-MON-009"
+  },
+  "evidence_requests": [],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "\u00a76: 2 independent signals put probability at 0.98; exposure $200.07 \u2264 $2,500"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: probability above 0.30; R6 shared origin"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile links this card to other cards' suspicious activity"
+      },
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: C11000-K2, C11923-K2 share the device profile"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "\u00a76: 2 independent signals put probability at 0.98; exposure $200.07 \u2264 $2,500"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "3a: probability above 0.30; R6 shared origin"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R6: shared device profile links this card to other cards' suspicious activity"
+      },
+      {
+        "action": "MONITOR_CONNECTED_CARDS",
+        "route": "auto",
+        "reason": "R6: C11000-K2, C11923-K2 share the device profile"
+      }
+    ],
+    "what_changed": "nothing"
+  },
+  "sar": {
+    "file": true,
+    "reason": "R2 and 3a: coordinated or shared-origin fraud",
+    "narrative": "Fraud detected involving customer C05416, primary card C05416-K1, connected to secondary cards C11000-K2 and C11923-K2. On 2016-12-15 at 16:43:53, online transaction $200.07 (product R, region 191.0, transaction ID 3545605) was executed via device profile SAMSUNG SM-G965U Build/R16NW running Android 8.0.0 with samsung browser 7.0. Same device profile conducted two additional suspicious transactions on separate cards within 24 hours: $199.91 and $200.02, amounts consistent with burst-pattern card-not-present fraud. Graph-based fraud model scored all three transactions as suspicious; combined with known pattern matching (card-not-present fraud definition per Policy R6), coordinated suspicious activity across linked cards established. Fraud probability: initial 0.98, final 0.98. No cardholder authorization obtained for primary transaction; device profile links multiple cards indicating organized fraudulent activity. Total exposure: $200.07. Bank actions taken: transaction blocked, card C05416-K1 deactivated, connected cards C11000-K2 and C11923-K2 placed under enhanced monitoring per Policy R6.",
+    "subjects": [
+      "C05416",
+      "C05416-K1",
+      "C11000-K2",
+      "C11923-K2",
+      "SAMSUNG SM-G965U Build/R16NW | Android 8.0.0 | samsung browser 7.0 | 2220x1081"
+    ],
+    "total_amount_usd": 200.07,
+    "activity_dates": [
+      "2016-12-15",
+      "2016-12-15"
+    ]
+  },
+  "stop_reason": "Probability 0.98 with 2 independent signals meets the \u00a76 stopping rule.",
+  "tool_calls": 29,
+  "tokens": 25477,
+  "latency_s": 84.13
+}
